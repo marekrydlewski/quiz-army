@@ -5,9 +5,9 @@ namespace RydlewskiJablonski.Quiz.Interfaces
     public interface IDAO
     {
         List<IUser> GetUsers();
-        bool AddUser(IUser user);
+        void AddUser(IUser user);
         List<ITest> GetTests();
-        bool AddTest(ITest test);
+        void AddTest(ITest test);
         List<ITestStatistics> GetUserStatistics(IUser user);
     }
 }

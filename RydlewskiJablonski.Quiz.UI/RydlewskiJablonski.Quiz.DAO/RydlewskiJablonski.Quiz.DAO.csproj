@@ -40,7 +40,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BO\Answer.cs" />
+    <Compile Include="BO\Question.cs" />
+    <Compile Include="BO\QuestionStatistics.cs" />
+    <Compile Include="BO\Test.cs" />
+    <Compile Include="BO\TestStatistics.cs" />
+    <Compile Include="BO\User.cs" />
+    <Compile Include="DAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\RydlewskiJablonski.Quiz.Interfaces\RydlewskiJablonski.Quiz.Interfaces.csproj">
+      <Project>{154f35db-3130-4926-9c6e-188d0644c8af}</Project>
+      <Name>RydlewskiJablonski.Quiz.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RydlewskiJablonski.Quiz.Core\RydlewskiJablonski.Quiz.Core.csproj">
+      <Project>{60125f7e-2859-41cd-ada5-5fbf0618bbdb}</Project>
+      <Name>RydlewskiJablonski.Quiz.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
