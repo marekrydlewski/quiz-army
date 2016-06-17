@@ -40,7 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RydlewskiJablonski.Quiz.UI\RydlewskiJablonski.Quiz.Core\RydlewskiJablonski.Quiz.Core.csproj">
+      <Project>{60125f7e-2859-41cd-ada5-5fbf0618bbdb}</Project>
+      <Name>RydlewskiJablonski.Quiz.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
