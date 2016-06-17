@@ -10,7 +10,7 @@ namespace RydlewskiJablonski.Quiz.DAO.BO
         public string Name { get; set; }
         public bool IsMultipleChoice { get; set; }
         public int GivenTime { get; set; }
-        public ScoringSchemaEnum ScoringSchema { get; set; }
+        public ScoringSchemas ScoringSchema { get; set; }
         public List<IQuestion> Questions { get; set; }
     }
 }
