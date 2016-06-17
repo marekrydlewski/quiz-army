@@ -44,6 +44,7 @@
     <Compile Include="IDAO.cs" />
     <Compile Include="IQuestion.cs" />
     <Compile Include="IQuestionStatistics.cs" />
+    <Compile Include="ISwitchable.cs" />
     <Compile Include="ITest.cs" />
     <Compile Include="ITestStatistics.cs" />
     <Compile Include="IUser.cs" />
