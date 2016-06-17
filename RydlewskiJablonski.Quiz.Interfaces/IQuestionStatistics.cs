@@ -6,5 +6,6 @@ namespace RydlewskiJablonski.Quiz.Interfaces
     {
         int QuestionId { get; set; }
         List<int> AnswersIds { get; set; }
+        int TimeTaken { get; set; }
     }
 }
