@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Controls;
 using RydlewskiJablonski.Quiz.Interfaces;
 
 namespace RydlewskiJablonski.Quiz.UI.Menu
 {
     /// <summary>
-    /// Interaction logic for MainMenu.xaml
+    /// Interaction logic for AddTest.xaml
     /// </summary>
-    public partial class MainMenu : UserControl, ISwitchable
+    public partial class AddTest : UserControl, ISwitchable
     {
-        public MainMenu()
+        public AddTest()
         {
             InitializeComponent();
         }
