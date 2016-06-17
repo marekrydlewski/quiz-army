@@ -17,6 +17,8 @@ namespace RydlewskiJablonski.Quiz.DAO
 
         public void AddUser(IUser user)
         {
+            int newUserId = _users.Select(x => x.Id).Max() + 1;
+            user.Id = newUserId;
             _users.Add(user);
         }
 
@@ -27,6 +29,8 @@ namespace RydlewskiJablonski.Quiz.DAO
 
         public void AddTest(ITest test)
         {
+            int newTestId = _tests.Select(x => x.Id).Max() + 1;
+            test.Id = newTestId;
             _tests.Add(test);
         }
 
