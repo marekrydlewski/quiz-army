@@ -1,4 +1,5 @@
-﻿using RydlewskiJablonski.Quiz.Core;
+﻿using System.Collections.Generic;
+using RydlewskiJablonski.Quiz.Core;
 
 namespace RydlewskiJablonski.Quiz.Interfaces
 {
@@ -10,5 +11,6 @@ namespace RydlewskiJablonski.Quiz.Interfaces
         string LastName { get; set; }
         string Login { get; set; }
         string Password { get; set; }
+        List<ITestStatistics> TestsStatistics { get; set; }
     }
 }

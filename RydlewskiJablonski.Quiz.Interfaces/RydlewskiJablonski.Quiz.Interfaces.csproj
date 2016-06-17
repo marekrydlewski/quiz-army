@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="IAnswer.cs" />
     <Compile Include="IQuestion.cs" />
+    <Compile Include="IQuestionStatistics.cs" />
     <Compile Include="ITest.cs" />
+    <Compile Include="ITestStatistics.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

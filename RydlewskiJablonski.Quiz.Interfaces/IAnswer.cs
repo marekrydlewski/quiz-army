@@ -2,6 +2,7 @@
 {
     public interface IAnswer
     {
+        int Id { get; set; }
         string Text { get; set; }
         bool IsCorrect { get; set; }
     }
