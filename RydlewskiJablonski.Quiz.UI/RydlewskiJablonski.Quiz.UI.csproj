@@ -74,6 +74,9 @@
     <Compile Include="Menu\Statistics.xaml.cs">
       <DependentUpon>Statistics.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Menu\TestList.xaml.cs">
+      <DependentUpon>TestList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Menu\UserSettings.xaml.cs">
       <DependentUpon>UserSettings.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Menu\Statistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menu\TestList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,6 +165,10 @@
     <ProjectReference Include="RydlewskiJablonski.Quiz.Core\RydlewskiJablonski.Quiz.Core.csproj">
       <Project>{60125f7e-2859-41cd-ada5-5fbf0618bbdb}</Project>
       <Name>RydlewskiJablonski.Quiz.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="RydlewskiJablonski.Quiz.DAO\RydlewskiJablonski.Quiz.DAO.csproj">
+      <Project>{321cf6ea-395d-4784-ab0a-17d2acb76f16}</Project>
+      <Name>RydlewskiJablonski.Quiz.DAO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="RydlewskiJablonski.Quiz.UI.Menu.TestList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RydlewskiJablonski.Quiz.UI.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <local:TestListViewModel/>
+    </UserControl.DataContext>
+    <StackPanel Orientation="Vertical">
+        <TextBlock HorizontalAlignment="Left">Tests available:</TextBlock>
+        <ListBox Name="TestListBox" ItemsSource="{Binding Tests}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" Margin="20,0,10,0"></TextBlock>
+                        <TextBlock Text="Time: " Margin="10,0,0,0"></TextBlock>
+                        <TextBlock Text="{Binding GivenTime}" Margin="0,0,10,0"></TextBlock>
+                        <TextBlock Text="Mutliple choice: " Margin="10,0,0,0"></TextBlock>
+                        <TextBlock Text="{Binding IsMultipleChoice}" Margin="0,0,20,0"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Orientation="Horizontal">
+            <Button HorizontalAlignment="Left" Content="&lt; Back" Name="BackButton" Click="BackButton_Click"></Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
