@@ -16,6 +16,7 @@ namespace RydlewskiJablonski.Quiz.DAO
         {
             _users = new List<IUser>();
             _tests = new List<ITest>();
+
             _tests.Add(new Test
             {
                 Id = 1,
@@ -47,6 +48,25 @@ namespace RydlewskiJablonski.Quiz.DAO
                         }
                     }
                 }
+            });
+
+            _users.Add(new User
+            {
+                Id = 1,
+                FirstName = "Test",
+                LastName = "User",
+                Login = "user",
+                Password = "password",
+                UserType = UserTypes.User
+            });
+            _users.Add(new User
+            {
+                Id = 2,
+                FirstName = "Test",
+                LastName = "Editor",
+                Login = "editor",
+                Password = "password",
+                UserType = UserTypes.Editor
             });
         }
 
