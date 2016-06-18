@@ -25,11 +25,17 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         {
             InitializeComponent();
         }
+
 #region ISwitchable Members
         public void UtilizeState(object state)
         {
             throw new NotImplementedException();
         }
-    }
 #endregion
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            Switcher.Switch(new MainMenu());
+        }
+    }
 }
