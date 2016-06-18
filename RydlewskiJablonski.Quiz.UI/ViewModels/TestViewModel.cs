@@ -14,6 +14,11 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         public TestViewModel(ITest test)
         {
             _test = test;
+            PopulateQuestions();
+        }
+
+        private void PopulateQuestions()
+        {
             _questionViewModels = new ObservableCollection<QuestionViewModel>();
             foreach (var question in _test.Questions)
             {
