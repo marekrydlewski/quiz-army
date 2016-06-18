@@ -14,9 +14,11 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
             InitializeComponent();
         }
 
+        #region ISwitchable Members
         public void UtilizeState(object state)
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }
