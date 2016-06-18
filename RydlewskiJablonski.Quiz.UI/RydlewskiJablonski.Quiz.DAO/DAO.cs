@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RydlewskiJablonski.Quiz.Core;
+using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
 
 namespace RydlewskiJablonski.Quiz.DAO
@@ -9,6 +11,44 @@ namespace RydlewskiJablonski.Quiz.DAO
     {
         private List<IUser> _users;
         private List<ITest> _tests;
+
+        public DAO()
+        {
+            _users = new List<IUser>();
+            _tests = new List<ITest>();
+            _tests.Add(new Test
+            {
+                Id = 1,
+                GivenTime = 60,
+                IsMultipleChoice = false,
+                Name = "Sample test",
+                ScoringSchema = ScoringSchemas.NegativePoints,
+                Questions = new List<IQuestion>
+                {
+                    new Question
+                    {
+                        Id = 1,
+                        ImagePath = null,
+                        Text = "Is that a question?",
+                        Answers = new List<IAnswer>
+                        {
+                            new Answer
+                            {
+                                Id = 1,
+                                IsCorrect = true,
+                                Text = "Yes"
+                            },
+                            new Answer
+                            {
+                                Id = 2,
+                                IsCorrect = false,
+                                Text = "No"
+                            }
+                        }
+                    }
+                }
+            });
+        }
 
         public List<IUser> GetUsers()
         {

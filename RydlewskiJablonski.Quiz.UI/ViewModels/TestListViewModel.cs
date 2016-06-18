@@ -12,6 +12,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         public TestListViewModel()
         {
+            _dao = new DAO.DAO();
             PopulateTestList(_dao.GetTests());
         }
 
