@@ -9,7 +9,7 @@ namespace RydlewskiJablonski.Quiz.Interfaces
         string Name { get; set; }
         bool IsMultipleChoice { get; set; }
         int GivenTime { get; set; }
-        ScoringSchemaEnum ScoringSchema { get; set; }
+        ScoringSchemas ScoringSchema { get; set; }
         List<IQuestion> Questions { get; set; }
     }
 }

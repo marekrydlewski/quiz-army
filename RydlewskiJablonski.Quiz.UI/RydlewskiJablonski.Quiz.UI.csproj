@@ -82,6 +82,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\AnswerViewModel.cs" />
+    <Compile Include="ViewModels\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\TestViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
     <Page Include="Menu\AddQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +146,10 @@
     <ProjectReference Include="..\RydlewskiJablonski.Quiz.Interfaces\RydlewskiJablonski.Quiz.Interfaces.csproj">
       <Project>{154F35DB-3130-4926-9C6E-188D0644C8AF}</Project>
       <Name>RydlewskiJablonski.Quiz.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="RydlewskiJablonski.Quiz.Core\RydlewskiJablonski.Quiz.Core.csproj">
+      <Project>{60125f7e-2859-41cd-ada5-5fbf0618bbdb}</Project>
+      <Name>RydlewskiJablonski.Quiz.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

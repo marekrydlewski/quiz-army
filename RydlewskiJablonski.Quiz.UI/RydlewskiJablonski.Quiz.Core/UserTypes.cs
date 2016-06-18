@@ -1,6 +1,6 @@
 ﻿namespace RydlewskiJablonski.Quiz.Core
 {
-    public enum UserTypeEnum
+    public enum UserTypes
     {
         User, Editor
     }
