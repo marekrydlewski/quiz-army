@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Windows;
 using System.Windows.Controls;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.ViewModels;
@@ -12,7 +13,8 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
     public partial class AddQuestion : UserControl, ISwitchable
     {
         private IUser _user;
-        private TestViewModel _testViewModel;
+        public TestViewModel TestViewModel { get; set; }
+        public QuestionViewModel QuestionViewModel { get; set; }
 
         public AddQuestion()
         {
@@ -24,7 +26,7 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         {
             Type stateType = state.GetType();
             PropertyInfo testProperty = stateType.GetProperty("Test");
-            _testViewModel = testProperty.GetValue(state, null) as TestViewModel;
+            TestViewModel = testProperty.GetValue(state, null) as TestViewModel;
             //IUser user = state as IUser;
             //if (user != null) _user = user;
             //else
@@ -33,5 +35,12 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
             //}
         }
         #endregion
+
+        private void NextQuestionButton_Click(object sender, RoutedEventArgs e)
+        {
+            TestViewModel.AddQuestion(QuestionViewModel);
+            var state = new {Test = TestViewModel};
+            Switcher.Switch(new AddQuestion(), state);
+        }
     }
 }

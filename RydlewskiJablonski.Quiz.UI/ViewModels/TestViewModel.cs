@@ -122,5 +122,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         {
             _dao.AddTest(_test);
         }
+
+        public void AddQuestion(QuestionViewModel questionViewModel)
+        {
+            _questionViewModels.Add(questionViewModel);
+            _test.Questions.Add(new Question
+            {
+                Id = questionViewModel.Id,
+                ImagePath = questionViewModel.ImagePath,
+                Points = questionViewModel.Points,
+                Text = questionViewModel.Text,
+                Answers = questionViewModel.Answers
+            });
+        }
     }
 }
