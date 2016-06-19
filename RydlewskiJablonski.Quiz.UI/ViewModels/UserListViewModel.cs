@@ -10,11 +10,11 @@ using RydlewskiJablonski.Quiz.UI.Annotations;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
-    class UsersViewModel: INotifyPropertyChanged
+    class UserListViewModel: INotifyPropertyChanged
     {
         private IDAO _dao;
 
-        public UsersViewModel()
+        public UserListViewModel()
         {
             _dao = new DAO.DAO();
         }
