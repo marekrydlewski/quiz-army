@@ -39,6 +39,16 @@
             <TextBlock Text="Scoring schema: "/>
             <ComboBox SelectedIndex="0" ItemsSource="{Binding Source={StaticResource contentTypes},Path=DisplayNames}" SelectedValue="{Binding Path=ScoringSchema, Mode=TwoWay, Converter={StaticResource contentTypes}}"/>
         </StackPanel>
-    </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="&lt; Back" Click="BackButton_Click" HorizontalAlignment="Left"/>
+            <Button Content="Add questions" Click="AddQuestionsButton_Click" HorizontalAlignment="Right"/>
+        </StackPanel>
+        </StackPanel>
 </UserControl>
+
+
+
+
+
+
 
