@@ -16,7 +16,7 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         public Login()
         {
             InitializeComponent();
-            
+            DataContext = new LoginViewModel();
         }
 
         #region ISwitchable Members
@@ -42,6 +42,7 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
             else
             {
                 //some label
+
             }
         }
     }
