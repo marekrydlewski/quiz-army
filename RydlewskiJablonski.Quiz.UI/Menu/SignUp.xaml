@@ -10,7 +10,7 @@
         <TextBlock x:Name="usernameTextBlock" HorizontalAlignment="Left" Margin="263,37,0,0" VerticalAlignment="Top" Width="200" Height="30" Text="Username" TextWrapping="Wrap" FontSize="18.667"/>
         <TextBlock x:Name="password1TextBlock" HorizontalAlignment="Left" Margin="263,102,0,0" VerticalAlignment="Top" Width="200" Height="30" FontSize="18.667" Text="Password" TextWrapping="Wrap"/>
         <TextBox x:Name="usernameTextBox" HorizontalAlignment="Left" Margin="447,37,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
-        <Button x:Name="registerButton" Margin="370,0,380,75" VerticalAlignment="Bottom" Content="Register" Width="150" Height="30" FontSize="16"/>
+        <Button x:Name="registerButton" Margin="376,0,374,98" VerticalAlignment="Bottom" Content="Register" Width="150" Height="30" FontSize="16"/>
         <TextBlock x:Name="password2TextBlock" HorizontalAlignment="Left" Margin="263,174,0,396" Width="200" FontSize="18.667" Text="Re-Type Password" TextWrapping="Wrap"/>
         <Button Height="25" HorizontalAlignment="Right" Margin="0,0,20,20" VerticalAlignment="Bottom" Width="100" Content="&lt; Back" Click="BackButton_Click"/>
         <PasswordBox x:Name="passwordBox1" HorizontalAlignment="Left" Margin="447,102,0,0" VerticalAlignment="Top" Width="200" Height="30" FontSize="18.667"/>

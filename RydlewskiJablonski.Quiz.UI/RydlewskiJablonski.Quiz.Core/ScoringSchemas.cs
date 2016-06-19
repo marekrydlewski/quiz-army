@@ -1,7 +1,12 @@
-﻿namespace RydlewskiJablonski.Quiz.Core
+﻿using RydlewskiJablonski.Quiz.Core.Helpers;
+
+namespace RydlewskiJablonski.Quiz.Core
 {
     public enum ScoringSchemas
     {
-        NegativePoints, PartialNegativePoints, NegativePointsForNoAnswer
+        NoNegativePoints,
+        NegativePoints, 
+        PartialNegativePoints,
+        NegativePointsForNoAnswer
     }
 }

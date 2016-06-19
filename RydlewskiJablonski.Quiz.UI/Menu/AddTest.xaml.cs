@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using RydlewskiJablonski.Quiz.Interfaces;
 
@@ -14,6 +15,16 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         public AddTest()
         {
             InitializeComponent();
+        }
+
+        private void AddQuestionsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Switcher.Switch(new AddQuestion());
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            Switcher.Switch(new MainMenu());
         }
 
         #region ISwitchable Members

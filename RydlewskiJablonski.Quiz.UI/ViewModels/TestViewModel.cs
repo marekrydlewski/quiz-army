@@ -3,17 +3,29 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
+using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
+using RydlewskiJablonski.Quiz.UI.Menu;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
     public class TestViewModel : INotifyPropertyChanged
     {
         private ITest _test;
+        private IDAO _dao;
 
         public TestViewModel(ITest test)
         {
+            _dao = new DAO.DAO();
             _test = test;
+            PopulateQuestions();
+        }
+
+        public TestViewModel()
+        {
+            _dao = new DAO.DAO();
+            _test = new Test();
+            _test.Questions = new List<IQuestion>();
             PopulateQuestions();
         }
 
@@ -104,6 +116,11 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 _questionViewModels = value;
                 OnPropertyChanged();
             }
+        }
+
+        public void AddTest()
+        {
+            _dao.AddTest(_test);
         }
     }
 }
