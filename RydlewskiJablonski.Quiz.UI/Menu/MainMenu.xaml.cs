@@ -11,15 +11,22 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
     /// </summary>
     public partial class MainMenu : UserControl, ISwitchable
     {
+        private IUser _user;
+
         public MainMenu()
         {
             InitializeComponent();
         }
 
-        #region ISwitchable Methods
+        #region ISwitchable Members
         public void UtilizeState(object state)
         {
-            throw new NotImplementedException();
+            IUser user = state as IUser;
+            if (user != null) _user = user;
+            else
+            {
+                throw new ArgumentException("state is not IUser! it is: " + state.GetType().ToString());
+            }
         }
         #endregion
 

@@ -9,6 +9,8 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
     /// </summary>
     public partial class AddTest : UserControl, ISwitchable
     {
+        private IUser _user;
+
         public AddTest()
         {
             InitializeComponent();
@@ -17,7 +19,12 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         #region ISwitchable Members
         public void UtilizeState(object state)
         {
-            throw new NotImplementedException();
+            IUser user = state as IUser;
+            if (user != null) _user = user;
+            else
+            {
+                throw new ArgumentException("state is not IUser! it is: " + state.GetType().ToString());
+            }
         }
         #endregion
     }

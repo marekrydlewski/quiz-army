@@ -10,6 +10,8 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
     /// </summary>
     public partial class SignUp : UserControl, ISwitchable
     {
+        private IUser _user;
+
         public SignUp()
         {
             InitializeComponent();
