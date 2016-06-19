@@ -43,7 +43,7 @@
             <Button Content="&lt; Back" Click="BackButton_Click" HorizontalAlignment="Left"/>
             <Button Content="Add questions" Click="AddQuestionsButton_Click" HorizontalAlignment="Right"/>
         </StackPanel>
-        </StackPanel>
+    </StackPanel>
 </UserControl>
 
 

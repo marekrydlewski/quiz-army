@@ -10,6 +10,8 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
     /// </summary>
     public partial class SignUp : UserControl, ISwitchable
     {
+        private IUser _user;
+
         public SignUp()
         {
             InitializeComponent();
@@ -22,9 +24,14 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         }
         #endregion
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             Switcher.Switch(new MainMenu());
+        }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
