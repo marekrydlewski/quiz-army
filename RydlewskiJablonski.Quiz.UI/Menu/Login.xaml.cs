@@ -41,8 +41,8 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
             }
             else
             {
-                //some label
-
+                var login = DataContext as LoginViewModel;
+                if (login != null) login.IsIncorrect = true;
             }
         }
     }

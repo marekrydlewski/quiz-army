@@ -24,6 +24,11 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
+        public LoginViewModel()
+        {
+            IsIncorrect = false;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
