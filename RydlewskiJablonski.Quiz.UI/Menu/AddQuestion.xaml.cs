@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows.Controls;
 using RydlewskiJablonski.Quiz.Interfaces;
+using RydlewskiJablonski.Quiz.UI.ViewModels;
 
 namespace RydlewskiJablonski.Quiz.UI.Menu
 {
@@ -10,6 +12,7 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
     public partial class AddQuestion : UserControl, ISwitchable
     {
         private IUser _user;
+        private TestViewModel _testViewModel;
 
         public AddQuestion()
         {
@@ -19,12 +22,15 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         #region ISwitchable Members
         public void UtilizeState(object state)
         {
-            IUser user = state as IUser;
-            if (user != null) _user = user;
-            else
-            {
-                throw new ArgumentException("state is not IUser! it is: " + state.GetType().ToString());
-            }
+            Type stateType = state.GetType();
+            PropertyInfo testProperty = stateType.GetProperty("Test");
+            _testViewModel = testProperty.GetValue(state, null) as TestViewModel;
+            //IUser user = state as IUser;
+            //if (user != null) _user = user;
+            //else
+            //{
+            //    throw new ArgumentException("state is not IUser! it is: " + state.GetType().ToString());
+            //}
         }
         #endregion
     }
