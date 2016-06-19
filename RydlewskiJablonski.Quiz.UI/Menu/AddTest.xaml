@@ -4,9 +4,41 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RydlewskiJablonski.Quiz.UI.Menu"
+             xmlns:viewmodels="clr-namespace:RydlewskiJablonski.Quiz.UI.ViewModels"
+             xmlns:core="clr-namespace:RydlewskiJablonski.Quiz.Core;assembly=RydlewskiJablonski.Quiz.Core"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:helpers="clr-namespace:RydlewskiJablonski.Quiz.UI.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+    <UserControl.DataContext>
+        <viewmodels:TestViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <helpers:EnumDisplayer Type="{x:Type core:ScoringSchemas}" x:Key="contentTypes">
+            <helpers:EnumDisplayEntry EnumValue="NoNegativePoints" DisplayString="No negative points"/>
+            <helpers:EnumDisplayEntry EnumValue="NegativePoints" DisplayString="Negative points"/>
+            <helpers:EnumDisplayEntry EnumValue="PartialNegativePoints" DisplayString="Partial negative points"/>
+            <helpers:EnumDisplayEntry EnumValue="NegativePointsForNoAnswer" DisplayString="Negative points for no answer"/>
+        </helpers:EnumDisplayer>
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical">
+        <TextBlock Text="Add new test"/>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Test name: "/>
+            <TextBox Text="{Binding Name, Mode=TwoWay}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Multiple choices: "/>
+            <CheckBox IsChecked="{Binding IsMultipleChoice, Mode=TwoWay}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Test time: "/>
+            <TextBox Text="{Binding GivenTime, Mode=TwoWay}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Scoring schema: "/>
+            <ComboBox SelectedIndex="0" ItemsSource="{Binding Source={StaticResource contentTypes},Path=DisplayNames}" SelectedValue="{Binding Path=ScoringSchema, Mode=TwoWay, Converter={StaticResource contentTypes}}"/>
+        </StackPanel>
+    </StackPanel>
 </UserControl>
+
