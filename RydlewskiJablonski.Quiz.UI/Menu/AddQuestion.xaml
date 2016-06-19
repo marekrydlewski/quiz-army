@@ -8,8 +8,9 @@
              d:DesignHeight="600" d:DesignWidth="900"
              DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <StackPanel Orientation="Vertical">
-        <TextBlock Text="{Binding TestViewModel.Name}"></TextBlock>
-        <TextBox Text="{Binding QuestionViewModel.Text, Mode=TwoWay}"></TextBox>
+        <TextBlock Name="TestNameTextBlock"></TextBlock>
+        <TextBox Name="QuestionTextBox"></TextBox>
         <Button Name="NextQuestionButton" Content="Next question" Click="NextQuestionButton_Click"></Button>
+        <Button Name="CompleteTestButton" Content="Finalize test" Click="CompleteTestButton_Click"></Button>
     </StackPanel>
 </UserControl>

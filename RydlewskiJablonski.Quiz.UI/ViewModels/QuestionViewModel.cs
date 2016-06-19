@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
@@ -13,6 +14,13 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         public QuestionViewModel(IQuestion question)
         {
             _question = question;
+            PopulateAnswers();
+        }
+
+        public QuestionViewModel()
+        {
+            _question = new Question();
+            _question.Answers = new List<IAnswer>();
             PopulateAnswers();
         }
 
