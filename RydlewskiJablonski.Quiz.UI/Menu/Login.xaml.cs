@@ -39,6 +39,10 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
             {
                 Switcher.Switch(new MainMenu());
             }
+            else
+            {
+                //some label
+            }
         }
     }
 }
