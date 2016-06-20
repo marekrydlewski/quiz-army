@@ -36,7 +36,6 @@
         </ListBox>
         <Button Name="AddAnswerButton" Content="Add answer" Click="AddAnswerButton_Click"></Button>
         <Button Name="ConfirmQuestionButton" Content="Add question" Click="NextQuestionButton_Click"></Button>
-        <Button Name="CompleteTestButton" Content="Finalize test" Click="CompleteTestButton_Click"></Button>
-        
+        <Button Name="CompleteTestButton" Content="Finalize test" Click="CompleteTestButton_Click"></Button>     
     </StackPanel>
 </UserControl>
