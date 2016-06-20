@@ -2,7 +2,8 @@
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using RydlewskiJablonski.Quiz.DAO.BO;
+using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.ViewModels;
 
@@ -32,6 +33,16 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
 
             TestNameTextBlock.SetBinding(TextBlock.TextProperty, "TestViewModel.Name");
             QuestionTextBox.SetBinding(TextBox.TextProperty, "QuestionViewModel.Text");
+            PointsTextBox.SetBinding(TextBox.TextProperty, "QuestionViewModel.Points");
+            ImagePathTextBox.SetBinding(TextBox.TextProperty, "QuestionViewModel.ImagePath");
+            AnswerTextBox.SetBinding(TextBox.TextProperty, "QuestionViewModel.CurrentAnswer.Text");
+            IsCorrectCheckbox.SetBinding(ToggleButton.IsCheckedProperty, "QuestionViewModel.CurrentAnswer.IsCorrect");
+            AnswersListBox.SetBinding(ItemsControl.ItemsSourceProperty, "QuestionViewModel.AnswerViewModels");
+            AnswersListBox.DisplayMemberPath = "Text";
+            AnswersListBox.SelectedValuePath = "Id";
+
+
+
             //IUser user = state as IUser;
             //if (user != null) _user = user;
             //else
@@ -52,6 +63,38 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         {
             TestViewModel.AddTest();
             Switcher.Switch(new MainMenu());
+        }
+
+        private void AddAnswerButton_Click(object sender, RoutedEventArgs e)
+        {
+            QuestionViewModel.AddCurrentAnswer();
+            AnswerTextBox.Clear();
+            IsCorrectCheckbox.IsChecked = false;
+        }
+
+        private void SelectImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog 
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+
+
+
+            // Set filter for file extension and default file extension 
+            dialog.DefaultExt = ".png";
+            dialog.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+
+
+            // Display OpenFileDialog by calling ShowDialog method 
+            bool? result = dialog.ShowDialog();
+
+
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+            {
+                // Open document 
+                string filename = dialog.FileName;
+                QuestionViewModel.ImagePath = filename;
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
@@ -21,6 +22,11 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         {
             _question = new Question();
             _question.Answers = new List<IAnswer>();
+            _currentAnswer = new AnswerViewModel
+            {
+                Id = 1
+            };
+
             PopulateAnswers();
         }
 
@@ -101,6 +107,31 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 _answerViewModels = value;
                 OnPropertyChanged();
             }
+        }
+
+        private AnswerViewModel _currentAnswer;
+
+        public AnswerViewModel CurrentAnswer
+        {
+            get { return _currentAnswer; }
+            set
+            {
+                _currentAnswer = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void AddCurrentAnswer()
+        {
+            AnswerViewModels.Add(_currentAnswer);
+            Answers.Add(new Answer
+            {
+                Id = _currentAnswer.Id,
+                IsCorrect = _currentAnswer.IsCorrect,
+                Text = _currentAnswer.Text
+            });
+            _currentAnswer = new AnswerViewModel();
+            _currentAnswer.Id = _question.Answers.Select(x => x.Id).Max() + 1;
         }
     }
 }

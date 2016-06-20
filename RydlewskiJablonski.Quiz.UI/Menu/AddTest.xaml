@@ -25,7 +25,7 @@
         <TextBlock Text="Add new test"/>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Test name: "/>
-            <TextBox Text="{Binding Name, Mode=TwoWay}"/>
+            <TextBox Text="{Binding Name, Mode=TwoWay}" MinWidth="200"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Multiple choices: "/>
@@ -33,7 +33,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Test time: "/>
-            <TextBox Text="{Binding GivenTime, Mode=TwoWay}"/>
+            <TextBox Text="{Binding GivenTime, Mode=TwoWay}" MinWidth="50"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Scoring schema: "/>
