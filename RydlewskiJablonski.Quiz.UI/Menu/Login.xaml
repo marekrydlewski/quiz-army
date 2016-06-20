@@ -19,6 +19,9 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
+    <UserControl.DataContext>
+        <viewmodels:LoginViewModel/>
+    </UserControl.DataContext>
     <Grid x:Name="LayoutRoot" Background="White">
             <TextBlock x:Name="usernameTextBlock" HorizontalAlignment="Left" Margin="249,223.5,0,0" VerticalAlignment="Top" Width="100" Height="30" Text="Username" TextWrapping="Wrap" FontSize="18.667"/>
             <TextBlock x:Name="passwordTextBlock" HorizontalAlignment="Left" Margin="250,263.5,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="18.667" Text="Password" TextWrapping="Wrap"/>
