@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,8 +22,9 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
 
         public AddQuestion()
         {
-            InitializeComponent();
+            TestViewModel = new TestViewModel();
             QuestionViewModel = new QuestionViewModel();
+            InitializeComponent();
         }
 
         #region ISwitchable Members
@@ -30,18 +33,6 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
             Type stateType = state.GetType();
             PropertyInfo testProperty = stateType.GetProperty("Test");
             TestViewModel = testProperty.GetValue(state, null) as TestViewModel;
-
-            TestNameTextBlock.SetBinding(TextBlock.TextProperty, "TestViewModel.Name");
-            QuestionTextBox.SetBinding(TextBox.TextProperty, "QuestionViewModel.Text");
-            PointsTextBox.SetBinding(TextBox.TextProperty, "QuestionViewModel.Points");
-            ImagePathTextBox.SetBinding(TextBox.TextProperty, "QuestionViewModel.ImagePath");
-            AnswerTextBox.SetBinding(TextBox.TextProperty, "QuestionViewModel.CurrentAnswer.Text");
-            IsCorrectCheckbox.SetBinding(ToggleButton.IsCheckedProperty, "QuestionViewModel.CurrentAnswer.IsCorrect");
-            AnswersListBox.SetBinding(ItemsControl.ItemsSourceProperty, "QuestionViewModel.AnswerViewModels");
-            AnswersListBox.DisplayMemberPath = "Text";
-            AnswersListBox.SelectedValuePath = "Id";
-
-
 
             //IUser user = state as IUser;
             //if (user != null) _user = user;

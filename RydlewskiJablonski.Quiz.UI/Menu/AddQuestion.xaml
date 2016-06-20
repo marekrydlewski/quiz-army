@@ -8,23 +8,31 @@
              d:DesignHeight="600" d:DesignWidth="900"
              DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <StackPanel Orientation="Vertical">
-        <TextBlock Name="TestNameTextBlock" />
+        <TextBlock Name="TestNameTextBlock" Text="{Binding TestViewModel.Name}"/>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Question:" />
-            <TextBox Name="QuestionTextBox" MinWidth="200" />
+            <TextBox Name="QuestionTextBox" Text="{Binding QuestionViewModel.Text}" MinWidth="200" />
             <TextBlock Text="Points: " />
-            <TextBox Name="PointsTextBox" MinWidth="100" />
+            <TextBox Name="PointsTextBox" Text="{Binding QuestionViewModel.Points}" MinWidth="100" />
             <TextBlock Text="Image: "></TextBlock>
-            <TextBox Name="ImagePathTextBox" MinWidth="200"></TextBox>
+            <TextBox Name="ImagePathTextBox" Text="{Binding QuestionViewModel.ImagePath}" MinWidth="200"></TextBox>
             <Button Name="SelectImageButton" Content="Select image" Click="SelectImageButton_Click"></Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Answer: "></TextBlock>
-            <TextBox Name="AnswerTextBox"  MinWidth="200"/>
+            <TextBox Name="AnswerTextBox" Text="{Binding QuestionViewModel.CurrentAnswer.Text}"  MinWidth="200"/>
             <TextBlock Text="Is correct: "></TextBlock>
-            <CheckBox Name="IsCorrectCheckbox" />
+            <CheckBox Name="IsCorrectCheckbox" IsChecked="{Binding QuestionViewModel.CurrentAnswer.IsCorrect}" />
         </StackPanel>
-        <ListBox Name="AnswersListBox" MinHeight="200">
+        <ListBox Name="AnswersListBox" ItemsSource="{Binding QuestionViewModel.AnswerViewModels}" MinHeight="200">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Text}"></TextBlock>
+                        <TextBlock Text="{Binding IsCorrect}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
         <Button Name="AddAnswerButton" Content="Add answer" Click="AddAnswerButton_Click"></Button>
         <Button Name="ConfirmQuestionButton" Content="Add question" Click="NextQuestionButton_Click"></Button>
