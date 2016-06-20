@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -12,11 +13,21 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
     class UserListViewModel: INotifyPropertyChanged
     {
-        private IDAO _dao;
+        private ObservableCollection<UserViewModel> _userViewModels;
 
         public UserListViewModel()
         {
-            _dao = new DAO.DAO();
+            var dao = new DAO.DAO();
+            PopulateUsers(dao.GetUsers());
+        }
+
+        private void PopulateUsers(List<IUser> users )
+        {
+            _userViewModels = new ObservableCollection<UserViewModel>();
+            foreach (var user in users)
+            {
+                _userViewModels.Add(new UserViewModel(user));
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -24,13 +35,12 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public List<IUser> GetUsers()
+        public ObservableCollection<UserViewModel> GetUsers()
         {
-            return _dao.GetUsers();
+            return _userViewModels;
         }
     }
 }

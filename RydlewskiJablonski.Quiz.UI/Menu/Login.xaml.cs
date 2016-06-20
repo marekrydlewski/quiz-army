@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using RydlewskiJablonski.Quiz.Interfaces;
@@ -34,8 +35,8 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
             var userListViewModel = new UserListViewModel();
-            List<IUser> users = userListViewModel.GetUsers();
-            if (users.Exists(x => usernameTextBox.Text.Equals(x.Login) && passwordBox.Password.Equals(x.Password)))
+            var users = userListViewModel.GetUsers();
+            if (users.Any(x => usernameTextBox.Text.Equals(x.Login) && passwordBox.Password.Equals(x.Password)))
             {
                 Switcher.Switch(new MainMenu());
             }
