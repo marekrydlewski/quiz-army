@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.DAO.BO;
@@ -121,6 +122,27 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         public void AddTest()
         {
             _dao.AddTest(_test);
+        }
+
+        public void AddQuestion(QuestionViewModel questionViewModel)
+        {
+            if (_questionViewModels.Count == 0)
+            {
+                questionViewModel.Id = 1;
+            }     
+            else
+            {
+                questionViewModel.Id = _questionViewModels.Select(x => x.Id).Max() + 1;
+            }
+            _questionViewModels.Add(questionViewModel);
+            _test.Questions.Add(new Question
+            {
+                Id = questionViewModel.Id,
+                ImagePath = questionViewModel.ImagePath,
+                Points = questionViewModel.Points,
+                Text = questionViewModel.Text,
+                Answers = questionViewModel.Answers
+            });
         }
     }
 }

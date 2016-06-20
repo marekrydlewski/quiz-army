@@ -19,7 +19,8 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
 
         private void AddQuestionsButton_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.Switch(new AddQuestion());
+            var state = new {Test = DataContext};
+            Switcher.Switch(new AddQuestion(), state);
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
