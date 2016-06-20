@@ -9,7 +9,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:helpers="clr-namespace:RydlewskiJablonski.Quiz.UI.Helpers"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.DataContext>
         <viewmodels:TestViewModel/>
     </UserControl.DataContext>
@@ -21,7 +21,7 @@
             <helpers:EnumDisplayEntry EnumValue="NegativePointsForNoAnswer" DisplayString="Negative points for no answer"/>
         </helpers:EnumDisplayer>
     </UserControl.Resources>
-    <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical" Background="White">
         <TextBlock Text="Add new test"/>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Test name: "/>

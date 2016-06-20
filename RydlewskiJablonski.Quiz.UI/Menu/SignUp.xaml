@@ -4,8 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RydlewskiJablonski.Quiz.UI.Menu"
+             xmlns:core="clr-namespace:RydlewskiJablonski.Quiz.Core;assembly=RydlewskiJablonski.Quiz.Core"
+             xmlns:helpers="clr-namespace:RydlewskiJablonski.Quiz.UI.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.Resources>
+        <helpers:EnumDisplayer Type="{x:Type core:UserTypes}" x:Key="contentTypes">
+            <helpers:EnumDisplayEntry EnumValue="User" DisplayString="Normal User"/>
+            <helpers:EnumDisplayEntry EnumValue="Editor" DisplayString="Editor"/>
+        </helpers:EnumDisplayer>
+    </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White">
         <TextBlock x:Name="usernameTextBlock" HorizontalAlignment="Left" Margin="263,37,0,0" VerticalAlignment="Top" Width="200" Height="30" Text="Username" TextWrapping="Wrap" FontSize="18.667"/>
         <TextBlock x:Name="password1TextBlock" HorizontalAlignment="Left" Margin="263,102,0,0" VerticalAlignment="Top" Width="200" Height="30" FontSize="18.667" Text="Password" TextWrapping="Wrap"/>
@@ -20,6 +28,8 @@
         <TextBlock x:Name="nameTextBlock" HorizontalAlignment="Left" Margin="263,245,0,325" Width="200" FontSize="18.667" Text="Name" TextWrapping="Wrap"/>
         <TextBlock x:Name="surnameTextBlock" HorizontalAlignment="Left" Margin="263,313,0,257" Width="200" FontSize="18.667" Text="Surname" TextWrapping="Wrap"/>
         <TextBlock x:Name="userTypeTextBlock" HorizontalAlignment="Left" Margin="263,384,0,186" Width="200" FontSize="18.667" Text="User Type" TextWrapping="Wrap"/>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="447,384,0,0" VerticalAlignment="Top" Width="200" Height="30" SelectionChanged="comboBox_SelectionChanged"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="447,384,0,0" VerticalAlignment="Top" Width="200" Height="30" 
+                  SelectionChanged="comboBox_SelectionChanged" SelectedIndex="0" ItemsSource="{Binding Source={StaticResource contentTypes},Path=DisplayNames}" 
+                  SelectedValue="{Binding Path=UserTypes, Mode=TwoWay, Converter={StaticResource contentTypes}}"/>
     </Grid>
 </UserControl>
