@@ -89,7 +89,16 @@ namespace RydlewskiJablonski.Quiz.DAO
 
         public void AddTest(ITest test)
         {
-            int newTestId = _tests.Select(x => x.Id).Max() + 1;
+            int newTestId;
+            if (_tests.Count == 0)
+            {
+                newTestId = 1;
+            }
+            else
+            {
+                newTestId = _tests.Select(x => x.Id).Max() + 1;
+            }
+                
             test.Id = newTestId;
             _tests.Add(test);
         }
