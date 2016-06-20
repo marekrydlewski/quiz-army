@@ -68,16 +68,12 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
             // Create OpenFileDialog 
             Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
 
-
-
             // Set filter for file extension and default file extension 
             dialog.DefaultExt = ".png";
             dialog.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
 
-
             // Display OpenFileDialog by calling ShowDialog method 
             bool? result = dialog.ShowDialog();
-
 
             // Get the selected file name and display in a TextBox 
             if (result == true)
