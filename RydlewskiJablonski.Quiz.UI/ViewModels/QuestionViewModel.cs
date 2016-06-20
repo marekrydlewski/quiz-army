@@ -123,15 +123,19 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         public void AddCurrentAnswer()
         {
-            AnswerViewModels.Add(_currentAnswer);
+            AnswerViewModels.Add(new AnswerViewModel
+            {
+                Id = _currentAnswer.Id,
+                IsCorrect = _currentAnswer.IsCorrect,
+                Text = _currentAnswer.Text
+            });
             Answers.Add(new Answer
             {
                 Id = _currentAnswer.Id,
                 IsCorrect = _currentAnswer.IsCorrect,
                 Text = _currentAnswer.Text
             });
-            _currentAnswer = new AnswerViewModel();
-            _currentAnswer.Id = _question.Answers.Select(x => x.Id).Max() + 1;
+            _currentAnswer = new AnswerViewModel {Id = _question.Answers.Select(x => x.Id).Max() + 1};
         }
     }
 }
