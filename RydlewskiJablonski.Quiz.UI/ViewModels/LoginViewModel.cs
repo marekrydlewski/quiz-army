@@ -5,7 +5,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
     public class LoginViewModel: INotifyPropertyChanged
     {
-
+        private UserListViewModel _userListViewModel;
         private bool _isIncorrect;
 
         public bool IsIncorrect
@@ -21,6 +21,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         public LoginViewModel()
         {
             IsIncorrect = false;
+            _userListViewModel = new UserListViewModel();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

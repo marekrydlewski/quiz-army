@@ -34,9 +34,14 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public ObservableCollection<UserViewModel> GetUsers()
+        public ObservableCollection<UserViewModel> UserViewModels
         {
-            return _userViewModels;
+            get { return _userViewModels; }
+            set
+            {
+                _userViewModels = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

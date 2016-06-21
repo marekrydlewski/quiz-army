@@ -34,7 +34,7 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
             var userListViewModel = new UserListViewModel();
-            var users = userListViewModel.GetUsers();
+            var users = userListViewModel.UserViewModels;
             if (users.Any(x => usernameTextBox.Text.Equals(x.Login) && passwordBox.Password.Equals(x.Password)))
             {
                 Switcher.Switch(new MainMenu());
