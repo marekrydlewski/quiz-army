@@ -55,8 +55,6 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         private void AddAnswerButton_Click(object sender, RoutedEventArgs e)
         {
             QuestionViewModel.AddCurrentAnswer();
-            AnswerTextBox.Clear();
-            IsCorrectCheckbox.IsChecked = false;
         }
 
         private void SelectImageButton_Click(object sender, RoutedEventArgs e)
