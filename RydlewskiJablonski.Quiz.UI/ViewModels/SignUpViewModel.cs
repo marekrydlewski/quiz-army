@@ -66,7 +66,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 try
                 {
                     _userListViewModel.AddUser(_userViewModel);
-                    Switcher.Switch(new MainMenu());
+                    Switcher.Switch(new MainMenu(), _userViewModel);
                 }
                 catch (DuplicateNameException)
                 {

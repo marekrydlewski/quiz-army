@@ -50,7 +50,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         {
             if (_userListViewModel.UserViewModels.Any(x => _userName.Equals(x.Login) && password.Equals(x.Password)))
             {
-                Switcher.Switch(new MainMenu());
+                Switcher.Switch(new MainMenu(), _userListViewModel.UserViewModels.FirstOrDefault(x => _userName.Equals(x.Login) && password.Equals(x.Password)));
             }
             else
             {
