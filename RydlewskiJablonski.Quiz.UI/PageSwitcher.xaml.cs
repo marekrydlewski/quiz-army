@@ -13,7 +13,7 @@ namespace RydlewskiJablonski.Quiz.UI
         public PageSwitcher()
         {
             InitializeComponent();
-            Switcher.pageSwitcher = this;
+            Switcher.PageSwitcher = this;
             Switcher.Switch(new Menu.MainMenu());
         }
 
