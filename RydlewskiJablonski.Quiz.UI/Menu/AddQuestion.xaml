@@ -19,7 +19,7 @@
             <TextBox Name="PointsTextBox" Text="{Binding QuestionViewModel.Points}" MinWidth="100" />
             <TextBlock Text="Image: "></TextBlock>
             <TextBox Name="ImagePathTextBox" Text="{Binding QuestionViewModel.ImagePath}" MinWidth="200"></TextBox>
-            <Button Name="SelectImageButton" Content="Select image" Click="SelectImageButton_Click"></Button>
+            <Button Name="SelectImageButton" Content="Select image" Command="{Binding SelectImageCommand}"></Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Answer: "></TextBlock>
@@ -37,8 +37,8 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Name="AddAnswerButton" Content="Add answer" Click="AddAnswerButton_Click"></Button>
-        <Button Name="ConfirmQuestionButton" Content="Add question" Click="NextQuestionButton_Click"></Button>
-        <Button Name="CompleteTestButton" Content="Finalize test" Click="CompleteTestButton_Click"></Button>     
+        <Button Name="AddAnswerButton" Content="Add answer" Command="{Binding AddCurrentAsnwerCommand}"></Button>
+        <Button Name="ConfirmQuestionButton" Content="Add question" Command="{Binding AddCurrentQuestionCommand}"></Button>
+        <Button Name="CompleteTestButton" Content="Finalize test" Command="{Binding AddCurrentTestCommand}"></Button>     
     </StackPanel>
 </UserControl>

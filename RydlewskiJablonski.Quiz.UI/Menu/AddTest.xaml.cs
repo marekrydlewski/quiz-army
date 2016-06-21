@@ -16,22 +16,6 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
             InitializeComponent();
         }
 
-        private void AddQuestionsButton_Click(object sender, RoutedEventArgs e)
-        {
-            var state = DataContext;
-            Switcher.Switch(new AddQuestion(), state);
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            var context = DataContext as AddTestViewModel;
-            if (context != null)
-            {
-                var state = context.UserViewModel;
-                Switcher.Switch(new MainMenu(), state);
-            }
-        }
-
         #region ISwitchable Members
         public void UtilizeState(object state)
         {
