@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
+using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
@@ -12,6 +13,11 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         public UserViewModel(IUser user)
         {
             _user = user;
+        }
+
+        public UserViewModel()
+        {
+            _user = new User();
         }
 
         public int Id

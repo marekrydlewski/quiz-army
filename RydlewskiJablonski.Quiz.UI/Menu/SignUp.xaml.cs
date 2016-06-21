@@ -28,10 +28,5 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         {
             Switcher.Switch(new MainMenu());
         }
-
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }
