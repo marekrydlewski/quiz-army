@@ -118,11 +118,6 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
-        public void AddTest()
-        {
-            _dao.AddTest(_test);
-        }
-
         public void AddQuestion(QuestionViewModel questionViewModel)
         {
             if (_questionViewModels.Count == 0)

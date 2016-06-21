@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RydlewskiJablonski.Quiz.UI.Menu"
+             xmlns:viewModels="clr-namespace:RydlewskiJablonski.Quiz.UI.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.DataContext>
+        <viewModels:UserViewModel/>
+    </UserControl.DataContext>
     <UserControl.Resources>
         <Storyboard x:Key="loginMouseEnter">
             <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="loginTextBlock" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">

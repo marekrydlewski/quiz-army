@@ -24,7 +24,12 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.Switch(new MainMenu());
+            var context = DataContext as AddTestViewModel;
+            if (context != null)
+            {
+                var state = context.UserViewModel;
+                Switcher.Switch(new MainMenu(), state);
+            }
         }
 
         #region ISwitchable Members
