@@ -6,14 +6,15 @@ using RydlewskiJablonski.Quiz.Interfaces;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
-    class UserListViewModel: INotifyPropertyChanged
+    class UserListViewModel : INotifyPropertyChanged
     {
+        private IDAO _dao;
         private ObservableCollection<UserViewModel> _userViewModels;
 
         public UserListViewModel()
         {
-            var dao = new DAO.DAO();
-            PopulateUsers(dao.GetUsers());
+            _dao = new DAO.DAO();
+            PopulateUsers(_dao.GetUsers());
         }
 
         private void PopulateUsers(List<IUser> users )
