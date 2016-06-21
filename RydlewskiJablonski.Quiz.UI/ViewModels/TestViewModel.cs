@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
-using RydlewskiJablonski.Quiz.UI.Menu;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {

@@ -86,7 +86,6 @@
     <Compile Include="PageSwitcher.xaml.cs">
       <DependentUpon>PageSwitcher.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Switcher.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

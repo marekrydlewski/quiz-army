@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.ViewModels;
 
