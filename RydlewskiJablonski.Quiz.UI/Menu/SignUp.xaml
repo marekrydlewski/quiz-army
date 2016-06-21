@@ -2,15 +2,14 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:RydlewskiJablonski.Quiz.UI.Menu"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:core="clr-namespace:RydlewskiJablonski.Quiz.Core;assembly=RydlewskiJablonski.Quiz.Core"
              xmlns:helpers="clr-namespace:RydlewskiJablonski.Quiz.UI.Helpers"
              xmlns:viewModels="clr-namespace:RydlewskiJablonski.Quiz.UI.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.DataContext>
-        <viewModels:UserViewModel/>
+        <viewModels:SignUpViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
         <helpers:EnumDisplayer Type="{x:Type core:UserTypes}" x:Key="contentTypes">
@@ -21,19 +20,19 @@
     <Grid x:Name="LayoutRoot" Background="White">
         <TextBlock x:Name="usernameTextBlock" HorizontalAlignment="Left" Margin="263,37,0,0" VerticalAlignment="Top" Width="200" Height="30" Text="Username" TextWrapping="Wrap" FontSize="18.667"/>
         <TextBlock x:Name="password1TextBlock" HorizontalAlignment="Left" Margin="263,102,0,0" VerticalAlignment="Top" Width="200" Height="30" FontSize="18.667" Text="Password" TextWrapping="Wrap"/>
-        <TextBox Text="{Binding Login}" x:Name="usernameTextBox" HorizontalAlignment="Left" Margin="447,37,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
-        <Button x:Name="registerButton" Margin="376,0,374,98" VerticalAlignment="Bottom" Content="Register" Width="150" Height="30" FontSize="16"/>
+        <TextBox Text="{Binding UserViewModel.Login}" x:Name="usernameTextBox" HorizontalAlignment="Left" Margin="447,37,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
+        <Button x:Name="registerButton" Margin="376,0,374,98" VerticalAlignment="Bottom" Content="Register" Width="150" Height="30" FontSize="16" Click="RegisterButton_Click"/>
         <TextBlock x:Name="password2TextBlock" HorizontalAlignment="Left" Margin="263,174,0,396" Width="200" FontSize="18.667" Text="Re-Type Password" TextWrapping="Wrap"/>
         <Button Height="25" HorizontalAlignment="Right" Margin="0,0,20,20" VerticalAlignment="Bottom" Width="100" Content="&lt; Back" Click="BackButton_Click"/>
         <PasswordBox x:Name="passwordBox1" HorizontalAlignment="Left" Margin="447,102,0,0" VerticalAlignment="Top" Width="200" Height="30" FontSize="18.667"/>
         <PasswordBox x:Name="passwordBox2" HorizontalAlignment="Left" Margin="447,174,0,0" Width="200" FontSize="18.667" VerticalAlignment="Top" Height="30"/>
-        <TextBox Text="{Binding FirstName}" x:Name="nameBox" HorizontalAlignment="Left" Margin="447,245,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
-        <TextBox Text="{Binding LastName}" x:Name="surnameBox" HorizontalAlignment="Left" Margin="447,313,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
+        <TextBox Text="{Binding UserViewModel.FirstName}" x:Name="nameBox" HorizontalAlignment="Left" Margin="447,245,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
+        <TextBox Text="{Binding UserViewModel.LastName}" x:Name="surnameBox" HorizontalAlignment="Left" Margin="447,313,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
         <TextBlock x:Name="nameTextBlock" HorizontalAlignment="Left" Margin="263,245,0,325" Width="200" FontSize="18.667" Text="Name" TextWrapping="Wrap"/>
         <TextBlock x:Name="surnameTextBlock" HorizontalAlignment="Left" Margin="263,313,0,257" Width="200" FontSize="18.667" Text="Surname" TextWrapping="Wrap"/>
         <TextBlock x:Name="userTypeTextBlock" HorizontalAlignment="Left" Margin="263,384,0,186" Width="200" FontSize="18.667" Text="User Type" TextWrapping="Wrap"/>
         <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="447,384,0,0" VerticalAlignment="Top" Width="200" Height="30" 
                   SelectedIndex="0" ItemsSource="{Binding Source={StaticResource contentTypes},Path=DisplayNames}" 
-                  SelectedValue="{Binding Path=UserType, Mode=TwoWay, Converter={StaticResource contentTypes}}"/>
+                  SelectedValue="{Binding Path=UserViewModel.UserType, Mode=TwoWay, Converter={StaticResource contentTypes}}"/>
     </Grid>
 </UserControl>

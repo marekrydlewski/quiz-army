@@ -23,7 +23,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         public int Id
         {
             get { return _user.Id; }
-            private set
+            set
             {
                 _user.Id = value;
                 OnPropertyChanged();
