@@ -24,18 +24,5 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         }
         #endregion
 
-        private void backButton_Click(object sender, RoutedEventArgs e)
-        {
-            Switcher.Switch(new MainMenu());
-        }
-
-        private void loginButton_Click(object sender, RoutedEventArgs e)
-        {
-            var context = DataContext as LoginViewModel;
-            if (context != null)
-            {
-                context.Login(passwordBox.Password);
-            }
-        }
     }
 }

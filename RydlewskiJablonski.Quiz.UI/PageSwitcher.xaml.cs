@@ -14,7 +14,7 @@ namespace RydlewskiJablonski.Quiz.UI
         {
             InitializeComponent();
             Switcher.PageSwitcher = this;
-            Switcher.Switch(new Menu.MainMenu());
+            Switcher.Switch(new Menu.Login());
         }
 
         public void Navigate(UserControl nextPage)
