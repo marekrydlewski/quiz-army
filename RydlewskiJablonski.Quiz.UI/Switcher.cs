@@ -4,7 +4,7 @@ namespace RydlewskiJablonski.Quiz.UI
 {
     public static class Switcher
     {
-        public static PageSwitcher PageSwitcher;
+        public static PageSwitcher PageSwitcher { get; set; }
 
         public static void Switch(UserControl newPage)
         {
