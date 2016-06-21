@@ -18,12 +18,12 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _testViewModel = new TestViewModel();
             _questionViewModel = new QuestionViewModel();
             _answerViewModel = new AnswerViewModel();
-            _addQuestionsCommand = new RelayCommand(param => AddQuestions());
-            _returnToMenuCommand = new RelayCommand(param => ReturnToMenu());
-            _addCurrentTestCommand = new RelayCommand(param => AddCurrentTest());
-            _addCurrentQuestionCommand = new RelayCommand(param => AddCurrentQuestion());
-            _addCurrentAnswerCommand = new RelayCommand(param => AddCurrentAnswer());
-            _selectImageCommand = new RelayCommand(param => SelectImage());
+            _addQuestionsCommand = new RelayCommand<object>(param => AddQuestions());
+            _returnToMenuCommand = new RelayCommand<object>(param => ReturnToMenu());
+            _addCurrentTestCommand = new RelayCommand<object>(param => AddCurrentTest());
+            _addCurrentQuestionCommand = new RelayCommand<object>(param => AddCurrentQuestion());
+            _addCurrentAnswerCommand = new RelayCommand<object>(param => AddCurrentAnswer());
+            _selectImageCommand = new RelayCommand<object>(param => SelectImage());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -121,9 +121,9 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         #region Commands & navigation
 
-        private readonly RelayCommand _addQuestionsCommand;
+        private readonly RelayCommand<object> _addQuestionsCommand;
 
-        public RelayCommand AddQuestionsCommand
+        public RelayCommand<object> AddQuestionsCommand
         {
             get { return _addQuestionsCommand; }
         }
@@ -133,9 +133,9 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             Switcher.Switch(new AddQuestion(), this);
         }
 
-        private readonly RelayCommand _returnToMenuCommand;
+        private readonly RelayCommand<object> _returnToMenuCommand;
 
-        public RelayCommand ReturnToMenuCommand
+        public RelayCommand<object> ReturnToMenuCommand
         {
             get { return _returnToMenuCommand; }
         }
@@ -145,30 +145,30 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             Switcher.Switch(new MainMenu(), UserViewModel);
         }
 
-        private readonly RelayCommand _addCurrentQuestionCommand;
+        private readonly RelayCommand<object> _addCurrentQuestionCommand;
 
-        public RelayCommand AddCurrentQuestionCommand
+        public RelayCommand<object> AddCurrentQuestionCommand
         {
             get { return _addCurrentQuestionCommand; }
         }
 
-        private readonly RelayCommand _addCurrentTestCommand;
+        private readonly RelayCommand<object> _addCurrentTestCommand;
 
-        public RelayCommand AddCurrentTestCommand
+        public RelayCommand<object> AddCurrentTestCommand
         {
             get { return _addCurrentTestCommand; }
         }
 
-        private readonly RelayCommand _addCurrentAnswerCommand;
+        private readonly RelayCommand<object> _addCurrentAnswerCommand;
 
-        public RelayCommand AddCurrentAsnwerCommand
+        public RelayCommand<object> AddCurrentAsnwerCommand
         {
             get { return _addCurrentAnswerCommand; }
         }
 
-        private readonly RelayCommand _selectImageCommand;
+        private readonly RelayCommand<object> _selectImageCommand;
 
-        public RelayCommand SelectImageCommand
+        public RelayCommand<object> SelectImageCommand
         {
             get { return _selectImageCommand; }
         }

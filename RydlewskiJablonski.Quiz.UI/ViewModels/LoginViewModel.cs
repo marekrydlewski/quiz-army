@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 using RydlewskiJablonski.Quiz.UI.Menu;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
@@ -24,7 +25,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         {
             IsIncorrect = false;
             _userListViewModel = new UserListViewModel();
-            _loginCommand = new RelayCommand(param => Login(param as string));
+            _loginCommand = new RelayCommand<object>(param => Login(param));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -47,8 +48,9 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
-        public void Login(string password)
+        public void Login(object passwordBox)
         {
+            string password = (passwordBox as PasswordBox).Password;
             if (_userListViewModel.UserViewModels.Any(x => _userName.Equals(x.Login) && password.Equals(x.Password)))
             {
                 Switcher.Switch(new MainMenu(), _userListViewModel.UserViewModels.FirstOrDefault(x => _userName.Equals(x.Login) && password.Equals(x.Password)));
@@ -61,9 +63,9 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         #region Commands & navigation
 
-        private RelayCommand _loginCommand;
+        private RelayCommand<object> _loginCommand;
 
-        public RelayCommand LoginCommand
+        public RelayCommand<object> LoginCommand
         {
             get { return _loginCommand; }
         }
