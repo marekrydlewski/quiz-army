@@ -27,7 +27,7 @@
             <TextBlock x:Name="passwordTextBlock" HorizontalAlignment="Left" Margin="250,263.5,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="18.667" Text="Password" TextWrapping="Wrap"/>
             <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="367.5,263.5,0,0" VerticalAlignment="Top" Width="200" Height="30" FontSize="18.667"/>    
             <TextBox Text="{Binding UserName}" x:Name="usernameTextBox" HorizontalAlignment="Left" Margin="367,223.5,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
-            <Button x:Name="loginButton" Margin="367,0,383,252" VerticalAlignment="Bottom" Content="Login" Width="150" Height="30" FontSize="16" Click="loginButton_Click"/>
+            <Button x:Name="loginButton" Margin="367,0,383,252" VerticalAlignment="Bottom" Content="Login" Width="150" Height="30" FontSize="16" Command="{Binding LoginCommand}" CommandParameter="{Binding Path=Password, ElementName=passwordBox}"/>
             <Button Height="25" HorizontalAlignment="Right" Margin="0,0,20,20" VerticalAlignment="Bottom" Width="100" Content="&lt; Back" Click="backButton_Click"/>    
             <Label Style="{StaticResource WarningBorderStyle}" x:Name="label" MaxWidth="400" MaxHeight="50" Content="Login or password incorrect" FontSize="20" Foreground="Red" HorizontalAlignment="Left" Margin="334,496,0,0" VerticalAlignment="Top"/>
     </Grid>

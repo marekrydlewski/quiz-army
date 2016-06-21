@@ -24,6 +24,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         {
             IsIncorrect = false;
             _userListViewModel = new UserListViewModel();
+            _loginCommand = new RelayCommand(param => Login(param as string));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -57,5 +58,16 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 _isIncorrect = true;
             }
         }
+
+        #region Commands & navigation
+
+        private RelayCommand _loginCommand;
+
+        public RelayCommand LoginCommand
+        {
+            get { return _loginCommand; }
+        }
+
+        #endregion
     }
 }
