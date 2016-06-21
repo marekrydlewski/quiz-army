@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using RydlewskiJablonski.Quiz.Interfaces;
+using RydlewskiJablonski.Quiz.UI.ViewModels;
 
 namespace RydlewskiJablonski.Quiz.UI.Menu
 {
@@ -10,8 +11,6 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
     /// </summary>
     public partial class AddTest : UserControl, ISwitchable
     {
-        private IUser _user;
-
         public AddTest()
         {
             InitializeComponent();
@@ -19,7 +18,7 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
 
         private void AddQuestionsButton_Click(object sender, RoutedEventArgs e)
         {
-            var state = new {Test = DataContext};
+            var state = DataContext;
             Switcher.Switch(new AddQuestion(), state);
         }
 
@@ -31,11 +30,15 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         #region ISwitchable Members
         public void UtilizeState(object state)
         {
-            IUser user = state as IUser;
-            if (user != null) _user = user;
+            UserViewModel user = state as UserViewModel;
+            AddTestViewModel context = DataContext as AddTestViewModel;
+            if (user != null)
+            {
+                context.UserViewModel = user;
+            }    
             else
             {
-                throw new ArgumentException("state is not IUser! it is: " + state.GetType().ToString());
+                throw new ArgumentException("state is not UserViewModel! it is: " + state.GetType());
             }
         }
         #endregion
