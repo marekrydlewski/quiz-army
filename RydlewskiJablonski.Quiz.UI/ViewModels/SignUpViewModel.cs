@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Data;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 using RydlewskiJablonski.Quiz.UI.Menu;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
@@ -12,6 +13,8 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _userListViewModel = new UserListViewModel();
             _userViewModel = new UserViewModel();
             _isLoginTaken = false;
+            _signUpCommand = new RelayCommand<object>(param => AddUser(param));
+            _returnToLoginCommand = new RelayCommand<object>(param => ReturnToLogin());
         }
 
         private bool _isLoginTaken;
@@ -58,8 +61,14 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
-        public void AddUser(string password, string repeatPassword)
+        public void AddUser(object passwords)
         {
+            var passswordBoxes = passwords as object[];
+            var passwordBox = passswordBoxes[0] as PasswordBox;
+            var repeatPasswordBox = passswordBoxes[1] as PasswordBox;
+            var password = passwordBox.Password;
+            var repeatPassword = repeatPasswordBox.Password;
+
             if (password.Equals(repeatPassword))
             {
                 _userViewModel.Password = password;
@@ -74,5 +83,28 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 }
             }
         }
+
+        #region Commands & navigation
+
+        private RelayCommand<object> _signUpCommand;
+
+        public RelayCommand<object> SignUpCommand
+        {
+            get { return _signUpCommand; }
+        }
+
+        private RelayCommand<object> _returnToLoginCommand;
+
+        public RelayCommand<object> ReturnToLoginCommand
+        {
+            get { return _returnToLoginCommand; }
+        }
+
+        private void ReturnToLogin()
+        {
+            Switcher.Switch(new MainMenu());
+        }
+
+        #endregion
     }
 }

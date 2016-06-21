@@ -12,27 +12,36 @@
         <viewModels:SignUpViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
-        <helpers:EnumDisplayer Type="{x:Type core:UserTypes}" x:Key="contentTypes">
+        <helpers:MultiBindingConverter x:Key="MultiBindingConverter" />
+        <helpers:EnumDisplayer Type="{x:Type core:UserTypes}" x:Key="ContentTypes">
             <helpers:EnumDisplayEntry EnumValue="User" DisplayString="Normal User"/>
             <helpers:EnumDisplayEntry EnumValue="Editor" DisplayString="Editor"/>
         </helpers:EnumDisplayer>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White">
-        <TextBlock x:Name="usernameTextBlock" HorizontalAlignment="Left" Margin="263,37,0,0" VerticalAlignment="Top" Width="200" Height="30" Text="Username" TextWrapping="Wrap" FontSize="18.667"/>
-        <TextBlock x:Name="password1TextBlock" HorizontalAlignment="Left" Margin="263,102,0,0" VerticalAlignment="Top" Width="200" Height="30" FontSize="18.667" Text="Password" TextWrapping="Wrap"/>
-        <TextBox Text="{Binding UserViewModel.Login}" x:Name="usernameTextBox" HorizontalAlignment="Left" Margin="447,37,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
-        <Button x:Name="registerButton" Margin="376,0,374,98" VerticalAlignment="Bottom" Content="Register" Width="150" Height="30" FontSize="16" Click="RegisterButton_Click"/>
-        <TextBlock x:Name="password2TextBlock" HorizontalAlignment="Left" Margin="263,174,0,396" Width="200" FontSize="18.667" Text="Re-Type Password" TextWrapping="Wrap"/>
-        <Button Height="25" HorizontalAlignment="Right" Margin="0,0,20,20" VerticalAlignment="Bottom" Width="100" Content="&lt; Back" Click="BackButton_Click"/>
-        <PasswordBox x:Name="passwordBox1" HorizontalAlignment="Left" Margin="447,102,0,0" VerticalAlignment="Top" Width="200" Height="30" FontSize="18.667"/>
-        <PasswordBox x:Name="passwordBox2" HorizontalAlignment="Left" Margin="447,174,0,0" Width="200" FontSize="18.667" VerticalAlignment="Top" Height="30"/>
-        <TextBox Text="{Binding UserViewModel.FirstName}" x:Name="nameBox" HorizontalAlignment="Left" Margin="447,245,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
-        <TextBox Text="{Binding UserViewModel.LastName}" x:Name="surnameBox" HorizontalAlignment="Left" Margin="447,313,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
-        <TextBlock x:Name="nameTextBlock" HorizontalAlignment="Left" Margin="263,245,0,325" Width="200" FontSize="18.667" Text="Name" TextWrapping="Wrap"/>
-        <TextBlock x:Name="surnameTextBlock" HorizontalAlignment="Left" Margin="263,313,0,257" Width="200" FontSize="18.667" Text="Surname" TextWrapping="Wrap"/>
-        <TextBlock x:Name="userTypeTextBlock" HorizontalAlignment="Left" Margin="263,384,0,186" Width="200" FontSize="18.667" Text="User Type" TextWrapping="Wrap"/>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="447,384,0,0" VerticalAlignment="Top" Width="200" Height="30" 
-                  SelectedIndex="0" ItemsSource="{Binding Source={StaticResource contentTypes},Path=DisplayNames}" 
-                  SelectedValue="{Binding Path=UserViewModel.UserType, Mode=TwoWay, Converter={StaticResource contentTypes}}"/>
+        <TextBlock x:Name="UsernameTextBlock" HorizontalAlignment="Left" Margin="263,37,0,0" VerticalAlignment="Top" Width="200" Height="30" Text="Username" TextWrapping="Wrap" FontSize="18.667"/>
+        <TextBlock x:Name="Password1TextBlock" HorizontalAlignment="Left" Margin="263,102,0,0" VerticalAlignment="Top" Width="200" Height="30" FontSize="18.667" Text="Password" TextWrapping="Wrap"/>
+        <TextBox Text="{Binding UserViewModel.Login}" x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="447,37,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
+        <Button x:Name="RegisterButton" Margin="376,0,374,98" VerticalAlignment="Bottom" Content="Register" Width="150" Height="30" FontSize="16" Command="{Binding SignUpCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource MultiBindingConverter}">
+                    <Binding ElementName="PasswordBox1"/>
+                    <Binding ElementName="PasswordBox2"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+        <TextBlock x:Name="Password2TextBlock" HorizontalAlignment="Left" Margin="263,174,0,396" Width="200" FontSize="18.667" Text="Re-Type Password" TextWrapping="Wrap"/>
+        <Button Height="25" HorizontalAlignment="Right" Margin="0,0,20,20" VerticalAlignment="Bottom" Width="100" Content="&lt; Back" Command="{Binding ReturnToLoginCommand}"/>
+        <PasswordBox x:Name="PasswordBox1" HorizontalAlignment="Left" Margin="447,102,0,0" VerticalAlignment="Top" Width="200" Height="30" FontSize="18.667"/>
+        <PasswordBox x:Name="PasswordBox2" HorizontalAlignment="Left" Margin="447,174,0,0" Width="200" FontSize="18.667" VerticalAlignment="Top" Height="30"/>
+        <TextBox Text="{Binding UserViewModel.FirstName}" x:Name="NameBox" HorizontalAlignment="Left" Margin="447,245,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
+        <TextBox Text="{Binding UserViewModel.LastName}" x:Name="SurnameBox" HorizontalAlignment="Left" Margin="447,313,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
+        <TextBlock x:Name="NameTextBlock" HorizontalAlignment="Left" Margin="263,245,0,325" Width="200" FontSize="18.667" Text="Name" TextWrapping="Wrap"/>
+        <TextBlock x:Name="SurnameTextBlock" HorizontalAlignment="Left" Margin="263,313,0,257" Width="200" FontSize="18.667" Text="Surname" TextWrapping="Wrap"/>
+        <TextBlock x:Name="UserTypeTextBlock" HorizontalAlignment="Left" Margin="263,384,0,186" Width="200" FontSize="18.667" Text="User Type" TextWrapping="Wrap"/>
+        <ComboBox x:Name="ComboBox" HorizontalAlignment="Left" Margin="447,384,0,0" VerticalAlignment="Top" Width="200" Height="30" 
+                  SelectedIndex="0" ItemsSource="{Binding Source={StaticResource ContentTypes},Path=DisplayNames}" 
+                  SelectedValue="{Binding Path=UserViewModel.UserType, Mode=TwoWay, Converter={StaticResource ContentTypes}}"/>
     </Grid>
 </UserControl>
+

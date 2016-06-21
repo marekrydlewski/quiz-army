@@ -22,19 +22,5 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
             throw new NotImplementedException();
         }
         #endregion
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            Switcher.Switch(new MainMenu());
-        }
-
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
-        {
-            SignUpViewModel context = DataContext as SignUpViewModel;
-            if (context != null)
-            {
-                context.AddUser(passwordBox1.Password, passwordBox2.Password);
-            }
-        }
     }
 }
