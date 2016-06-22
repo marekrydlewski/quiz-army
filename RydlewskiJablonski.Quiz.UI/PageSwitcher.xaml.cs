@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using RydlewskiJablonski.Quiz.Interfaces;
-using RydlewskiJablonski.Quiz.UI.Menu;
 
 namespace RydlewskiJablonski.Quiz.UI
 {
@@ -14,8 +13,8 @@ namespace RydlewskiJablonski.Quiz.UI
         public PageSwitcher()
         {
             InitializeComponent();
-            Switcher.pageSwitcher = this;
-            Switcher.Switch(new Menu.MainMenu());
+            Switcher.PageSwitcher = this;
+            Switcher.Switch(new Menu.Login());
         }
 
         public void Navigate(UserControl nextPage)

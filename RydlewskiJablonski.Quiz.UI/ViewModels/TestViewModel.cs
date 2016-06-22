@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
-using RydlewskiJablonski.Quiz.UI.Menu;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -117,11 +116,6 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 _questionViewModels = value;
                 OnPropertyChanged();
             }
-        }
-
-        public void AddTest()
-        {
-            _dao.AddTest(_test);
         }
 
         public void AddQuestion(QuestionViewModel questionViewModel)

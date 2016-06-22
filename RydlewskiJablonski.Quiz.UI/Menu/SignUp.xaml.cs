@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using RydlewskiJablonski.Quiz.Interfaces;
+using RydlewskiJablonski.Quiz.UI.ViewModels;
 
 namespace RydlewskiJablonski.Quiz.UI.Menu
 {
@@ -10,8 +11,6 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
     /// </summary>
     public partial class SignUp : UserControl, ISwitchable
     {
-        private IUser _user;
-
         public SignUp()
         {
             InitializeComponent();
@@ -23,15 +22,5 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
             throw new NotImplementedException();
         }
         #endregion
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            Switcher.Switch(new MainMenu());
-        }
-
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

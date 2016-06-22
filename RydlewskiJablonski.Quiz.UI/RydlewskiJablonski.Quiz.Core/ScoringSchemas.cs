@@ -1,6 +1,4 @@
-﻿using RydlewskiJablonski.Quiz.Core.Helpers;
-
-namespace RydlewskiJablonski.Quiz.Core
+﻿namespace RydlewskiJablonski.Quiz.Core
 {
     public enum ScoringSchemas
     {

@@ -11,7 +11,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.DataContext>
-        <viewmodels:TestViewModel/>
+        <viewmodels:AddTestViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
         <helpers:EnumDisplayer Type="{x:Type core:ScoringSchemas}" x:Key="contentTypes">
@@ -25,23 +25,23 @@
         <TextBlock Text="Add new test"/>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Test name: "/>
-            <TextBox Text="{Binding Name, Mode=TwoWay}" MinWidth="200"/>
+            <TextBox Text="{Binding TestViewModel.Name, Mode=TwoWay}" MinWidth="200"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Multiple choices: "/>
-            <CheckBox IsChecked="{Binding IsMultipleChoice, Mode=TwoWay}"/>
+            <CheckBox IsChecked="{Binding TestViewModel.IsMultipleChoice, Mode=TwoWay}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Test time: "/>
-            <TextBox Text="{Binding GivenTime, Mode=TwoWay}" MinWidth="50"/>
+            <TextBox Text="{Binding TestViewModel.GivenTime, Mode=TwoWay}" MinWidth="50"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Scoring schema: "/>
-            <ComboBox SelectedIndex="0" ItemsSource="{Binding Source={StaticResource contentTypes},Path=DisplayNames}" SelectedValue="{Binding Path=ScoringSchema, Mode=TwoWay, Converter={StaticResource contentTypes}}"/>
+            <ComboBox SelectedIndex="0" ItemsSource="{Binding Source={StaticResource contentTypes},Path=DisplayNames}" SelectedValue="{Binding Path=TestViewModel.ScoringSchema, Mode=TwoWay, Converter={StaticResource contentTypes}}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Content="&lt; Back" Click="BackButton_Click" HorizontalAlignment="Left"/>
-            <Button Content="Add questions" Click="AddQuestionsButton_Click" HorizontalAlignment="Right"/>
+            <Button Content="&lt; Back" Command="{Binding ReturnToMenuCommand}" HorizontalAlignment="Left"/>
+            <Button Content="Add questions" Command="{Binding AddQuestionsCommand}" HorizontalAlignment="Right"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

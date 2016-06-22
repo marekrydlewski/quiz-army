@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RydlewskiJablonski.Quiz.Interfaces
+﻿namespace RydlewskiJablonski.Quiz.Interfaces
 {
     public interface ISwitchable
     {

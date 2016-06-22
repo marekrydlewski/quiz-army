@@ -22,10 +22,6 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         {
             _question = new Question();
             _question.Answers = new List<IAnswer>();
-            _currentAnswer = new AnswerViewModel
-            {
-                Id = 1
-            };
 
             PopulateAnswers();
         }
@@ -109,33 +105,23 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
-        private AnswerViewModel _currentAnswer;
-
-        public AnswerViewModel CurrentAnswer
+        public void AddAnswer(AnswerViewModel answer)
         {
-            get { return _currentAnswer; }
-            set
+            if (_answerViewModels.Count == 0)
             {
-                _currentAnswer = value;
-                OnPropertyChanged();
+                answer.Id = 1;
             }
-        }
-
-        public void AddCurrentAnswer()
-        {
-            AnswerViewModels.Add(new AnswerViewModel
+            else
             {
-                Id = _currentAnswer.Id,
-                IsCorrect = _currentAnswer.IsCorrect,
-                Text = _currentAnswer.Text
-            });
+                answer.Id = _answerViewModels.Select(x => x.Id).Max() + 1;
+            }
+            AnswerViewModels.Add(answer);
             Answers.Add(new Answer
             {
-                Id = _currentAnswer.Id,
-                IsCorrect = _currentAnswer.IsCorrect,
-                Text = _currentAnswer.Text
+                Id = answer.Id,
+                IsCorrect = answer.IsCorrect,
+                Text = answer.Text
             });
-            _currentAnswer = new AnswerViewModel {Id = _question.Answers.Select(x => x.Id).Max() + 1};
         }
     }
 }

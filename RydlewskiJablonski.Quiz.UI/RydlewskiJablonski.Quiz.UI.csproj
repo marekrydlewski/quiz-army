@@ -59,6 +59,7 @@
     </ApplicationDefinition>
     <Compile Include="Helpers\EnumDisplayEntry.cs" />
     <Compile Include="Helpers\EnumDisplayer.cs" />
+    <Compile Include="Helpers\MultiBindingConverter.cs" />
     <Compile Include="Menu\AddQuestion.xaml.cs">
       <DependentUpon>AddQuestion.xaml</DependentUpon>
     </Compile>
@@ -86,15 +87,17 @@
     <Compile Include="PageSwitcher.xaml.cs">
       <DependentUpon>PageSwitcher.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="Switcher.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\AddTestViewModel.cs" />
     <Compile Include="ViewModels\AnswerViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="ViewModels\TestListViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="ViewModels\UserListViewModel.cs" />

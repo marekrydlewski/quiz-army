@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
+using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
@@ -14,10 +15,15 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _user = user;
         }
 
+        public UserViewModel()
+        {
+            _user = new User();
+        }
+
         public int Id
         {
             get { return _user.Id; }
-            private set
+            set
             {
                 _user.Id = value;
                 OnPropertyChanged();

@@ -4,9 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RydlewskiJablonski.Quiz.UI.Menu"
+             xmlns:viewModels="clr-namespace:RydlewskiJablonski.Quiz.UI.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="900"
-             DataContext="{Binding RelativeSource={RelativeSource Self}}">
+             d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.DataContext>
+        <viewModels:AddTestViewModel/>
+    </UserControl.DataContext>
     <StackPanel Orientation="Vertical">
         <TextBlock Name="TestNameTextBlock" Text="{Binding TestViewModel.Name}"/>
         <StackPanel Orientation="Horizontal">
@@ -16,13 +19,13 @@
             <TextBox Name="PointsTextBox" Text="{Binding QuestionViewModel.Points}" MinWidth="100" />
             <TextBlock Text="Image: "></TextBlock>
             <TextBox Name="ImagePathTextBox" Text="{Binding QuestionViewModel.ImagePath}" MinWidth="200"></TextBox>
-            <Button Name="SelectImageButton" Content="Select image" Click="SelectImageButton_Click"></Button>
+            <Button Name="SelectImageButton" Content="Select image" Command="{Binding SelectImageCommand}"></Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Answer: "></TextBlock>
-            <TextBox Name="AnswerTextBox" Text="{Binding QuestionViewModel.CurrentAnswer.Text}"  MinWidth="200"/>
+            <TextBox Name="AnswerTextBox" Text="{Binding AnswerViewModel.Text, UpdateSourceTrigger=PropertyChanged}"  MinWidth="200"/>
             <TextBlock Text="Is correct: "></TextBlock>
-            <CheckBox Name="IsCorrectCheckbox" IsChecked="{Binding QuestionViewModel.CurrentAnswer.IsCorrect}" />
+            <CheckBox Name="IsCorrectCheckbox" IsChecked="{Binding AnswerViewModel.IsCorrect, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <ListBox Name="AnswersListBox" ItemsSource="{Binding QuestionViewModel.AnswerViewModels}" MinHeight="200">
             <ListBox.ItemTemplate>
@@ -34,8 +37,8 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Name="AddAnswerButton" Content="Add answer" Click="AddAnswerButton_Click"></Button>
-        <Button Name="ConfirmQuestionButton" Content="Add question" Click="NextQuestionButton_Click"></Button>
-        <Button Name="CompleteTestButton" Content="Finalize test" Click="CompleteTestButton_Click"></Button>     
+        <Button Name="AddAnswerButton" Content="Add answer" Command="{Binding AddCurrentAsnwerCommand}"></Button>
+        <Button Name="ConfirmQuestionButton" Content="Add question" Command="{Binding AddCurrentQuestionCommand}"></Button>
+        <Button Name="CompleteTestButton" Content="Finalize test" Command="{Binding AddCurrentTestCommand}"></Button>     
     </StackPanel>
 </UserControl>

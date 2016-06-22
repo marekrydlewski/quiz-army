@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using RydlewskiJablonski.Quiz.UI.Annotations;
+using System.Windows.Controls;
+using RydlewskiJablonski.Quiz.UI.Menu;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
     public class LoginViewModel: INotifyPropertyChanged
     {
-
+        private UserListViewModel _userListViewModel;
         private bool _isIncorrect;
 
         public bool IsIncorrect
@@ -27,14 +24,52 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         public LoginViewModel()
         {
             IsIncorrect = false;
+            _userListViewModel = new UserListViewModel();
+            _loginCommand = new RelayCommand<object>(param => Login(param));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private string _userName;
+
+        public string UserName
+        {
+            get { return _userName; }
+            set
+            {
+                _userName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void Login(object passwordBox)
+        {
+            string password = (passwordBox as PasswordBox).Password;
+            if (_userListViewModel.UserViewModels.Any(x => _userName.Equals(x.Login) && password.Equals(x.Password)))
+            {
+                Switcher.Switch(new MainMenu(), _userListViewModel.UserViewModels.FirstOrDefault(x => _userName.Equals(x.Login) && password.Equals(x.Password)));
+            }
+            else
+            {
+                _isIncorrect = true;
+            }
+        }
+
+        #region Commands & navigation
+
+        private RelayCommand<object> _loginCommand;
+
+        public RelayCommand<object> LoginCommand
+        {
+            get { return _loginCommand; }
+        }
+
+        #endregion
     }
 }
