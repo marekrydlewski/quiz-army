@@ -28,10 +28,5 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
             }
         }
         #endregion
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            Switcher.Switch(new MainMenu());
-        }
     }
 }

@@ -25,7 +25,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Orientation="Horizontal">
-            <Button HorizontalAlignment="Left" Content="&lt; Back" Name="BackButton" Click="BackButton_Click"></Button>
+            <Button HorizontalAlignment="Left" Content="&lt; Back" Name="BackButton" Command="{Binding ReturnToMenuCommand}"></Button>
         </StackPanel>
     </StackPanel>
 </UserControl>
