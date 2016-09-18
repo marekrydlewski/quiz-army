@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
+using RydlewskiJablonski.Quiz.UI.Menu;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -19,6 +20,8 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _dao = new DAO.DAO();
             _test = test;
             PopulateQuestions();
+            _startTestCommand = new RelayCommand<object>(param => StartTest());
+            _returnToTestsCommand = new RelayCommand<object>(param => ReturnToTests());
         }
 
         public TestViewModel()
@@ -150,5 +153,33 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 Answers = questionViewModel.Answers
             });
         }
+
+        #region Commands & navaigation
+
+        private RelayCommand<object> _startTestCommand;
+
+        public RelayCommand<object> StartTestCommand
+        {
+            get { return _startTestCommand; }
+        }
+
+        private void StartTest()
+        {
+            Switcher.Switch(new MainMenu(), _userViewModel);
+        }
+
+        private RelayCommand<object> _returnToTestsCommand;
+
+        public RelayCommand<object> ReturnToTestsCommand
+        {
+            get { return _returnToTestsCommand; }
+        }
+
+        private void ReturnToTests()
+        {
+            Switcher.Switch(new TestList(), _userViewModel);
+        }
+
+        #endregion
     }
 }
