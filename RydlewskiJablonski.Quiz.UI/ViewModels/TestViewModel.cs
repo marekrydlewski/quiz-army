@@ -170,6 +170,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             firstQuestion.TestId = Id;
             firstQuestion.UserViewModel = _userViewModel;
             firstQuestion.IsFinalQuestion = QuestionViewModels.Count == 1;
+            firstQuestion.IsNotFinalQuestion = !firstQuestion.IsFinalQuestion;
             Switcher.Switch(new Menu.Question(), firstQuestion);
         }
 

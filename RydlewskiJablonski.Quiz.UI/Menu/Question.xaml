@@ -9,7 +9,14 @@
     <UserControl.DataContext>
         <viewModels:QuestionViewModel/>
     </UserControl.DataContext>
-    <Grid>
-            
-    </Grid>
+    <StackPanel Orientation="Vertical">
+        <TextBlock Text="{Binding Text}"></TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Points: "></TextBlock>
+            <TextBlock Text="{Binding Points}"></TextBlock>
+        </StackPanel>
+        <TextBlock>PLACE ANSWERS HERE</TextBlock>
+        <Button Content="Next question" IsEnabled="{Binding IsNotFinalQuestion}"></Button>
+        <Button Content="Finish!" IsEnabled="{Binding IsFinalQuestion}"></Button>
+    </StackPanel>
 </UserControl>
