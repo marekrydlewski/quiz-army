@@ -11,7 +11,7 @@
     </UserControl.DataContext>
     <StackPanel Orientation="Vertical">
         <TextBlock HorizontalAlignment="Left">Tests available:</TextBlock>
-        <ListBox Name="TestListBox" ItemsSource="{Binding Tests}">
+        <ListBox Name="TestListBox" ItemsSource="{Binding Tests}" SelectedItem="{Binding SelectedTest, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -26,6 +26,7 @@
         </ListBox>
         <StackPanel Orientation="Horizontal">
             <Button HorizontalAlignment="Left" Content="&lt; Back" Name="BackButton" Command="{Binding ReturnToMenuCommand}"></Button>
+            <Button HorizontalAlignment="Right" Content="Take test &gt;" Name="TakeTestButton" Command="{Binding TakeTestCommand}"></Button>
         </StackPanel>
     </StackPanel>
 </UserControl>
