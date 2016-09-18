@@ -16,7 +16,7 @@
             <TextBlock Text="{Binding Points}"></TextBlock>
         </StackPanel>
         <TextBlock>PLACE ANSWERS HERE</TextBlock>
-        <Button Content="Next question" IsEnabled="{Binding IsNotFinalQuestion}"></Button>
-        <Button Content="Finish!" IsEnabled="{Binding IsFinalQuestion}"></Button>
+        <Button Content="Next question" IsEnabled="{Binding IsNotFinalQuestion}" Command="{Binding NextQuestionCommand}"></Button>
+        <Button Content="Finish!" IsEnabled="{Binding IsFinalQuestion}" Command="{Binding ReturnToMenuCommand}"></Button>
     </StackPanel>
 </UserControl>

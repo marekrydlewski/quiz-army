@@ -167,8 +167,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         private void StartTest()
         {
             var firstQuestion = QuestionViewModels.OrderBy(x => x.Id).First();
-            firstQuestion.TestId = Id;
-            firstQuestion.UserViewModel = _userViewModel;
+            firstQuestion.Test = this;
             firstQuestion.IsFinalQuestion = QuestionViewModels.Count == 1;
             firstQuestion.IsNotFinalQuestion = !firstQuestion.IsFinalQuestion;
             Switcher.Switch(new Menu.Question(), firstQuestion);
