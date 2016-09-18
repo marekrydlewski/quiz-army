@@ -86,6 +86,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             Switcher.Switch(new MainMenu(), _userViewModel);
         }
 
+        private RelayCommand<object> _takeTestCommand;
+
+        public RelayCommand<object> TakeTestCommand
+        {
+            get { return _takeTestCommand; }
+        }
+
+        private void TakeTest()
+        {
+            Switcher.Switch(new TakeTest(), _selectedTest);
+        }
+
         #endregion
     }
 }

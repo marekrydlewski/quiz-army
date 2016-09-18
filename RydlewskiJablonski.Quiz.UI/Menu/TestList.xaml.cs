@@ -27,7 +27,7 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
             }
             else
             {
-                throw new ArgumentException("state is not IUser! it is: " + state.GetType().ToString());
+                throw new ArgumentException("state is not UserViewModel! it is: " + state.GetType().ToString());
             }
         }
         #endregion
