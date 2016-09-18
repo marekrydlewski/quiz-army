@@ -7,6 +7,7 @@ using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.Menu;
+using Question = RydlewskiJablonski.Quiz.DAO.BO.Question;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -165,7 +166,10 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         private void StartTest()
         {
-            Switcher.Switch(new MainMenu(), _userViewModel);
+            var firstQuestion = QuestionViewModels.OrderBy(x => x.Id).First();
+            firstQuestion.TestId = Id;
+            firstQuestion.UserViewModel = _userViewModel;
+            Switcher.Switch(new Menu.Question(), firstQuestion);
         }
 
         private RelayCommand<object> _returnToTestsCommand;

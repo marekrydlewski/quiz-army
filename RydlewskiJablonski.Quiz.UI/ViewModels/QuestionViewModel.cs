@@ -123,5 +123,29 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 Text = answer.Text
             });
         }
+
+        private UserViewModel _userViewModel;
+
+        public UserViewModel UserViewModel
+        {
+            get { return _userViewModel; }
+            set
+            {
+                _userViewModel = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _testId;
+
+        public int TestId
+        {
+            get { return _testId; }
+            set
+            {
+                _testId = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
