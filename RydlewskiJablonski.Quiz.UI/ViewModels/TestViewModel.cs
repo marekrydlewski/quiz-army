@@ -169,6 +169,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             var firstQuestion = QuestionViewModels.OrderBy(x => x.Id).First();
             firstQuestion.TestId = Id;
             firstQuestion.UserViewModel = _userViewModel;
+            firstQuestion.IsFinalQuestion = QuestionViewModels.Count == 1;
             Switcher.Switch(new Menu.Question(), firstQuestion);
         }
 

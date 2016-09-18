@@ -147,5 +147,17 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private bool _isFinalQuestion;
+
+        public bool IsFinalQuestion
+        {
+            get { return _isFinalQuestion; }
+            set
+            {
+                _isFinalQuestion = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
