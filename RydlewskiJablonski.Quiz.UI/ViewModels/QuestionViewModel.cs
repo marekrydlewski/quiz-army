@@ -164,7 +164,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
-        #region Commands & navaigation
+        #region Commands & navigation
 
         private RelayCommand<object> _nextQuestionCommand;
 
