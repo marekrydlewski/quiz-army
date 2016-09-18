@@ -16,6 +16,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _dao = new DAO.DAO();
             PopulateTestList(_dao.GetTests());
             _returnToMenuCommand = new RelayCommand<object>(param => ReturnToMenu());
+            _takeTestCommand = new RelayCommand<object>(param => TakeTest());
             _selectedTest = new TestViewModel();
         }
 
@@ -95,6 +96,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         private void TakeTest()
         {
+            _selectedTest.UserViewModel = UserViewModel;
             Switcher.Switch(new TakeTest(), _selectedTest);
         }
 

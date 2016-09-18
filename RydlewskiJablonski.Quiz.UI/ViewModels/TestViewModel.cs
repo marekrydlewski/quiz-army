@@ -118,6 +118,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
+        private UserViewModel _userViewModel;
+
+        public UserViewModel UserViewModel
+        {
+            get { return _userViewModel; }
+            set
+            {
+                _userViewModel = value;
+                OnPropertyChanged();
+            }
+        }
+
         public void AddQuestion(QuestionViewModel questionViewModel)
         {
             if (_questionViewModels.Count == 0)
