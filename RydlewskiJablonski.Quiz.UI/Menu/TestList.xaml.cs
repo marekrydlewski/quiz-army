@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using RydlewskiJablonski.Quiz.Interfaces;
+using RydlewskiJablonski.Quiz.UI.ViewModels;
 
 namespace RydlewskiJablonski.Quiz.UI.Menu
 {
@@ -10,8 +11,6 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
     /// </summary>
     public partial class TestList : UserControl, ISwitchable
     {
-        private IUser _user;
-
         public TestList()
         {
             InitializeComponent();
@@ -20,8 +19,12 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         #region ISwitchable Members
         public void UtilizeState(object state)
         {
-            IUser user = state as IUser;
-            if (user != null) _user = user;
+            UserViewModel user = state as UserViewModel;
+            TestListViewModel context = DataContext as TestListViewModel;
+            if (user != null)
+            {
+                context.UserViewModel = user;
+            }
             else
             {
                 throw new ArgumentException("state is not IUser! it is: " + state.GetType().ToString());
