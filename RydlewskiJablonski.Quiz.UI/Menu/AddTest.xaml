@@ -22,24 +22,24 @@
         </helpers:EnumDisplayer>
     </UserControl.Resources>
     <StackPanel Orientation="Vertical" Background="White">
-        <TextBlock Text="Add new test"/>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Test name: "/>
-            <TextBox Text="{Binding TestViewModel.Name, Mode=TwoWay}" MinWidth="200"/>
+        <TextBlock Style="{StaticResource HeaderStyle}" Text="Add new test"/>
+        <StackPanel Style="{StaticResource PanelStyle}" Orientation="Horizontal">
+            <TextBlock Style="{StaticResource LabelStyle}" Text="Test name: "/>
+            <TextBox Style="{StaticResource InputStyle}" Text="{Binding TestViewModel.Name, Mode=TwoWay}" MinWidth="200"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Multiple choices: "/>
+        <StackPanel Style="{StaticResource PanelStyle}" Orientation="Horizontal">
+            <TextBlock Style="{StaticResource LabelStyle}" Text="Multiple choices: "/>
             <CheckBox IsChecked="{Binding TestViewModel.IsMultipleChoice, Mode=TwoWay}"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Test time: "/>
+        <StackPanel Style="{StaticResource PanelStyle}" Orientation="Horizontal">
+            <TextBlock Style="{StaticResource LabelStyle}" Text="Test time: "/>
             <TextBox Text="{Binding TestViewModel.GivenTime, Mode=TwoWay}" MinWidth="50"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Scoring schema: "/>
+        <StackPanel Style="{StaticResource PanelStyle}" Orientation="Horizontal">
+            <TextBlock Style="{StaticResource LabelStyle}" Text="Scoring schema: "/>
             <ComboBox SelectedIndex="0" ItemsSource="{Binding Source={StaticResource contentTypes},Path=DisplayNames}" SelectedValue="{Binding Path=TestViewModel.ScoringSchema, Mode=TwoWay, Converter={StaticResource contentTypes}}"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Style="{StaticResource PanelStyle}" Orientation="Horizontal">
             <Button Content="&lt; Back" Command="{Binding ReturnToMenuCommand}" HorizontalAlignment="Left"/>
             <Button Content="Add questions" Command="{Binding AddQuestionsCommand}" HorizontalAlignment="Right"/>
         </StackPanel>
