@@ -6,6 +6,8 @@ using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
+using RydlewskiJablonski.Quiz.UI.Menu;
+using Question = RydlewskiJablonski.Quiz.DAO.BO.Question;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -19,6 +21,8 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _dao = new DAO.DAO();
             _test = test;
             PopulateQuestions();
+            _startTestCommand = new RelayCommand<object>(param => StartTest());
+            _returnToTestsCommand = new RelayCommand<object>(param => ReturnToTests());
         }
 
         public TestViewModel()
@@ -118,6 +122,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
+        private UserViewModel _userViewModel;
+
+        public UserViewModel UserViewModel
+        {
+            get { return _userViewModel; }
+            set
+            {
+                _userViewModel = value;
+                OnPropertyChanged();
+            }
+        }
+
         public void AddQuestion(QuestionViewModel questionViewModel)
         {
             if (_questionViewModels.Count == 0)
@@ -138,5 +154,37 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 Answers = questionViewModel.Answers
             });
         }
+
+        #region Commands & navaigation
+
+        private RelayCommand<object> _startTestCommand;
+
+        public RelayCommand<object> StartTestCommand
+        {
+            get { return _startTestCommand; }
+        }
+
+        private void StartTest()
+        {
+            var firstQuestion = QuestionViewModels.OrderBy(x => x.Id).First();
+            firstQuestion.Test = this;
+            firstQuestion.IsFinalQuestion = QuestionViewModels.Count == 1;
+            firstQuestion.IsNotFinalQuestion = !firstQuestion.IsFinalQuestion;
+            Switcher.Switch(new Menu.Question(), firstQuestion);
+        }
+
+        private RelayCommand<object> _returnToTestsCommand;
+
+        public RelayCommand<object> ReturnToTestsCommand
+        {
+            get { return _returnToTestsCommand; }
+        }
+
+        private void ReturnToTests()
+        {
+            Switcher.Switch(new TestList(), _userViewModel);
+        }
+
+        #endregion
     }
 }

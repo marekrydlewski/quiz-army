@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Interfaces;
+using RydlewskiJablonski.Quiz.UI.Menu;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -14,6 +15,9 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         {
             _dao = new DAO.DAO();
             PopulateTestList(_dao.GetTests());
+            _returnToMenuCommand = new RelayCommand<object>(param => ReturnToMenu());
+            _takeTestCommand = new RelayCommand<object>(param => TakeTest());
+            _selectedTest = new TestViewModel();
         }
 
         private void PopulateTestList(List<ITest> tests)
@@ -44,5 +48,58 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private UserViewModel _userViewModel;
+
+        public UserViewModel UserViewModel
+        {
+            get { return _userViewModel; }
+            set
+            {
+                _userViewModel = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private TestViewModel _selectedTest;
+
+        public TestViewModel SelectedTest
+        {
+            get { return _selectedTest; }
+            set
+            {
+                _selectedTest = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #region Commands & navigation
+
+        private RelayCommand<object> _returnToMenuCommand;
+
+        public RelayCommand<object> ReturnToMenuCommand
+        {
+            get { return _returnToMenuCommand; }
+        }
+
+        private void ReturnToMenu()
+        {
+            Switcher.Switch(new MainMenu(), _userViewModel);
+        }
+
+        private RelayCommand<object> _takeTestCommand;
+
+        public RelayCommand<object> TakeTestCommand
+        {
+            get { return _takeTestCommand; }
+        }
+
+        private void TakeTest()
+        {
+            _selectedTest.UserViewModel = UserViewModel;
+            Switcher.Switch(new TakeTest(), _selectedTest);
+        }
+
+        #endregion
     }
 }

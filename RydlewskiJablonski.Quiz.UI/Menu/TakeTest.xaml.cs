@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Controls;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.ViewModels;
@@ -7,11 +6,11 @@ using RydlewskiJablonski.Quiz.UI.ViewModels;
 namespace RydlewskiJablonski.Quiz.UI.Menu
 {
     /// <summary>
-    /// Interaction logic for TestList.xaml
+    /// Interaction logic for TakeTest.xaml
     /// </summary>
-    public partial class TestList : UserControl, ISwitchable
+    public partial class TakeTest : UserControl, ISwitchable
     {
-        public TestList()
+        public TakeTest()
         {
             InitializeComponent();
         }
@@ -19,15 +18,14 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         #region ISwitchable Members
         public void UtilizeState(object state)
         {
-            UserViewModel user = state as UserViewModel;
-            TestListViewModel context = DataContext as TestListViewModel;
-            if (user != null)
+            TestViewModel test = state as TestViewModel;
+            if (test != null)
             {
-                context.UserViewModel = user;
+                DataContext = test;
             }
             else
             {
-                throw new ArgumentException("state is not UserViewModel! it is: " + state.GetType().ToString());
+                throw new ArgumentException("state is not TestViewModel! it is: " + state.GetType().ToString());
             }
         }
         #endregion

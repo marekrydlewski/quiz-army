@@ -5,6 +5,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
+using RydlewskiJablonski.Quiz.UI.Menu;
+using Question = RydlewskiJablonski.Quiz.DAO.BO.Question;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -16,6 +18,8 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         {
             _question = question;
             PopulateAnswers();
+            _nextQuestionCommand = new RelayCommand<object>(param => NextQuestion());
+            _returnToMenuCommand = new RelayCommand<object>(param => ReturnToMenu());
         }
 
         public QuestionViewModel()
@@ -123,5 +127,73 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 Text = answer.Text
             });
         }
+
+        private TestViewModel _test;
+
+        public TestViewModel Test
+        {
+            get { return _test; }
+            set
+            {
+                _test = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isFinalQuestion;
+
+        public bool IsFinalQuestion
+        {
+            get { return _isFinalQuestion; }
+            set
+            {
+                _isFinalQuestion = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isNotFinalQuestion;
+
+        public bool IsNotFinalQuestion
+        {
+            get { return _isNotFinalQuestion; }
+            set
+            {
+                _isNotFinalQuestion = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #region Commands & navigation
+
+        private RelayCommand<object> _nextQuestionCommand;
+
+        public RelayCommand<object> NextQuestionCommand
+        {
+            get { return _nextQuestionCommand; }
+        }
+
+        private void NextQuestion()
+        {
+            var nextQuestion = Test.QuestionViewModels.OrderBy(x => x.Id).SkipWhile(x => x.Id <= Id).First();
+            nextQuestion.Test = Test;
+            nextQuestion.IsFinalQuestion = Test.QuestionViewModels.OrderBy(x => x.Id).Last().Id == nextQuestion.Id;
+            nextQuestion.IsNotFinalQuestion = !nextQuestion.IsFinalQuestion;
+            Switcher.Switch(new Menu.Question(), nextQuestion);
+        }
+
+        private RelayCommand<object> _returnToMenuCommand;
+
+        public RelayCommand<object> ReturnToMenuCommand
+        {
+            get { return _returnToMenuCommand; }
+        }
+
+        private void ReturnToMenu()
+        {
+            Switcher.Switch(new MainMenu(), Test.UserViewModel);
+        }
+
+        #endregion
     }
 }

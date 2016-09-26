@@ -21,12 +21,18 @@
     <UserControl.DataContext>
         <viewmodels:LoginViewModel/>
     </UserControl.DataContext>
-    <Grid x:Name="LayoutRoot" Background="White">
-            <TextBlock x:Name="UsernameTextBlock" HorizontalAlignment="Left" Margin="249,223.5,0,0" VerticalAlignment="Top" Width="100" Height="30" Text="Username" TextWrapping="Wrap" FontSize="18.667"/>
-            <TextBlock x:Name="PasswordTextBlock" HorizontalAlignment="Left" Margin="250,263.5,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="18.667" Text="Password" TextWrapping="Wrap"/>
-            <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="367.5,263.5,0,0" VerticalAlignment="Top" Width="200" Height="30" FontSize="18.667"/>    
-            <TextBox Text="{Binding UserName}" x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="367,223.5,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
-        <Button x:Name="LoginButton" Margin="367,0,383,252" VerticalAlignment="Bottom" Content="Login" Width="150" Height="30" FontSize="16" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=PasswordBox}"/>
-        <Label Style="{StaticResource WarningBorderStyle}" x:Name="Label" MaxWidth="400" MaxHeight="50" Content="Login or password incorrect" FontSize="20" Foreground="Red" HorizontalAlignment="Left" Margin="334,496,0,0" VerticalAlignment="Top"/>
-    </Grid>
+    <StackPanel Background="White">
+        <StackPanel>
+            <TextBlock Margin="10" Style="{StaticResource HeaderStyle}" x:Name="UsernameTextBlock" MaxWidth="150" Text="Username" TextWrapping="Wrap"/>
+            <TextBox Text="{Binding UserName}" x:Name="UsernameTextBox" TextWrapping="Wrap" Width="200" Height="40" FontSize="21"/>
+        </StackPanel>
+        <StackPanel>
+            <TextBlock  Margin="10" Style="{StaticResource HeaderStyle}" x:Name="PasswordTextBlock" MaxWidth="150" Text="Password" TextWrapping="Wrap"/>
+            <PasswordBox x:Name="PasswordBox" Width="200" Height="40" FontSize="21"/>
+        </StackPanel>
+        <StackPanel Margin="30">
+            <Button x:Name="LoginButton" Content="Login" Width="170" Height="40" FontSize="23" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=PasswordBox}"/>
+            <Label Style="{StaticResource WarningBorderStyle}" x:Name="Label" MaxWidth="400" MaxHeight="50" Content="Login or password incorrect" FontSize="20" Foreground="Red"/>
+        </StackPanel>
+    </StackPanel>
 </UserControl>
