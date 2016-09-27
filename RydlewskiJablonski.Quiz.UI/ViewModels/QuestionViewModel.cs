@@ -20,6 +20,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             PopulateAnswers();
             _nextQuestionCommand = new RelayCommand<object>(param => NextQuestion());
             _returnToMenuCommand = new RelayCommand<object>(param => ReturnToMenu());
+            _finalizeTestCommand = new RelayCommand<object>(param => FinalizeTest());
         }
 
         public QuestionViewModel()
@@ -180,6 +181,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             nextQuestion.IsFinalQuestion = Test.QuestionViewModels.OrderBy(x => x.Id).Last().Id == nextQuestion.Id;
             nextQuestion.IsNotFinalQuestion = !nextQuestion.IsFinalQuestion;
             Switcher.Switch(new Menu.Question(), nextQuestion);
+        }
+
+        private RelayCommand<object> _finalizeTestCommand;
+
+        public RelayCommand<object> FinalizeTestCommand
+        {
+            get { return _finalizeTestCommand; }
+        }
+
+        void FinalizeTest()
+        {
+            Switcher.Switch(new TestResult(), Test);
         }
 
         private RelayCommand<object> _returnToMenuCommand;

@@ -26,6 +26,6 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button Content="Next question" IsEnabled="{Binding IsNotFinalQuestion}" Command="{Binding NextQuestionCommand}"></Button>
-        <Button Content="Finish!" IsEnabled="{Binding IsFinalQuestion}" Command="{Binding ReturnToMenuCommand}"></Button>
+        <Button Content="Finish!" IsEnabled="{Binding IsFinalQuestion}" Command="{Binding FinalizeTestCommand}"></Button>
     </StackPanel>
 </UserControl>
