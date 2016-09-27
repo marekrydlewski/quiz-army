@@ -12,11 +12,13 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         public AnswerViewModel(IAnswer answer)
         {
             _answer = answer;
+            _isSelectedAnswer = false;
         }
 
         public AnswerViewModel()
         {
             _answer = new Answer();
+            _isSelectedAnswer = false;
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -52,6 +54,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             set
             {
                 _answer.IsCorrect = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isSelectedAnswer;
+
+        public bool IsSelectedAnswer
+        {
+            get { return _isSelectedAnswer; }
+            set
+            {
+                _isSelectedAnswer = value;
                 OnPropertyChanged();
             }
         }
