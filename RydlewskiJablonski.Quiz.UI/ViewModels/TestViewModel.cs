@@ -169,7 +169,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         public void CalculatePoints()
         {
-            PointsAcquired = QuestionViewModels.Sum(x => x.AcquiredPonts);
+            PointsAcquired = QuestionViewModels.Sum(x => x.PointsAcquired);
         }
 
         #region Commands & navaigation

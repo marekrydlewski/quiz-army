@@ -111,14 +111,14 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
-        private double _acquiredPoints;
+        private double _pointsAcquired;
 
-        public double AcquiredPonts
+        public double PointsAcquired
         {
-            get { return _acquiredPoints; }
+            get { return _pointsAcquired; }
             set
             {
-                _acquiredPoints = value;
+                _pointsAcquired = value;
                 OnPropertyChanged();
             }
         }
@@ -238,7 +238,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                     break;
             }
 
-            AcquiredPonts = result;
+            PointsAcquired = result;
         }
 
         #region Commands & navigation
