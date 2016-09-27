@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.Menu;
@@ -110,6 +111,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
+        private double _acquiredPoints;
+
+        public double AcquiredPonts
+        {
+            get { return _acquiredPoints; }
+            set
+            {
+                _acquiredPoints = value;
+                OnPropertyChanged();
+            }
+        }
+
         public void AddAnswer(AnswerViewModel answer)
         {
             if (_answerViewModels.Count == 0)
@@ -165,6 +178,69 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
+        private void CalculatePoints()
+        {
+            double result = 0;
+
+            switch (Test.ScoringSchema)
+            {
+                case ScoringSchemas.NoNegativePoints:
+                    if (AnswerViewModels.Where(x => x.IsCorrect).All(x => x.IsSelectedAnswer)
+                        && AnswerViewModels.Where(x => !x.IsCorrect).All(x => !x.IsSelectedAnswer))
+                    {
+                        result = Points;
+                    }
+                    break;
+                case ScoringSchemas.NegativePointsForNoAnswer:
+                    if (AnswerViewModels.Where(x => x.IsCorrect).All(x => x.IsSelectedAnswer)
+                        && AnswerViewModels.Where(x => !x.IsCorrect).All(x => !x.IsSelectedAnswer))
+                    {
+                        result = Points;
+                    }
+                    else if (!AnswerViewModels.Any(x => x.IsSelectedAnswer))
+                    {
+                        result = -Points;
+                    }
+                    break;
+                case ScoringSchemas.NegativePoints:
+                    if (AnswerViewModels.Where(x => x.IsCorrect).All(x => x.IsSelectedAnswer)
+                        && AnswerViewModels.Where(x => !x.IsCorrect).All(x => !x.IsSelectedAnswer))
+                    {
+                        result = Points;
+                    }
+                    else
+                    {
+                        result = -Points;
+                    }
+                    break;
+                case ScoringSchemas.PartialNegativePoints:
+                    if (AnswerViewModels.Where(x => x.IsCorrect).All(x => x.IsSelectedAnswer)
+                        && AnswerViewModels.Where(x => !x.IsCorrect).All(x => !x.IsSelectedAnswer))
+                    {
+                        result = Points;
+                    }
+                    else
+                    {
+                        double pointsPerAnswer = Points / AnswerViewModels.Count;
+                        foreach (var answer in AnswerViewModels)
+                        {
+                            if ((answer.IsSelectedAnswer && answer.IsCorrect) ||
+                                (!answer.IsSelectedAnswer && !answer.IsCorrect))
+                            {
+                                result += pointsPerAnswer;
+                            }
+                            else
+                            {
+                                result -= pointsPerAnswer;
+                            }
+                        }
+                    }
+                    break;
+            }
+
+            AcquiredPonts = result;
+        }
+
         #region Commands & navigation
 
         private RelayCommand<object> _nextQuestionCommand;
@@ -176,6 +252,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         private void NextQuestion()
         {
+            CalculatePoints();
             var nextQuestion = Test.QuestionViewModels.OrderBy(x => x.Id).SkipWhile(x => x.Id <= Id).First();
             nextQuestion.Test = Test;
             nextQuestion.IsFinalQuestion = Test.QuestionViewModels.OrderBy(x => x.Id).Last().Id == nextQuestion.Id;
@@ -192,6 +269,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         void FinalizeTest()
         {
+            CalculatePoints();
             Switcher.Switch(new TestResult(), Test);
         }
 

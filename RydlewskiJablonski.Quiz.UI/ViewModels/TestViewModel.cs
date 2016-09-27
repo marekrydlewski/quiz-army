@@ -134,6 +134,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
+        private double _pointsAcquired;
+
+        public double PointsAcquired
+        {
+            get { return _pointsAcquired; }
+            set
+            {
+                _pointsAcquired = value;
+                OnPropertyChanged();
+            }
+        }
+
         public void AddQuestion(QuestionViewModel questionViewModel)
         {
             if (_questionViewModels.Count == 0)
@@ -153,6 +165,11 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 Text = questionViewModel.Text,
                 Answers = questionViewModel.Answers
             });
+        }
+
+        public void CalculatePoints()
+        {
+            PointsAcquired = QuestionViewModels.Sum(x => x.AcquiredPonts);
         }
 
         #region Commands & navaigation
