@@ -15,7 +15,16 @@
             <TextBlock Text="Points: "></TextBlock>
             <TextBlock Text="{Binding Points}"></TextBlock>
         </StackPanel>
-        <TextBlock>PLACE ANSWERS HERE</TextBlock>
+        <ListBox ItemsSource="{Binding AnswerViewModels}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Text}"></TextBlock>
+                        <CheckBox IsChecked="{Binding IsSelectedAnswer}"></CheckBox>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Button Content="Next question" IsEnabled="{Binding IsNotFinalQuestion}" Command="{Binding NextQuestionCommand}"></Button>
         <Button Content="Finish!" IsEnabled="{Binding IsFinalQuestion}" Command="{Binding ReturnToMenuCommand}"></Button>
     </StackPanel>
