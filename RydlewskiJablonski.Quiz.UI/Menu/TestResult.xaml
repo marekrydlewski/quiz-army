@@ -9,5 +9,10 @@
     <UserControl.DataContext>
         <viewModels:TestViewModel/>
     </UserControl.DataContext>
-    
+    <StackPanel Orientation="Vertical">
+        <TextBlock>Congratulations! You finished test!</TextBlock>
+        <TextBlock Text="Acquired points: "></TextBlock>
+        <TextBlock Text="{Binding PointsAcquired}"></TextBlock>
+        <Button Content="Return to menu" Command="{Binding ReturnToMenuCommand}"></Button>
+    </StackPanel>
 </UserControl>

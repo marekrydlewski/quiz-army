@@ -23,6 +23,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             PopulateQuestions();
             _startTestCommand = new RelayCommand<object>(param => StartTest());
             _returnToTestsCommand = new RelayCommand<object>(param => ReturnToTests());
+            _returnToMenuCommand = new RelayCommand<object>(param => ReturnToMenu());
         }
 
         public TestViewModel()
@@ -200,6 +201,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         private void ReturnToTests()
         {
             Switcher.Switch(new TestList(), _userViewModel);
+        }
+
+        private RelayCommand<object> _returnToMenuCommand;
+
+        public RelayCommand<object> ReturnToMenuCommand
+        {
+            get { return _returnToMenuCommand; }
+        }
+
+        private void ReturnToMenu()
+        {
+            Switcher.Switch(new MainMenu(), UserViewModel);
         }
 
         #endregion
