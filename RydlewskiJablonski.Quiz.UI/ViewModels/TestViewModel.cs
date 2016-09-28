@@ -23,6 +23,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             PopulateQuestions();
             _startTestCommand = new RelayCommand<object>(param => StartTest());
             _returnToTestsCommand = new RelayCommand<object>(param => ReturnToTests());
+            _returnToMenuCommand = new RelayCommand<object>(param => ReturnToMenu());
         }
 
         public TestViewModel()
@@ -134,6 +135,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
+        private double _pointsAcquired;
+
+        public double PointsAcquired
+        {
+            get { return _pointsAcquired; }
+            set
+            {
+                _pointsAcquired = value;
+                OnPropertyChanged();
+            }
+        }
+
         public void AddQuestion(QuestionViewModel questionViewModel)
         {
             if (_questionViewModels.Count == 0)
@@ -153,6 +166,11 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 Text = questionViewModel.Text,
                 Answers = questionViewModel.Answers
             });
+        }
+
+        public void CalculatePoints()
+        {
+            PointsAcquired = QuestionViewModels.Sum(x => x.PointsAcquired);
         }
 
         #region Commands & navaigation
@@ -183,6 +201,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         private void ReturnToTests()
         {
             Switcher.Switch(new TestList(), _userViewModel);
+        }
+
+        private RelayCommand<object> _returnToMenuCommand;
+
+        public RelayCommand<object> ReturnToMenuCommand
+        {
+            get { return _returnToMenuCommand; }
+        }
+
+        private void ReturnToMenu()
+        {
+            Switcher.Switch(new MainMenu(), UserViewModel);
         }
 
         #endregion
