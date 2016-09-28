@@ -17,6 +17,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             PopulateTestList(_dao.GetTests());
             _returnToMenuCommand = new RelayCommand<object>(param => ReturnToMenu());
             _takeTestCommand = new RelayCommand<object>(param => TakeTest());
+            _editTestCommand = new RelayCommand<object>(param => EditTest());
             _selectedTest = new TestViewModel();
         }
 
@@ -94,10 +95,23 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             get { return _takeTestCommand; }
         }
 
+        private RelayCommand<object> _editTestCommand;
+
+        public RelayCommand<object> EditTestCommand
+        {
+            get { return _editTestCommand; }
+        }
+
         private void TakeTest()
         {
             _selectedTest.UserViewModel = UserViewModel;
             Switcher.Switch(new TakeTest(), _selectedTest);
+        }
+
+        private void EditTest()
+        {
+            _selectedTest.UserViewModel = UserViewModel;
+            Switcher.Switch(new EditTest(), _selectedTest);
         }
 
         #endregion

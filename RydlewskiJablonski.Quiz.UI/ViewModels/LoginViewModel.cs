@@ -57,7 +57,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
             else
             {
-                _isIncorrect = true;
+                IsIncorrect = true;
             }
         }
 

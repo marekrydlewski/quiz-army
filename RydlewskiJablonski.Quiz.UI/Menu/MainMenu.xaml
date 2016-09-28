@@ -63,10 +63,13 @@
         </EventTrigger>
     </UserControl.Triggers>
     <Grid x:Name="mainMenuLayoutRoot" Background="White">
-        <Button x:Name="newGameButton" HorizontalAlignment="Left" Margin="363,0,0,364" VerticalAlignment="Bottom" Width="200" Content="Statistics" Height="40" FontSize="21.333" Click="statisticButton_Click"/>
-        <Button x:Name="loadGameButton" Height="40" HorizontalAlignment="Left" Margin="363,0,0,316" VerticalAlignment="Bottom" Width="200" FontSize="21.333" Content="Add test" Click="addTestButton_Click"/>
-        <Button x:Name="optionButton" Height="40" HorizontalAlignment="Left" Margin="363,0,0,268" VerticalAlignment="Bottom" Width="200" FontSize="21.333" Content="Settings" Click="settingsButton_Click"/>
-        <Button x:Name="takeTestButton" Height="40" HorizontalAlignment="Left" Margin="363,0,0,222" VerticalAlignment="Bottom" Width="200" FontSize="21.333" Content="Take test" Click="takeTestButton_Click"/>
+        <StackPanel Orientation="Vertical" Margin="340,144,-340,-144">
+            <Button x:Name="newGameButton" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="200" Content="Statistics" Height="40" FontSize="21.333" Click="statisticButton_Click"/>
+            <Button x:Name="loadGameButton" Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="200" FontSize="21.333" Content="Add test" Click="addTestButton_Click"/>
+            <Button x:Name="takeTestButton" Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="200" FontSize="21.333" Content="Take test" Click="takeTestButton_Click"/>
+            <Button x:Name="editTestButton" Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="200" FontSize="21.333" Content="Edit test" Click="editTestButton_Click"/>
+            <Button x:Name="optionButton" Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="200" FontSize="21.333" Content="Settings" Click="settingsButton_Click"/>
+        </StackPanel>
         <TextBlock x:Name="registerTextBlock" HorizontalAlignment="Right" Margin="0,52,20,0" VerticalAlignment="Top" Text="Register" TextWrapping="Wrap" FontSize="16" Width="100" Height="25" TextAlignment="Right" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="registerTextBlock_MouseLeftButtonDown">
             <TextBlock.RenderTransform>
                 <TransformGroup>

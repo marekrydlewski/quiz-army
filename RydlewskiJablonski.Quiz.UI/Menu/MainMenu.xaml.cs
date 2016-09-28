@@ -59,6 +59,12 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
             Switcher.Switch(new TestList(), state);
         }
 
+        private void editTestButton_Click(object sender, RoutedEventArgs e)
+        {
+            var state = DataContext;
+            Switcher.Switch(new TestListEdit(), state);
+        }
+
         private void registerTextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Switcher.Switch(new SignUp());

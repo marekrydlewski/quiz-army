@@ -75,6 +75,9 @@
     <Compile Include="Menu\AddTest.xaml.cs">
       <DependentUpon>AddTest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Menu\EditTest.xaml.cs">
+      <DependentUpon>EditTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Menu\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,9 @@
     </Compile>
     <Compile Include="Menu\TestList.xaml.cs">
       <DependentUpon>TestList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\TestListEdit.xaml.cs">
+      <DependentUpon>TestListEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="Menu\TestResult.xaml.cs">
       <DependentUpon>TestResult.xaml</DependentUpon>
@@ -128,6 +134,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Menu\EditTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Menu\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -155,6 +165,10 @@
     <Page Include="Menu\TestList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menu\TestListEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Menu\TestResult.xaml">
       <SubType>Designer</SubType>
