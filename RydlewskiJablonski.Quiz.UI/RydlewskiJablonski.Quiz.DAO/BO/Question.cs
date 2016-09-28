@@ -6,6 +6,7 @@ namespace RydlewskiJablonski.Quiz.DAO.BO
     public class Question : IQuestion
     {
         public int Id { get; set; }
+        public int TestId { get; set; }
         public string Text { get; set; }
         public int Points { get; set; }
         public string ImagePath { get; set; }

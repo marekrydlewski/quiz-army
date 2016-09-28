@@ -270,6 +270,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         void FinalizeTest()
         {
             CalculatePoints();
+            Test.CalculatePoints();
             Switcher.Switch(new TestResult(), Test);
         }
 
