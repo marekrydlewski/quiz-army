@@ -72,35 +72,72 @@ namespace RydlewskiJablonski.Quiz.DAO
 
         public List<IUser> GetUsers()
         {
-            return _users;
+            using (var context = new TestsContext())
+            {
+                return Enumerable.Cast<IUser>(context.Users).ToList();
+            }
         }
 
         public void AddUser(IUser user)
         {
-            int newUserId = _users.Select(x => x.Id).Max() + 1;
-            user.Id = newUserId;
-            _users.Add(user);
+            using (var context = new TestsContext())
+            {
+                int newUserId = context.Users.Select(x => x.Id).Max() + 1;
+                user.Id = newUserId;
+                context.Users.Add(user as User);
+                context.SaveChanges();
+            }
         }
 
         public List<ITest> GetTests()
         {
-            return _tests;
+            using (var context = new TestsContext())
+            {
+                var tests = Enumerable.Cast<ITest>(context.Tests).ToList();
+                foreach (var test in tests)
+                {
+                    test.Questions =
+                        Enumerable.Cast<IQuestion>(context.Questions.Where(x => x.TestId == test.Id)).ToList();
+                    foreach (var question in test.Questions)
+                    {
+                        question.Answers =
+                            Enumerable.Cast<IAnswer>(
+                                context.Answers.Where(x => x.TestId == test.Id && x.QuestionId == question.Id)).ToList();
+                    }
+                }
+                return tests;
+            }
         }
 
         public void AddTest(ITest test)
         {
-            int newTestId;
-            if (_tests.Count == 0)
+            using (var context = new TestsContext())
             {
-                newTestId = 1;
+                int newTestId;
+                if (!context.Tests.Any())
+                {
+                    newTestId = 1;
+                }
+                else
+                {
+                    newTestId = context.Tests.Select(x => x.Id).Max() + 1;
+                }
+
+                test.Id = newTestId;
+                context.Tests.Add(test as Test);
+                foreach (var question in test.Questions)
+                {
+                    question.TestId = test.Id;
+                    context.Questions.Add(question as Question);
+                    foreach (var answer in question.Answers)
+                    {
+                        answer.TestId = test.Id;
+                        answer.QuestionId = question.Id;
+                        context.Answers.Add(answer as Answer);
+                    }
+                }
+                context.SaveChanges();
             }
-            else
-            {
-                newTestId = _tests.Select(x => x.Id).Max() + 1;
-            }
-                
-            test.Id = newTestId;
-            _tests.Add(test);
         }
 
         public List<ITestStatistics> GetUserStatistics(IUser user)
