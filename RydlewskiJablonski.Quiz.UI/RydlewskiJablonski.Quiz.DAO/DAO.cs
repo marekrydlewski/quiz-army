@@ -71,7 +71,7 @@ namespace RydlewskiJablonski.Quiz.DAO
                 foreach (var question in test.Questions)
                 {
                     question.TestId = test.Id;
-                    question.Id = context.Questions.Select(x => x.Id).Max() + 1;
+                    question.Id = context.Questions.Any() ? context.Questions.Select(x => x.Id).Max() + 1 : 1;
                     context.Questions.Add(question as Question);
                     foreach (var answer in question.Answers)
                     {
