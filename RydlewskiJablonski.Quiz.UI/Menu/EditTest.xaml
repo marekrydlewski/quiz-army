@@ -11,6 +11,17 @@
         <viewmodels:TestViewModel/>
     </UserControl.DataContext>
     <StackPanel Orientation="Vertical" Background="White">
-        
+        <ListBox ItemsSource="{Binding Questions}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Label>Question</Label>
+                        <TextBlock Text="{Binding Text}"/>
+                        <Label>Points</Label>
+                        <TextBlock Text="{Binding Points}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </StackPanel>
 </UserControl>
