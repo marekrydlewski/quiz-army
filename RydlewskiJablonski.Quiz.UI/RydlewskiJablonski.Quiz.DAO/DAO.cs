@@ -68,10 +68,12 @@ namespace RydlewskiJablonski.Quiz.DAO
 
                 test.Id = newTestId;
                 context.Tests.Add(test as Test);
+
+                var questionId = context.Questions.Any() ? context.Questions.Select(x => x.Id).Max() + 1 : 1;
                 foreach (var question in test.Questions)
                 {
                     question.TestId = test.Id;
-                    question.Id = context.Questions.Select(x => x.Id).Max() + 1;
+                    question.Id = questionId;
                     context.Questions.Add(question as Question);
                     foreach (var answer in question.Answers)
                     {
@@ -79,6 +81,7 @@ namespace RydlewskiJablonski.Quiz.DAO
                         answer.QuestionId = question.Id;
                         context.Answers.Add(answer as Answer);
                     }
+                    questionId++;
                 }
                 context.SaveChanges();
             }
