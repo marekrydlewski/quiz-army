@@ -111,7 +111,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         private void EditTest()
         {
             _selectedTest.UserViewModel = UserViewModel;
-            Switcher.Switch(new TakeTest(), _selectedTest);
+            Switcher.Switch(new EditTest(), _selectedTest);
         }
 
         #endregion
