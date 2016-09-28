@@ -9,65 +9,8 @@ namespace RydlewskiJablonski.Quiz.DAO
 {
     public class DAO : IDAO
     {
-        private List<IUser> _users;
-        private List<ITest> _tests;
-
         public DAO()
         {
-            _users = new List<IUser>();
-            _tests = new List<ITest>();
-
-            _tests.Add(new Test
-            {
-                Id = 1,
-                GivenTime = 60,
-                IsMultipleChoice = false,
-                Name = "Sample test",
-                ScoringSchema = ScoringSchemas.NegativePoints,
-                Questions = new List<IQuestion>
-                {
-                    new Question
-                    {
-                        Id = 1,
-                        ImagePath = null,
-                        Text = "Is that a question?",
-                        Answers = new List<IAnswer>
-                        {
-                            new Answer
-                            {
-                                Id = 1,
-                                IsCorrect = true,
-                                Text = "Yes"
-                            },
-                            new Answer
-                            {
-                                Id = 2,
-                                IsCorrect = false,
-                                Text = "No"
-                            }
-                        }
-                    }
-                }
-            });
-
-            _users.Add(new User
-            {
-                Id = 1,
-                FirstName = "Test",
-                LastName = "User",
-                Login = "user",
-                Password = "password",
-                UserType = UserTypes.User
-            });
-            _users.Add(new User
-            {
-                Id = 2,
-                FirstName = "Test",
-                LastName = "Editor",
-                Login = "editor",
-                Password = "password",
-                UserType = UserTypes.Editor
-            });
         }
 
         public List<IUser> GetUsers()
@@ -140,14 +83,5 @@ namespace RydlewskiJablonski.Quiz.DAO
             }
         }
 
-        public List<ITestStatistics> GetUserStatistics(IUser user)
-        {
-            IUser usr = _users.FirstOrDefault(x => x.Id == user.Id);
-            if (usr == null)
-            {
-                throw new ArgumentException("No such user");
-            }
-            return usr.TestsStatistics;
-        }
     }
 }
