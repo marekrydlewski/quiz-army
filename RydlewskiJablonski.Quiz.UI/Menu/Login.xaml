@@ -27,16 +27,16 @@
     <StackPanel Background="White">
         <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="367" Margin="290,100">
             <StackPanel>
-                <TextBlock Margin="10" Style="{StaticResource HeaderStyle}" x:Name="UsernameTextBlock" MaxWidth="150" Text="Username" TextWrapping="Wrap"/>
+                <TextBlock Margin="10" Style="{StaticResource HeaderStyle}" x:Name="UsernameTextBlock" MaxWidth="150" Text="Username" TextWrapping="Wrap" HorizontalAlignment="Center"/>
                 <TextBox Text="{Binding UserName}" x:Name="UsernameTextBox" TextWrapping="Wrap" Width="200" Height="40" FontSize="21"/>
             </StackPanel>
             <StackPanel>
-                <TextBlock  Margin="10" Style="{StaticResource HeaderStyle}" x:Name="PasswordTextBlock" MaxWidth="150" Text="Password" TextWrapping="Wrap"/>
+                <TextBlock Margin="10" Style="{StaticResource HeaderStyle}" x:Name="PasswordTextBlock" MaxWidth="150" Text="Password" TextWrapping="Wrap" HorizontalAlignment="Center"/>
                 <PasswordBox x:Name="PasswordBox" Width="200" Height="40" FontSize="21"/>
             </StackPanel>
             <StackPanel Margin="30">
                 <Button x:Name="LoginButton" Content="Login" Width="170" Height="40" FontSize="23" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=PasswordBox}"/>
-                <Label Style="{StaticResource WarningBorderStyle}" x:Name="Label" MaxWidth="400" MaxHeight="50" Content="Login or password incorrect" FontSize="20" Foreground="Red"/>
+                <Label Style="{StaticResource WarningBorderStyle}" Margin="0 10" x:Name="Label" MaxWidth="400" MaxHeight="50" Content="Login or password incorrect" FontSize="20" Foreground="Red"/>
             </StackPanel>
         </StackPanel>
     </StackPanel>
