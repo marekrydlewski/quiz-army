@@ -23,6 +23,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _returnToTestsCommand = new RelayCommand<object>(param => ReturnToTests());
             _returnToMenuCommand = new RelayCommand<object>(param => ReturnToMenu());
             _returnToEditListCommand = new RelayCommand<object>(param => ReturnToEditList());
+            _editListCommand = new RelayCommand<object>(param => EditList());
         }
 
         public TestViewModel()
@@ -221,6 +222,11 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _dao.SaveTestResults(TestResults);
         }
 
+        public void FinalizeEdition()
+        {
+            _dao.UpdateTest(_test);
+        }
+
         #region Commands & navaigation
 
         private RelayCommand<object> _startTestCommand;
@@ -274,6 +280,19 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         {
             Switcher.Switch(new TestListEdit(), UserViewModel);
         }
+
+        private RelayCommand<object> _editListCommand;
+
+        public RelayCommand<object> EditListCommand
+        {
+            get { return _editListCommand; }
+        }
+
+        private void EditList()
+        {
+            Switcher.Switch(new TestListEdit(), UserViewModel);
+        }
+
 
 
         #endregion

@@ -8,6 +8,7 @@ namespace RydlewskiJablonski.Quiz.Interfaces
         void AddUser(IUser user);
         List<ITest> GetTests();
         void AddTest(ITest test);
+        void UpdateTest(ITest test);
         void SaveTestResults(ITestStatistic results);
         IUser CreateNewUser();
         ITest CreateNewTest();

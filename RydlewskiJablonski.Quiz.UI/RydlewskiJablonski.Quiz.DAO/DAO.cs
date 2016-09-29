@@ -107,6 +107,23 @@ namespace RydlewskiJablonski.Quiz.DAO
             }
         }
 
+        public void UpdateTest(ITest updatedTest)
+        {
+            using (var context = new TestsContext())
+            {
+                var original = context.Tests.Find(updatedTest.Id);
+                if (original != null)
+                {
+                    original.Name = updatedTest.Name;
+                    original.GivenTime = updatedTest.GivenTime;
+                    original.IsMultipleChoice = updatedTest.IsMultipleChoice;
+                    original.ScoringSchema = updatedTest.ScoringSchema;
+                    original.Questions = updatedTest.Questions;
+                    context.SaveChanges();
+                }
+            }
+        }
+
         public IUser CreateNewUser()
         {
             return new User();
