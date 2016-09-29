@@ -19,6 +19,19 @@
                         <TextBlock Text="{Binding Text}"/>
                         <Label>Points</Label>
                         <TextBlock Text="{Binding Points}"/>
+                        <ListBox x:Name="answersList"
+                            ItemsSource="{Binding Answers}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <Label>Answer: </Label>
+                                        <TextBlock Text="{Binding Text}"/>
+                                        <Label>Is correct?:</Label>
+                                        <CheckBox IsChecked="{Binding IsCorrect}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
