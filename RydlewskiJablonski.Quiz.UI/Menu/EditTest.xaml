@@ -11,6 +11,10 @@
         <viewmodels:TestViewModel/>
     </UserControl.DataContext>
     <StackPanel Orientation="Vertical" Background="White">
+        <Label>Test Name</Label>
+        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label>Given Time</Label>
+        <TextBox Text="{Binding GivenTime, UpdateSourceTrigger=PropertyChanged}"/>
         <ListView x:Name="ListViewForEdit" ItemsSource="{Binding Questions}">
         <ListView.ItemTemplate>
                 <DataTemplate>
@@ -38,6 +42,7 @@
         </ListView>
         <StackPanel Orientation="Horizontal">
             <Button HorizontalAlignment="Left" Content="&lt; Back" Name="BackButton" Command="{Binding ReturnToEditListCommand}"></Button>
+            <Button HorizontalAlignment="Right" Content="Edit test" Name="EditButton" Command="{Binding EditTestCommand}"></Button>
         </StackPanel>
     </StackPanel>
 </UserControl>
