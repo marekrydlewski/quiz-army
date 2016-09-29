@@ -41,10 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAnswer.cs" />
+    <Compile Include="IAnswerStatistic.cs" />
     <Compile Include="IDAO.cs" />
     <Compile Include="IQuestion.cs" />
+    <Compile Include="IQuestionStatistic.cs" />
     <Compile Include="ISwitchable.cs" />
     <Compile Include="ITest.cs" />
+    <Compile Include="ITestStatistic.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
