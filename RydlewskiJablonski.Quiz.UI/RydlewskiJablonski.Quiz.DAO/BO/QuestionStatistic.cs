@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RydlewskiJablonski.Quiz.Interfaces;
 
 namespace RydlewskiJablonski.Quiz.DAO.BO
@@ -9,5 +10,6 @@ namespace RydlewskiJablonski.Quiz.DAO.BO
         public int QuestionId { get; set; }
         public double Time { get; set; }
         public double Points { get; set; }
+        public List<IAnswerStatistic> AnswersStatistics { get; set; }
     }
 }

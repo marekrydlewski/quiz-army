@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RydlewskiJablonski.Quiz.Interfaces
 {
@@ -9,5 +10,6 @@ namespace RydlewskiJablonski.Quiz.Interfaces
         int TestId { get; set; }
         double Points { get; set; }
         double Time { get; set; }
+        List<IQuestionStatistic> QuestionsStatistics { get; set; }
     }
 }
