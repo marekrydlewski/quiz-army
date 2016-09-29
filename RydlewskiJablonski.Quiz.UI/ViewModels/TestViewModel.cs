@@ -135,6 +135,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
+        private ITestStatistic _testResults;
+
+        public ITestStatistic TestResults
+        {
+            get { return _testResults; }
+            set
+            {
+                _testResults = value;
+                OnPropertyChanged();
+            }
+        }
+
         private double _pointsAcquired;
 
         public double PointsAcquired
@@ -171,6 +183,48 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         public void CalculatePoints()
         {
             PointsAcquired = QuestionViewModels.Sum(x => x.PointsAcquired);
+        }
+
+        public void FinalizeTest()
+        {
+            TestResults = new TestStatistic
+            {
+                Points = PointsAcquired,
+                TestId = Id,
+                UserId = UserViewModel.Id,
+                Time = 0, //TODO: update
+                QuestionsStatistics = new List<IQuestionStatistic>()
+            };
+
+            foreach (var question in QuestionViewModels)
+            {
+                var questionResults = new QuestionStatistic
+                {
+                    TestId = Id,
+                    QuestionId = question.Id,
+                    Time = 0,//TODO: update
+                    Points = question.PointsAcquired,
+                    AnswersStatistics = new List<IAnswerStatistic>()
+                };
+
+                foreach (var answer in question.AnswerViewModels)
+                {
+                    var answerResults = new AnswerStatistic
+                    {
+                        TestId = Id,
+                        QuestionId = question.Id,
+                        AnswerId = answer.Id,
+                        IsCorrect = answer.IsCorrect,
+                        WasSelected = answer.IsSelectedAnswer
+                    };
+
+                    questionResults.AnswersStatistics.Add(answerResults);
+                }
+
+                TestResults.QuestionsStatistics.Add(questionResults);
+            }
+
+            _dao.SaveTestResults(TestResults);
         }
 
         #region Commands & navaigation
