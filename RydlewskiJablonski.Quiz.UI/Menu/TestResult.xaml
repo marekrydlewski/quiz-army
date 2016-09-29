@@ -11,8 +11,48 @@
     </UserControl.DataContext>
     <StackPanel Orientation="Vertical">
         <TextBlock>Congratulations! You finished test!</TextBlock>
-        <TextBlock Text="Acquired points: "></TextBlock>
-        <TextBlock Text="{Binding PointsAcquired}"></TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Acquired points: "></TextBlock>
+            <TextBlock Text="{Binding TestResults.Points}"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Time taken: "></TextBlock>
+            <TextBlock Text="{Binding TestResults.Time}"></TextBlock>
+        </StackPanel>
+        <ListBox ItemsSource="{Binding TestResults.QuestionsStatistics}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Question"></TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Points: "></TextBlock>
+                            <TextBlock Text="{Binding Points}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Time taken: "></TextBlock>
+                            <TextBlock Text="{Binding Time}"></TextBlock>
+                        </StackPanel>
+                        <ListBox ItemsSource="{Binding AnswersStatistics}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Answer"></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Is correct: "></TextBlock>
+                                            <TextBlock Text="{Binding IsCorrect}"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Was selected answer: "></TextBlock>
+                                            <TextBlock Text="{Binding WasSelected}"></TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Button Content="Return to menu" Command="{Binding ReturnToMenuCommand}"></Button>
     </StackPanel>
 </UserControl>
