@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
-using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.Menu;
 using Question = RydlewskiJablonski.Quiz.DAO.BO.Question;
@@ -29,7 +28,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         public TestViewModel()
         {
             _dao = new DAO.DAO();
-            _test = new Test();
+            _test = _dao.CreateNewTest();
             _test.Questions = new List<IQuestion>();
             PopulateQuestions();
         }
@@ -187,36 +186,30 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         public void FinalizeTest()
         {
-            TestResults = new TestStatistic
-            {
-                Points = PointsAcquired,
-                TestId = Id,
-                UserId = UserViewModel.Id,
-                Time = 0, //TODO: update
-                QuestionsStatistics = new List<IQuestionStatistic>()
-            };
+            TestResults = _dao.CreateNewTestStatistic();
+            TestResults.Points = PointsAcquired;
+            TestResults.TestId = Id;
+            TestResults.UserId = UserViewModel.Id;
+            TestResults.Time = 0; //TODO
+            TestResults.QuestionsStatistics = new List<IQuestionStatistic>();
 
             foreach (var question in QuestionViewModels)
             {
-                var questionResults = new QuestionStatistic
-                {
-                    TestId = Id,
-                    QuestionId = question.Id,
-                    Time = 0,//TODO: update
-                    Points = question.PointsAcquired,
-                    AnswersStatistics = new List<IAnswerStatistic>()
-                };
+                var questionResults = _dao.CreateNewQuestionStatistic();
+                questionResults.TestId = Id;
+                questionResults.QuestionId = question.Id;
+                questionResults.Time = 0;//TODO
+                questionResults.Points = question.PointsAcquired;
+                questionResults.AnswersStatistics = new List<IAnswerStatistic>();
 
                 foreach (var answer in question.AnswerViewModels)
                 {
-                    var answerResults = new AnswerStatistic
-                    {
-                        TestId = Id,
-                        QuestionId = question.Id,
-                        AnswerId = answer.Id,
-                        IsCorrect = answer.IsCorrect,
-                        WasSelected = answer.IsSelectedAnswer
-                    };
+                    var answerResults = _dao.CreateNewAnswerStatistic();
+                    answerResults.TestId = Id;
+                    answerResults.QuestionId = question.Id;
+                    answerResults.AnswerId = answer.Id;
+                    answerResults.IsCorrect = answer.IsCorrect;
+                    answerResults.WasSelected = answer.IsSelectedAnswer;
 
                     questionResults.AnswersStatistics.Add(answerResults);
                 }

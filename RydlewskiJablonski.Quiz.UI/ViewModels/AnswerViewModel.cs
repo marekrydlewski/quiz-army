@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
@@ -8,16 +7,19 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
     public class AnswerViewModel : INotifyPropertyChanged
     {
         private IAnswer _answer;
+        private IDAO _dao;
 
         public AnswerViewModel(IAnswer answer)
         {
+            _dao = new DAO.DAO();
             _answer = answer;
             _isSelectedAnswer = false;
         }
 
         public AnswerViewModel()
         {
-            _answer = new Answer();
+            _dao = new DAO.DAO();
+            _answer = _dao.CreateNewAnswer();
             _isSelectedAnswer = false;
         }
         public event PropertyChangedEventHandler PropertyChanged;

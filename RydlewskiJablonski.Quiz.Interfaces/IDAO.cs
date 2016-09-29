@@ -9,5 +9,12 @@ namespace RydlewskiJablonski.Quiz.Interfaces
         List<ITest> GetTests();
         void AddTest(ITest test);
         void SaveTestResults(ITestStatistic results);
+        IUser CreateNewUser();
+        ITest CreateNewTest();
+        IQuestion CreateNewQuestion();
+        IAnswer CreateNewAnswer();
+        ITestStatistic CreateNewTestStatistic();
+        IQuestionStatistic CreateNewQuestionStatistic();
+        IAnswerStatistic CreateNewAnswerStatistic();
     }
 }

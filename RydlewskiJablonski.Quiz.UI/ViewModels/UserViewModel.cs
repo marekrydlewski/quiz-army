@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
-using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
@@ -9,15 +8,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
     public class UserViewModel : INotifyPropertyChanged
     {
         private IUser _user;
+        private IDAO _dao;
 
         public UserViewModel(IUser user)
         {
             _user = user;
+            _dao = new DAO.DAO();
         }
 
         public UserViewModel()
         {
-            _user = new User();
+            _dao = new DAO.DAO();
+            _user = _dao.CreateNewUser();
         }
 
         public int Id

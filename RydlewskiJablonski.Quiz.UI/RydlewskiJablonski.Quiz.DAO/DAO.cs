@@ -107,5 +107,39 @@ namespace RydlewskiJablonski.Quiz.DAO
             }
         }
 
+        public IUser CreateNewUser()
+        {
+            return new User();
+        }
+
+        public ITest CreateNewTest()
+        {
+            return new Test();
+        }
+
+        public IQuestion CreateNewQuestion()
+        {
+            return new Question();
+        }
+
+        public IAnswer CreateNewAnswer()
+        {
+            return new Answer();
+        }
+
+        public ITestStatistic CreateNewTestStatistic()
+        {
+            return new TestStatistic();
+        }
+
+        public IQuestionStatistic CreateNewQuestionStatistic()
+        {
+            return new QuestionStatistic();
+        }
+
+        public IAnswerStatistic CreateNewAnswerStatistic()
+        {
+            return new AnswerStatistic();
+        }
     }
 }
