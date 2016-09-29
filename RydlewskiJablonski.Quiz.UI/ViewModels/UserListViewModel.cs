@@ -68,8 +68,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                     LastName = user.LastName,
                     Login = user.Login,
                     Password = user.Password,
-                    UserType = user.UserType,
-                    TestsStatistics = new List<ITestStatistics>()
+                    UserType = user.UserType
                 });
             }
             else

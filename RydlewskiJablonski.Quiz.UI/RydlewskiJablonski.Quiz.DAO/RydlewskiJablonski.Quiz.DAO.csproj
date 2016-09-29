@@ -51,9 +51,7 @@
   <ItemGroup>
     <Compile Include="BO\Answer.cs" />
     <Compile Include="BO\Question.cs" />
-    <Compile Include="BO\QuestionStatistics.cs" />
     <Compile Include="BO\Test.cs" />
-    <Compile Include="BO\TestStatistics.cs" />
     <Compile Include="BO\User.cs" />
     <Compile Include="DAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
