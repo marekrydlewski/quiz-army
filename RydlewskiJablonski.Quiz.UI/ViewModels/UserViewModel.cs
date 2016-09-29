@@ -13,6 +13,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         public UserViewModel(IUser user)
         {
             _user = user;
+            IsEditor = user.UserType == UserTypes.Editor;
             _dao = new DAO.DAO();
         }
 
@@ -82,7 +83,17 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
-        //Test Statistics list VM or normal?
+        private bool _isEditor;
+
+        public bool IsEditor
+        {
+            get { return _isEditor; }
+            set
+            {
+                _isEditor = value;
+                OnPropertyChanged();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
