@@ -91,7 +91,7 @@ namespace RydlewskiJablonski.Quiz.DAO
         {
             using (var context = new TestsContext())
             {
-                results.Id = new Guid();
+                results.Id = Guid.NewGuid();
                 context.TestStatistics.Add(results as TestStatistic);
                 foreach (var questionResult in results.QuestionsStatistics)
                 {
