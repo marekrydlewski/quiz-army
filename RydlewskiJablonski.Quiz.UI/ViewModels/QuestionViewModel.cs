@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.Menu;
-using Question = RydlewskiJablonski.Quiz.DAO.BO.Question;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -27,10 +26,14 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         public QuestionViewModel()
         {
-            _question = new Question();
+            _dao = new DAO.DAO();
+            _question = _dao.CreateNewQuestion();
             _question.Answers = new List<IAnswer>();
 
             PopulateAnswers();
+            _nextQuestionCommand = new RelayCommand<object>(param => NextQuestion());
+            _returnToMenuCommand = new RelayCommand<object>(param => ReturnToMenu());
+            _finalizeTestCommand = new RelayCommand<object>(param => FinalizeTest());
         }
 
         private void PopulateAnswers()

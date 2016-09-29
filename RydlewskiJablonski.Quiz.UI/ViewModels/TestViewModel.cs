@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.Menu;
-using Question = RydlewskiJablonski.Quiz.DAO.BO.Question;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -169,14 +168,15 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 questionViewModel.Id = _questionViewModels.Select(x => x.Id).Max() + 1;
             }
             _questionViewModels.Add(questionViewModel);
-            _test.Questions.Add(new Question
-            {
-                Id = questionViewModel.Id,
-                ImagePath = questionViewModel.ImagePath,
-                Points = questionViewModel.Points,
-                Text = questionViewModel.Text,
-                Answers = questionViewModel.Answers
-            });
+
+            var newQuestion = _dao.CreateNewQuestion();
+            newQuestion.Id = questionViewModel.Id;
+            newQuestion.ImagePath = questionViewModel.ImagePath;
+            newQuestion.Points = questionViewModel.Points;
+            newQuestion.Text = questionViewModel.Text;
+            newQuestion.Answers = questionViewModel.Answers;
+
+            _test.Questions.Add(newQuestion);
         }
 
         public void CalculatePoints()
