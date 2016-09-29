@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
@@ -61,16 +60,16 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             if (!_userViewModels.Select(x => x.Login).Contains(user.Login))
             {
                 _userViewModels.Add(user);
-                _dao.AddUser(new User
-                {
-                    Id = user.Id,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Login = user.Login,
-                    Password = user.Password,
-                    UserType = user.UserType,
-                    TestsStatistics = new List<ITestStatistics>()
-                });
+
+                IUser newUser = _dao.CreateNewUser();
+                newUser.Id = user.Id;
+                newUser.FirstName = user.FirstName;
+                newUser.LastName = user.LastName;
+                newUser.Login = user.Login;
+                newUser.Password = user.Password;
+                newUser.UserType = user.UserType;
+
+                _dao.AddUser(newUser);
             }
             else
             {

@@ -4,19 +4,19 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
-using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.Menu;
-using Question = RydlewskiJablonski.Quiz.DAO.BO.Question;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
     public class QuestionViewModel : INotifyPropertyChanged
     {
         private IQuestion _question;
+        private IDAO _dao;
 
         public QuestionViewModel(IQuestion question)
         {
+            _dao = new DAO.DAO();
             _question = question;
             PopulateAnswers();
             _nextQuestionCommand = new RelayCommand<object>(param => NextQuestion());
@@ -26,10 +26,14 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         public QuestionViewModel()
         {
-            _question = new Question();
+            _dao = new DAO.DAO();
+            _question = _dao.CreateNewQuestion();
             _question.Answers = new List<IAnswer>();
 
             PopulateAnswers();
+            _nextQuestionCommand = new RelayCommand<object>(param => NextQuestion());
+            _returnToMenuCommand = new RelayCommand<object>(param => ReturnToMenu());
+            _finalizeTestCommand = new RelayCommand<object>(param => FinalizeTest());
         }
 
         private void PopulateAnswers()
@@ -134,12 +138,13 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 answer.Id = _answerViewModels.Select(x => x.Id).Max() + 1;
             }
             AnswerViewModels.Add(answer);
-            Answers.Add(new Answer
-            {
-                Id = answer.Id,
-                IsCorrect = answer.IsCorrect,
-                Text = answer.Text
-            });
+
+            var newAnswer = _dao.CreateNewAnswer();
+            newAnswer.Id = answer.Id;
+            newAnswer.IsCorrect = answer.IsCorrect;
+            newAnswer.Text = answer.Text;
+
+            Answers.Add(newAnswer);
         }
 
         private TestViewModel _test;
@@ -271,6 +276,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         {
             CalculatePoints();
             Test.CalculatePoints();
+            Test.FinalizeTest();
             Switcher.Switch(new TestResult(), Test);
         }
 
