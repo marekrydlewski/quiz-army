@@ -39,6 +39,16 @@
         </ListBox>
         <Button Name="AddAnswerButton" Content="Add answer" Command="{Binding AddCurrentAsnwerCommand}"></Button>
         <Button Name="ConfirmQuestionButton" Content="Add question" Command="{Binding AddCurrentQuestionCommand}"></Button>
-        <Button Name="CompleteTestButton" Content="Finalize test" Command="{Binding AddCurrentTestCommand}"></Button>     
+        <Button Name="CompleteTestButton" Content="Finalize test" Command="{Binding AddCurrentTestCommand}">
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding TestViewModel.QuestionViewModels.Count}" Value="0">
+                            <Setter Property="Button.IsEnabled" Value="False"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>     
     </StackPanel>
 </UserControl>

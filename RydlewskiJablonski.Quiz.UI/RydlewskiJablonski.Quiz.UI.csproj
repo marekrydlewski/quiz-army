@@ -68,6 +68,7 @@
     </ApplicationDefinition>
     <Compile Include="Helpers\EnumDisplayEntry.cs" />
     <Compile Include="Helpers\EnumDisplayer.cs" />
+    <Compile Include="Helpers\ObservableCollectionExtensions.cs" />
     <Compile Include="Helpers\MultiBindingConverter.cs" />
     <Compile Include="Menu\AddQuestion.xaml.cs">
       <DependentUpon>AddQuestion.xaml</DependentUpon>
