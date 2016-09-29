@@ -11,6 +11,5 @@ namespace RydlewskiJablonski.Quiz.Interfaces
         string LastName { get; set; }
         string Login { get; set; }
         string Password { get; set; }
-        List<ITestStatistics> TestsStatistics { get; set; }
     }
 }

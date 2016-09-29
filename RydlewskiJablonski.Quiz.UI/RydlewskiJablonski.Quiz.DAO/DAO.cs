@@ -87,5 +87,59 @@ namespace RydlewskiJablonski.Quiz.DAO
             }
         }
 
+        public void SaveTestResults(ITestStatistic results)
+        {
+            using (var context = new TestsContext())
+            {
+                results.Id = Guid.NewGuid();
+                context.TestStatistics.Add(results as TestStatistic);
+                foreach (var questionResult in results.QuestionsStatistics)
+                {
+                    questionResult.TestTakeId = results.Id;
+                    context.QuestionStatistics.Add(questionResult as QuestionStatistic);
+                    foreach (var answerResult in questionResult.AnswersStatistics)
+                    {
+                        answerResult.TestTakeId = results.Id;
+                        context.AnswerStatistics.Add(answerResult as AnswerStatistic);
+                    }
+                }
+                context.SaveChanges();
+            }
+        }
+
+        public IUser CreateNewUser()
+        {
+            return new User();
+        }
+
+        public ITest CreateNewTest()
+        {
+            return new Test();
+        }
+
+        public IQuestion CreateNewQuestion()
+        {
+            return new Question();
+        }
+
+        public IAnswer CreateNewAnswer()
+        {
+            return new Answer();
+        }
+
+        public ITestStatistic CreateNewTestStatistic()
+        {
+            return new TestStatistic();
+        }
+
+        public IQuestionStatistic CreateNewQuestionStatistic()
+        {
+            return new QuestionStatistic();
+        }
+
+        public IAnswerStatistic CreateNewAnswerStatistic()
+        {
+            return new AnswerStatistic();
+        }
     }
 }

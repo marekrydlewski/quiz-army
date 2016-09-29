@@ -12,6 +12,5 @@ namespace RydlewskiJablonski.Quiz.DAO.BO
         public string LastName { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public List<ITestStatistics> TestsStatistics { get; set; }
     }
 }

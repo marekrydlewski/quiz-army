@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using RydlewskiJablonski.Quiz.DAO.BO;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.Menu;
 
@@ -105,15 +104,15 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 _testViewModel.Id = _dao.GetTests().Select(x => x.Id).Max() + 1;
             }
 
-            _dao.AddTest(new Test
-            {
-                Id = _testViewModel.Id,
-                GivenTime = _testViewModel.GivenTime,
-                IsMultipleChoice = _testViewModel.IsMultipleChoice,
-                Name = _testViewModel.Name,
-                ScoringSchema = _testViewModel.ScoringSchema,
-                Questions = _testViewModel.Questions
-            });
+            var newTest = _dao.CreateNewTest();
+            newTest.Id = TestViewModel.Id;
+            newTest.GivenTime = TestViewModel.GivenTime;
+            newTest.IsMultipleChoice = TestViewModel.IsMultipleChoice;
+            newTest.Name = TestViewModel.Name;
+            newTest.ScoringSchema = TestViewModel.ScoringSchema;
+            newTest.Questions = TestViewModel.Questions;
+
+            _dao.AddTest(newTest);
 
             var state = _userViewModel;
             Switcher.Switch(new MainMenu(), state);
