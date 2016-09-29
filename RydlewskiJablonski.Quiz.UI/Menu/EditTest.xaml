@@ -36,5 +36,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel Orientation="Horizontal">
+            <Button HorizontalAlignment="Left" Content="&lt; Back" Name="BackButton" Command="{Binding ReturnToEditListCommand}"></Button>
+        </StackPanel>
     </StackPanel>
 </UserControl>
