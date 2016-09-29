@@ -19,7 +19,15 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         #region ISwitchable Members
         public void UtilizeState(object state)
         {
-            throw new NotImplementedException();
+            TestViewModel test = state as TestViewModel;
+            if (test != null)
+            {
+                DataContext = test;
+            }
+            else
+            {
+                throw new ArgumentException("state is not TestViewModel! it is: " + state.GetType().ToString());
+            }
         }
         #endregion
     }
