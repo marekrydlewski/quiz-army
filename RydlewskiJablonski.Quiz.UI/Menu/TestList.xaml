@@ -26,13 +26,14 @@
         </ListBox>
         <StackPanel Orientation="Horizontal">
             <Button HorizontalAlignment="Left" Content="&lt; Back" Name="BackButton" Command="{Binding ReturnToMenuCommand}"></Button>
-            <Button HorizontalAlignment="Right" Content="Take test &gt;" Name="TakeTestButton" Command="{Binding TakeTestCommand}" IsEnabled="{Binding Sele}">
+            <Button HorizontalAlignment="Right" Content="Take test &gt;" Name="TakeTestButton" Command="{Binding TakeTestCommand}">
                 <Button.Style>
                     <Style>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ElementName=TestListBox, Path=SelectedIndex}" Value="-1">
                                 <Setter Property="Button.IsEnabled" Value="False"/>
                                 <Setter Property="Button.Foreground" Value="#FFADADAD"/>
+                                <!--
                                 <Setter Property="Button.SnapsToDevicePixels" Value="true" />
                                 <Setter Property="Button.OverridesDefaultStyle" Value="true" />
                                 <Setter Property="Button.FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
@@ -92,6 +93,7 @@
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
+                                -->
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
