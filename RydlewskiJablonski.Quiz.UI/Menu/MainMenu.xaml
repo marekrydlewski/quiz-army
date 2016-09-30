@@ -19,14 +19,6 @@
                 <SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1.2"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="registerMouseEnter">
-            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="registerTextBlock" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
-                <SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1.2"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="registerTextBlock" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
-                <SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1.2"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
         <Storyboard x:Key="loginMouseLeave">
             <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="loginTextBlock" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
                 <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1.2"/>
@@ -37,29 +29,13 @@
                 <SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="registerMouseLeave">
-            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="registerTextBlock" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
-                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1.2"/>
-                <SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="registerTextBlock" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
-                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1.2"/>
-                <SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
     </UserControl.Resources>
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="loginTextBlock">
             <BeginStoryboard Storyboard="{StaticResource loginMouseEnter}"/>
         </EventTrigger>
-        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="registerTextBlock">
-            <BeginStoryboard x:Name="registerMouseEnter_BeginStoryboard" Storyboard="{StaticResource registerMouseEnter}"/>
-        </EventTrigger>
         <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="loginTextBlock">
             <BeginStoryboard x:Name="loginMouseLeave_BeginStoryboard" Storyboard="{StaticResource loginMouseLeave}"/>
-        </EventTrigger>
-        <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="registerTextBlock">
-            <BeginStoryboard x:Name="registerMouseLeave_BeginStoryboard" Storyboard="{StaticResource registerMouseLeave}"/>
         </EventTrigger>
     </UserControl.Triggers>
     <Grid x:Name="mainMenuLayoutRoot" Background="White">
