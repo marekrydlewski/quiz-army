@@ -13,7 +13,7 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
     {
         public EditTest()
         {
-            InitializeComponent();
+            InitializeComponent();  
         }
 
         #region ISwitchable Members

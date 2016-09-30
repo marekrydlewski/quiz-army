@@ -11,30 +11,38 @@
         <viewmodels:TestViewModel/>
     </UserControl.DataContext>
     <StackPanel Orientation="Vertical" Background="White">
-        <ListBox ItemsSource="{Binding Questions}">
-            <ListBox.ItemTemplate>
+        <Label>Test Name</Label>
+        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label>Given Time</Label>
+        <TextBox Text="{Binding GivenTime, UpdateSourceTrigger=PropertyChanged}"/>
+        <ListView x:Name="ListViewForEdit" ItemsSource="{Binding Questions}">
+        <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
                         <Label>Question</Label>
-                        <TextBlock Text="{Binding Text}"/>
+                        <TextBox Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label>Points</Label>
-                        <TextBlock Text="{Binding Points}"/>
-                        <ListBox x:Name="answersList"
-                            ItemsSource="{Binding Answers}">
-                            <ListBox.ItemTemplate>
+                        <TextBox Text="{Binding Points, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ListView x:Name="answersList"
+                            ItemsSource="{Binding Answers, UpdateSourceTrigger=PropertyChanged}">
+                            <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
                                         <Label>Answer: </Label>
-                                        <TextBlock Text="{Binding Text}"/>
+                                        <TextBox Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
                                         <Label>Is correct?:</Label>
-                                        <CheckBox IsChecked="{Binding IsCorrect}"/>
+                                        <CheckBox IsChecked="{Binding IsCorrect, UpdateSourceTrigger=PropertyChanged}"/>
                                     </StackPanel>
                                 </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackPanel>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Orientation="Horizontal">
+            <Button HorizontalAlignment="Left" Content="&lt; Back" Name="BackButton" Command="{Binding ReturnToEditListCommand}"></Button>
+            <Button HorizontalAlignment="Right" Content="Edit test" Name="EditButton" Command="{Binding EditTestCommand}"></Button>
+        </StackPanel>
     </StackPanel>
 </UserControl>
