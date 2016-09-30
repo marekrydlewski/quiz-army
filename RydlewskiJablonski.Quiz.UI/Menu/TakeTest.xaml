@@ -24,6 +24,5 @@
         </StackPanel>
         <Button Content="&lt; Back" Command="{Binding ReturnToTestsCommand}"></Button>
         <Button Content="Start test!" Command="{Binding StartTestCommand}"></Button>
-        
     </StackPanel>
 </UserControl>
