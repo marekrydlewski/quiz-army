@@ -10,6 +10,7 @@
         <viewModels:QuestionViewModel/>
     </UserControl.DataContext>
     <StackPanel Orientation="Vertical">
+        <TextBlock x:Name="timerBox" Text="{Binding RemainingTime, StringFormat={}{0:g}}"></TextBlock>
         <TextBlock Text="{Binding Text}"></TextBlock>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Points: "></TextBlock>

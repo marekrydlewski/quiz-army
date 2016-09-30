@@ -66,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\CurrentTestTime.cs" />
     <Compile Include="Helpers\EnumDisplayEntry.cs" />
     <Compile Include="Helpers\EnumDisplayer.cs" />
     <Compile Include="Helpers\MultiBindingConverter.cs" />

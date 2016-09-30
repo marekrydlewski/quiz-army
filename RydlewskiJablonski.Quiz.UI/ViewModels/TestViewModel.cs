@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.Menu;
+using System;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -242,6 +243,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             firstQuestion.Test = this;
             firstQuestion.IsFinalQuestion = QuestionViewModels.Count == 1;
             firstQuestion.IsNotFinalQuestion = !firstQuestion.IsFinalQuestion;
+            firstQuestion.RemainingTime = TimeSpan.FromMinutes(GivenTime);
             Switcher.Switch(new Menu.Question(), firstQuestion);
         }
 
