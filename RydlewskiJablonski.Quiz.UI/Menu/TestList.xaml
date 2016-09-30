@@ -28,19 +28,19 @@
             <Button HorizontalAlignment="Left" Content="&lt; Back" Name="BackButton" Command="{Binding ReturnToMenuCommand}"></Button>
             <Button HorizontalAlignment="Right" Content="Take test &gt;" Name="TakeTestButton" Command="{Binding TakeTestCommand}">
                 <Button.Style>
-                    <Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="IsEnabled" Value="True"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ElementName=TestListBox, Path=SelectedIndex}" Value="-1">
-                                <Setter Property="Button.IsEnabled" Value="False"/>
-                                <Setter Property="Button.Foreground" Value="#FFADADAD"/>
-                                <!--
-                                <Setter Property="Button.SnapsToDevicePixels" Value="true" />
-                                <Setter Property="Button.OverridesDefaultStyle" Value="true" />
-                                <Setter Property="Button.FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
-                                <Setter Property="Button.MinHeight" Value="29px" />
-                                <Setter Property="Button.MinWidth"  Value="103px" />
-                                <Setter Property="Button.Margin" Value="10"/>
-                                <Setter Property="Button.Template">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="Foreground" Value="#FFADADAD"/>
+                                <Setter Property="SnapsToDevicePixels" Value="true" />
+                                <Setter Property="OverridesDefaultStyle" Value="true" />
+                                <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
+                                <Setter Property="MinHeight" Value="29px" />
+                                <Setter Property="MinWidth"  Value="103px" />
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Button">
                                             <Border TextBlock.Foreground="{TemplateBinding Foreground}" x:Name="Border">
@@ -56,7 +56,7 @@
                                                         <VisualState x:Name="Normal" />
                                                         <VisualState x:Name="MouseOver">
                                                             <Storyboard>
-                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Button.(Panel.Background).(SolidColorBrush.Color)"
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
                                                 Storyboard.TargetName="Border">
                                                                     <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ControlMouseOverColor}" />
                                                                 </ColorAnimationUsingKeyFrames>
@@ -64,7 +64,7 @@
                                                         </VisualState>
                                                         <VisualState x:Name="Pressed">
                                                             <Storyboard>
-                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Button.(Panel.Background).(SolidColorBrush.Color)"
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
                                                                         Storyboard.TargetName="Border">
                                                                     <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ControlPressedColor}" />
                                                                 </ColorAnimationUsingKeyFrames>
@@ -72,11 +72,11 @@
                                                         </VisualState>
                                                         <VisualState x:Name="Disabled">
                                                             <Storyboard>
-                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Button.(Panel.Background).(SolidColorBrush.Color)"
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
                                                                         Storyboard.TargetName="Border">
                                                                     <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledControlColor}" />
                                                                 </ColorAnimationUsingKeyFrames>
-                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Button.(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
                                                                         Storyboard.TargetName="Border">
                                                                     <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledForegroundColor}" />
                                                                 </ColorAnimationUsingKeyFrames>
@@ -93,8 +93,9 @@
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
-                                -->
                             </DataTrigger>
+                            
+                            
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
