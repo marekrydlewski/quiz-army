@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.Interfaces;
+using RydlewskiJablonski.Quiz.UI.Helpers;
 using RydlewskiJablonski.Quiz.UI.Menu;
 using System;
 
@@ -239,6 +240,11 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         private void StartTest()
         {
+            foreach (var question in QuestionViewModels)
+            {
+                question.AnswerViewModels.Shuffle();
+            }
+
             var firstQuestion = QuestionViewModels.OrderBy(x => x.Id).First();
             firstQuestion.Test = this;
             firstQuestion.IsFinalQuestion = QuestionViewModels.Count == 1;

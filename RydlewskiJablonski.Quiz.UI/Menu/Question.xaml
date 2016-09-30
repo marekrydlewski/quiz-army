@@ -13,6 +13,10 @@
         <TextBlock x:Name="timerBox" Text="{Binding RemainingTime, StringFormat={}{0:g}}"></TextBlock>
         <TextBlock Text="{Binding Text}"></TextBlock>
         <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Text}"></TextBlock>
+            <Image Source="{Binding ImagePath}" MaxHeight="200" MaxWidth="200"></Image>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
             <TextBlock Text="Points: "></TextBlock>
             <TextBlock Text="{Binding Points}"></TextBlock>
         </StackPanel>
