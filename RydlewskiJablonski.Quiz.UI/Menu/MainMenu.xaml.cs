@@ -50,12 +50,13 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
 
         private void settingsButton_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.Switch(new UserSettings());
+            var state = DataContext;
+            Switcher.Switch(new UserSettings(), state);
         }
 
         private void takeTestButton_Click(object sender, RoutedEventArgs e)
         {
-            var state = DataContext;
+           var state = DataContext; 
             Switcher.Switch(new TestList(), state);
         }
 
