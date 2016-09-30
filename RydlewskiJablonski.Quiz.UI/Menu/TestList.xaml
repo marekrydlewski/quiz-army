@@ -64,7 +64,7 @@
                                                         <VisualState x:Name="Pressed">
                                                             <Storyboard>
                                                                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Button.(Panel.Background).(SolidColorBrush.Color)"
-                                                Storyboard.TargetName="Border">
+                                                                        Storyboard.TargetName="Border">
                                                                     <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ControlPressedColor}" />
                                                                 </ColorAnimationUsingKeyFrames>
                                                             </Storyboard>
@@ -72,11 +72,11 @@
                                                         <VisualState x:Name="Disabled">
                                                             <Storyboard>
                                                                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Button.(Panel.Background).(SolidColorBrush.Color)"
-                                                Storyboard.TargetName="Border">
+                                                                        Storyboard.TargetName="Border">
                                                                     <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledControlColor}" />
                                                                 </ColorAnimationUsingKeyFrames>
                                                                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Button.(TextBlock.Foreground).(SolidColorBrush.Color)"
-                                                Storyboard.TargetName="Border">
+                                                                        Storyboard.TargetName="Border">
                                                                     <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledForegroundColor}" />
                                                                 </ColorAnimationUsingKeyFrames>
                                                             </Storyboard>
@@ -84,9 +84,10 @@
                                                     </VisualStateGroup>
                                                 </VisualStateManager.VisualStateGroups>
                                                 <ContentPresenter Margin="2"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            RecognizesAccessKey="True" />
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    RecognizesAccessKey="True" 
+                                                />
                                             </Border>
                                         </ControlTemplate>
                                     </Setter.Value>
