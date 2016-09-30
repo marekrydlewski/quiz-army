@@ -200,6 +200,30 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
+        private DateTime _startTime;
+
+        public DateTime StartTime
+        {
+            get { return _startTime; }
+            set
+            {
+                _startTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private TimeSpan _timeTaken;
+
+        public TimeSpan TimeTaken
+        {
+            get { return _timeTaken; }
+            set
+            {
+                _timeTaken = value;
+                OnPropertyChanged();
+            }
+        }
+
         private void CalculatePoints()
         {
             double result = 0;
@@ -297,6 +321,8 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             nextQuestion.IsFinalQuestion = Test.QuestionViewModels.OrderBy(x => x.Id).Last().Id == nextQuestion.Id;
             nextQuestion.IsNotFinalQuestion = !nextQuestion.IsFinalQuestion;
             nextQuestion.RemainingTime = RemainingTime;
+            nextQuestion.StartTime = DateTime.Now;
+            TimeTaken = DateTime.Now - StartTime;
             Switcher.Switch(new Menu.Question(), nextQuestion);
         }
 
@@ -309,6 +335,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         void FinalizeTest()
         {
+            TimeTaken = DateTime.Now - StartTime;
             CalculatePoints();
             Test.CalculatePoints();
             Test.FinalizeTest();

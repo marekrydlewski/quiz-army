@@ -15,7 +15,7 @@ namespace RydlewskiJablonski.Quiz.DAO.BO
         [Key]
         [Column(Order = 2)]
         public int QuestionId { get; set; }
-        public double Time { get; set; }
+        public TimeSpan Time { get; set; }
         public double Points { get; set; }
         public List<IAnswerStatistic> AnswersStatistics { get; set; }
     }

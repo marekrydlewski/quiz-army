@@ -137,9 +137,9 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
-        private ITestStatistic _testResults;
+        private TestResultViewModel _testResults;
 
-        public ITestStatistic TestResults
+        public TestResultViewModel TestResults
         {
             get { return _testResults; }
             set
@@ -190,19 +190,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         public void FinalizeTest()
         {
-            TestResults = _dao.CreateNewTestStatistic();
-            TestResults.Points = PointsAcquired;
-            TestResults.TestId = Id;
-            TestResults.UserId = UserViewModel.Id;
-            TestResults.Time = 0; //TODO
-            TestResults.QuestionsStatistics = new List<IQuestionStatistic>();
+            var testResults = _dao.CreateNewTestStatistic();
+            testResults.Points = PointsAcquired;
+            testResults.TestId = Id;
+            testResults.UserId = UserViewModel.Id;
+            testResults.QuestionsStatistics = new List<IQuestionStatistic>();
 
             foreach (var question in QuestionViewModels)
             {
                 var questionResults = _dao.CreateNewQuestionStatistic();
                 questionResults.TestId = Id;
                 questionResults.QuestionId = question.Id;
-                questionResults.Time = 0;//TODO
+                questionResults.Time = question.TimeTaken;
                 questionResults.Points = question.PointsAcquired;
                 questionResults.AnswersStatistics = new List<IAnswerStatistic>();
 
@@ -218,10 +217,13 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                     questionResults.AnswersStatistics.Add(answerResults);
                 }
 
-                TestResults.QuestionsStatistics.Add(questionResults);
+                testResults.QuestionsStatistics.Add(questionResults);
             }
 
-            _dao.SaveTestResults(TestResults);
+            testResults.Time = new TimeSpan(testResults.QuestionsStatistics.Sum(x => x.Time.Ticks));
+
+            TestResults = new TestResultViewModel(testResults);
+            _dao.SaveTestResults(testResults);
         }
 
         public void FinalizeEdition()
@@ -250,6 +252,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             firstQuestion.IsFinalQuestion = QuestionViewModels.Count == 1;
             firstQuestion.IsNotFinalQuestion = !firstQuestion.IsFinalQuestion;
             firstQuestion.RemainingTime = TimeSpan.FromMinutes(GivenTime);
+            firstQuestion.StartTime = DateTime.Now;
             Switcher.Switch(new Menu.Question(), firstQuestion);
         }
 

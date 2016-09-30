@@ -13,37 +13,37 @@
         <TextBlock>Congratulations! You finished test!</TextBlock>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Acquired points: "></TextBlock>
-            <TextBlock Text="{Binding TestResults.Points}"></TextBlock>
+            <TextBlock Text="{Binding TestResults.TestResult.Points}"></TextBlock>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Time taken: "></TextBlock>
-            <TextBlock Text="{Binding TestResults.Time}"></TextBlock>
+            <TextBlock Text="{Binding TestResults.TestResult.Time}"></TextBlock>
         </StackPanel>
-        <ListBox ItemsSource="{Binding TestResults.QuestionsStatistics}">
+        <ListBox ItemsSource="{Binding TestResults.QuestionResults}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Question"></TextBlock>
+                        <TextBlock Text="{Binding Text}"></TextBlock>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Points: "></TextBlock>
-                            <TextBlock Text="{Binding Points}"></TextBlock>
+                            <TextBlock Text="{Binding QuestionResult.Points}"></TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Time taken: "></TextBlock>
-                            <TextBlock Text="{Binding Time}"></TextBlock>
+                            <TextBlock Text="{Binding QuestionResult.Time}"></TextBlock>
                         </StackPanel>
-                        <ListBox ItemsSource="{Binding AnswersStatistics}">
+                        <ListBox ItemsSource="{Binding AnswerResults}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="Answer"></TextBlock>
+                                        <TextBlock Text="{Binding Text}"></TextBlock>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="Is correct: "></TextBlock>
-                                            <TextBlock Text="{Binding IsCorrect}"></TextBlock>
+                                            <TextBlock Text="{Binding AnswerResult.IsCorrect}"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="Was selected answer: "></TextBlock>
-                                            <TextBlock Text="{Binding WasSelected}"></TextBlock>
+                                            <TextBlock Text="{Binding AnswerResult.WasSelected}"></TextBlock>
                                         </StackPanel>
                                     </StackPanel>
                                 </DataTemplate>
