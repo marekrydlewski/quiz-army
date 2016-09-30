@@ -2,8 +2,6 @@
 using System.Windows.Controls;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.ViewModels;
-using System.Windows;
-using System.Windows.Threading;
 
 namespace RydlewskiJablonski.Quiz.UI.Menu
 {
