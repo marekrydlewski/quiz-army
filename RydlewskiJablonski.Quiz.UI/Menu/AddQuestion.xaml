@@ -44,11 +44,12 @@
                 <Style>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding TestViewModel.QuestionViewModels.Count}" Value="0">
-                            <Setter Property="Button.IsEnabled" Value="False"></Setter>
+                            <Setter Property="Button.IsEnabled" Value="False"/>
+                            <Setter Property="Button.Foreground" Value="#FFADADAD"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Button.Style>
-        </Button>     
+        </Button>
     </StackPanel>
 </UserControl>

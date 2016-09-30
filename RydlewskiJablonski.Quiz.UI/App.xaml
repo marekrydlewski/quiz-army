@@ -35,7 +35,7 @@
                 <Setter Property="MinWidth"  Value="103px" />
                 <Setter Property="Foreground" Value="#FFFFFFFF" />
                 <Setter Property="Margin" Value="10"/>
-                <Setter Property="Template">
+            <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border TextBlock.Foreground="{TemplateBinding Foreground}" x:Name="Border">

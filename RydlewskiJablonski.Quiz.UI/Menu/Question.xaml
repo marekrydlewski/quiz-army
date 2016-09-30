@@ -10,6 +10,7 @@
         <viewModels:QuestionViewModel/>
     </UserControl.DataContext>
     <StackPanel Orientation="Vertical">
+        <TextBlock x:Name="timerBox" Text="{Binding RemainingTime, StringFormat={}{0:g}}" FontSize="21" Margin="10"></TextBlock>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="{Binding Text}"></TextBlock>
             <Image Source="{Binding ImagePath}" MaxHeight="200" MaxWidth="200"></Image>

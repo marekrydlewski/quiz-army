@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.Menu;
+using System.Windows.Threading;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -22,6 +24,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _nextQuestionCommand = new RelayCommand<object>(param => NextQuestion());
             _returnToMenuCommand = new RelayCommand<object>(param => ReturnToMenu());
             _finalizeTestCommand = new RelayCommand<object>(param => FinalizeTest());
+            DispatchTimer();
         }
 
         public QuestionViewModel()
@@ -171,6 +174,20 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
+
+        private TimeSpan _remainingTime;
+
+        public TimeSpan RemainingTime
+        {
+            get { return _remainingTime; }
+            set
+            {
+                _remainingTime = value;
+                OnPropertyChanged();
+            }
+        }
+        public DispatcherTimer Timer { get; set; }
+
         private bool _isNotFinalQuestion;
 
         public bool IsNotFinalQuestion
@@ -246,6 +263,23 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             PointsAcquired = result;
         }
 
+        public void DispatchTimer()
+        {
+            Timer = new DispatcherTimer();
+            Timer.Interval = TimeSpan.FromSeconds(1);
+            Timer.Tick += TimerTick;
+            Timer.Start();
+        }
+
+        public void TimerTick(object sender, EventArgs e)
+        {
+            RemainingTime = RemainingTime.Add(TimeSpan.FromSeconds(-1));
+            if (RemainingTime == TimeSpan.Zero)
+            {
+                Timer.Stop();
+            }
+        }
+
         #region Commands & navigation
 
         private RelayCommand<object> _nextQuestionCommand;
@@ -262,6 +296,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             nextQuestion.Test = Test;
             nextQuestion.IsFinalQuestion = Test.QuestionViewModels.OrderBy(x => x.Id).Last().Id == nextQuestion.Id;
             nextQuestion.IsNotFinalQuestion = !nextQuestion.IsFinalQuestion;
+            nextQuestion.RemainingTime = RemainingTime;
             Switcher.Switch(new Menu.Question(), nextQuestion);
         }
 
