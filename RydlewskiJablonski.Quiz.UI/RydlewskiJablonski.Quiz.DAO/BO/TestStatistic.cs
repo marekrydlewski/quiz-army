@@ -10,7 +10,7 @@ namespace RydlewskiJablonski.Quiz.DAO.BO
         public int UserId { get; set; }
         public int TestId { get; set; }
         public double Points { get; set; }
-        public double Time { get; set; }
+        public TimeSpan Time { get; set; }
         public List<IQuestionStatistic> QuestionsStatistics { get; set; }
     }
 }

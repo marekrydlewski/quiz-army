@@ -9,7 +9,7 @@ namespace RydlewskiJablonski.Quiz.Interfaces
         int UserId { get; set; }
         int TestId { get; set; }
         double Points { get; set; }
-        double Time { get; set; }
+        TimeSpan Time { get; set; }
         List<IQuestionStatistic> QuestionsStatistics { get; set; }
     }
 }
