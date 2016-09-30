@@ -27,8 +27,8 @@
             </Style>
 
             <!-- Button -->
-            <Style TargetType="Button">
-                <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Style TargetType="Button">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
                 <Setter Property="OverridesDefaultStyle" Value="true" />
                 <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
                 <Setter Property="MinHeight" Value="29px" />
