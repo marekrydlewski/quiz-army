@@ -121,6 +121,28 @@ namespace RydlewskiJablonski.Quiz.DAO
                     original.Questions = updatedTest.Questions;
                     context.SaveChanges();
                 }
+
+                foreach (var question in updatedTest.Questions)
+                {
+                    var originalQuestion = context.Questions.Find(question.Id);
+                    if (originalQuestion != null)
+                    {
+                        originalQuestion.Points = question.Points;
+                        originalQuestion.Text = question.Text;
+                        context.SaveChanges();
+
+                        foreach (var answer in question.Answers)
+                        {
+                            var originalAnswer = context.Answers.Find(answer.Id);
+                            if (originalAnswer != null)
+                            {
+                                originalAnswer.IsCorrect = answer.IsCorrect;
+                                originalAnswer.Text = answer.Text;
+                                context.SaveChanges();
+                            }
+                        }
+                    }
+                }
             }
         }
 
