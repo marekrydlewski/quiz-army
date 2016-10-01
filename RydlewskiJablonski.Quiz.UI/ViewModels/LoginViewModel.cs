@@ -26,6 +26,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             IsIncorrect = false;
             _userListViewModel = new UserListViewModel();
             _loginCommand = new RelayCommand<object>(param => Login(param));
+            _signupCommand = new RelayCommand<object>(param => Signup(param));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -61,6 +62,11 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
+        public void Signup(object state)
+        {
+            Switcher.Switch(new SignUp());
+        }
+
         #region Commands & navigation
 
         private RelayCommand<object> _loginCommand;
@@ -68,6 +74,13 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         public RelayCommand<object> LoginCommand
         {
             get { return _loginCommand; }
+        }
+
+        private RelayCommand<object> _signupCommand;
+
+        public RelayCommand<object> SignupCommand
+        {
+            get { return _signupCommand; }
         }
 
         #endregion
