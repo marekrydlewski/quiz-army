@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.Interfaces;
+using RydlewskiJablonski.Quiz.UI.Menu;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -15,12 +16,14 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _user = user;
             IsEditor = user.UserType == UserTypes.Editor;
             _dao = new DAO.DAO();
+            _returnToLoginCommand = new RelayCommand<object>(param => ReturnToLogin());
         }
 
         public UserViewModel()
         {
             _dao = new DAO.DAO();
             _user = _dao.CreateNewUser();
+            _returnToLoginCommand = new RelayCommand<object>(param => ReturnToLogin());
         }
 
         public int Id
@@ -102,5 +105,19 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #region navigation
+        private RelayCommand<object> _returnToLoginCommand;
+
+        public RelayCommand<object> ReturnToLoginCommand
+        {
+            get { return _returnToLoginCommand; }
+        }
+
+        private void ReturnToLogin()
+        {
+            Switcher.Switch(new MainMenu());
+        }
+        #endregion
     }
 }
