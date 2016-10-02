@@ -23,7 +23,9 @@
             <TextBlock>Multiple choices: </TextBlock>
             <TextBlock Text="{Binding IsMultipleChoice}"></TextBlock>
         </StackPanel>
-        <Button Content="&lt; Back" Command="{Binding ReturnToTestsCommand}"></Button>
-        <Button Content="Start test!" Command="{Binding StartTestCommand}"></Button>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="&lt; Back" Command="{Binding ReturnToTestsCommand}" MaxWidth="250"></Button>
+            <Button Content="Start test!" Command="{Binding StartTestCommand}" MaxWidth="250"></Button>
+        </StackPanel>
     </StackPanel>
 </UserControl>
