@@ -152,7 +152,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         private void ReturnToLogin()
         {
-            Switcher.Switch(new MainMenu());
+            Switcher.Switch(new MainMenu(), this);
         }
 
         #endregion

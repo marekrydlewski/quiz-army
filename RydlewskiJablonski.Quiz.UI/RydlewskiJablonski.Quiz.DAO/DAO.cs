@@ -197,5 +197,32 @@ namespace RydlewskiJablonski.Quiz.DAO
         {
             return new AnswerStatistic();
         }
+
+        public List<ITestStatistic> GetTestStatistics(int testId)
+        {
+            List<ITestStatistic> stats;
+
+            using (var context = new TestsContext())
+            {
+                stats = new List<ITestStatistic>();
+                context.TestStatistics.Where(x => x.TestId == testId).ToList().ForEach(x => stats.Add(x));
+                foreach (var testStat in stats)
+                {
+                    testStat.QuestionsStatistics = new List<IQuestionStatistic>();
+                    context.QuestionStatistics.Where(x => x.TestTakeId == testStat.Id)
+                        .ToList().ForEach(x => testStat.QuestionsStatistics.Add(x));
+
+                    foreach (var questionStat in testStat.QuestionsStatistics)
+                    {
+                        questionStat.AnswersStatistics = new List<IAnswerStatistic>();
+                        context.AnswerStatistics.Where(
+                            x => x.TestTakeId == testStat.Id && x.QuestionId == questionStat.QuestionId)
+                            .ToList().ForEach(x => questionStat.AnswersStatistics.Add(x));
+                    }
+                }
+            }
+
+            return stats;
+        }
     }
 }

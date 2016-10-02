@@ -34,7 +34,8 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
 
         private void statisticButton_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.Switch(new Statistics());
+            var state = DataContext;
+            Switcher.Switch(new Statistics(), state);
         }
 
         private void addTestButton_Click(object sender, RoutedEventArgs e)

@@ -79,6 +79,8 @@
     <Compile Include="Helpers\EnumDisplayer.cs" />
     <Compile Include="Helpers\ObservableCollectionExtensions.cs" />
     <Compile Include="Helpers\MultiBindingConverter.cs" />
+    <Compile Include="Helpers\QuestionComboBoxItem.cs" />
+    <Compile Include="Helpers\TakeTimes.cs" />
     <Compile Include="Menu\AddQuestion.xaml.cs">
       <DependentUpon>AddQuestion.xaml</DependentUpon>
     </Compile>
@@ -115,6 +117,9 @@
     <Compile Include="Menu\TestResult.xaml.cs">
       <DependentUpon>TestResult.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Menu\TestStatistics.xaml.cs">
+      <DependentUpon>TestStatistics.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Menu\UserSettings.xaml.cs">
       <DependentUpon>UserSettings.xaml</DependentUpon>
     </Compile>
@@ -134,6 +139,7 @@
     <Compile Include="ViewModels\QuestionResultViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
+    <Compile Include="ViewModels\StatiscticsViewModel.cs" />
     <Compile Include="ViewModels\TestListViewModel.cs" />
     <Compile Include="ViewModels\TestResultViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
@@ -184,6 +190,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Menu\TestResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menu\TestStatistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
