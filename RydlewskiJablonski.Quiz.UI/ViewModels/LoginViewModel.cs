@@ -52,7 +52,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         public void Login(object passwordBox)
         {
             string password = (passwordBox as PasswordBox).Password;
-            if (_userListViewModel.UserViewModels.Any(x => _userName.Equals(x.Login) && password.Equals(x.Password)))
+            if (!string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(_userName) && _userListViewModel.UserViewModels.Any(x => _userName.Equals(x.Login) && password.Equals(x.Password)))
             {
                 Switcher.Switch(new MainMenu(), _userListViewModel.UserViewModels.FirstOrDefault(x => _userName.Equals(x.Login) && password.Equals(x.Password)));
             }
