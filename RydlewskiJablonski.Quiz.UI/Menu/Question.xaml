@@ -9,21 +9,21 @@
     <UserControl.DataContext>
         <viewModels:QuestionViewModel/>
     </UserControl.DataContext>
-    <StackPanel Orientation="Vertical">
-        <TextBlock x:Name="timerBox" Text="{Binding RemainingTime, StringFormat={}{0:g}}" FontSize="21" Margin="10"></TextBlock>
+    <StackPanel Orientation="Vertical" Background="White">
+        <TextBlock x:Name="timerBox" Text="{Binding RemainingTime, StringFormat={}{0:g}}" FontSize="21" Margin="15"></TextBlock>
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{Binding Text}"></TextBlock>
-            <Image Source="{Binding ImagePath}" MaxHeight="200" MaxWidth="200"></Image>
+            <TextBlock Text="{Binding Text}" Margin="10" FontSize="17"></TextBlock>
+            <Image Source="{Binding ImagePath}" MaxHeight="200" MaxWidth="200" Margin="10"></Image>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Points: "></TextBlock>
-            <TextBlock Text="{Binding Points}"></TextBlock>
+            <TextBlock Text="Points: " Margin="10"></TextBlock>
+            <TextBlock Text="{Binding Points}" Margin="5 10"></TextBlock>
         </StackPanel>
         <ListBox ItemsSource="{Binding AnswerViewModels}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Text}"></TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin="10 5">
+                        <TextBlock Text="{Binding Text}" Margin="0 0 5 0"></TextBlock>
                         <CheckBox IsChecked="{Binding IsSelectedAnswer}"></CheckBox>
                     </StackPanel>
                 </DataTemplate>

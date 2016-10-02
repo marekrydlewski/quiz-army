@@ -10,29 +10,29 @@
     <UserControl.DataContext>
         <viewModels:AddTestViewModel/>
     </UserControl.DataContext>
-    <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical" Background="White">
         <TextBlock Name="TestNameTextBlock" Text="{Binding TestViewModel.Name}"/>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Question:" />
-            <TextBox Name="QuestionTextBox" Text="{Binding QuestionViewModel.Text}" MinWidth="200" />
-            <TextBlock Text="Points: " />
-            <TextBox Name="PointsTextBox" Text="{Binding QuestionViewModel.Points}" MinWidth="100" />
-            <TextBlock Text="Image: "></TextBlock>
-            <TextBox Name="ImagePathTextBox" Text="{Binding QuestionViewModel.ImagePath}" MinWidth="200"></TextBox>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Question:" Margin="5 20"/>
+            <TextBox Name="QuestionTextBox" Text="{Binding QuestionViewModel.Text}" MinWidth="200" Margin="5"/>
+            <TextBlock Text="Points: " Margin="5 20"/>
+            <TextBox Name="PointsTextBox" Text="{Binding QuestionViewModel.Points}" MinWidth="100" Margin="5"/>
+            <TextBlock Text="Image: " Margin="5 20"></TextBlock>
+            <TextBox Name="ImagePathTextBox" Text="{Binding QuestionViewModel.ImagePath}" MinWidth="200" Margin="5"></TextBox>
             <Button Name="SelectImageButton" Content="Select image" Command="{Binding SelectImageCommand}"></Button>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Answer: "></TextBlock>
-            <TextBox Name="AnswerTextBox" Text="{Binding AnswerViewModel.Text, UpdateSourceTrigger=PropertyChanged}"  MinWidth="200"/>
-            <TextBlock Text="Is correct: "></TextBlock>
-            <CheckBox Name="IsCorrectCheckbox" IsChecked="{Binding AnswerViewModel.IsCorrect, UpdateSourceTrigger=PropertyChanged}" />
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Answer: " Margin="5"></TextBlock>
+            <TextBox Name="AnswerTextBox" Text="{Binding AnswerViewModel.Text, UpdateSourceTrigger=PropertyChanged}"  MinWidth="200" Margin="5"/>
+            <TextBlock Text="Is correct: " Margin="5"></TextBlock>
+            <CheckBox Name="IsCorrectCheckbox" IsChecked="{Binding AnswerViewModel.IsCorrect, UpdateSourceTrigger=PropertyChanged}" Margin="0 5"/>
         </StackPanel>
         <ListBox Name="AnswersListBox" ItemsSource="{Binding QuestionViewModel.AnswerViewModels}" MinHeight="200">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Text}"></TextBlock>
-                        <TextBlock Text="{Binding IsCorrect}"></TextBlock>
+                        <TextBlock Text="{Binding Text, StringFormat=Answer:   {0}}" Margin="0 0 25 0"></TextBlock>
+                        <TextBlock Text="{Binding IsCorrect, StringFormat=Correct:   {0}}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
