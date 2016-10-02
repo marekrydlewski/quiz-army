@@ -10,9 +10,9 @@
         <viewModels:QuestionViewModel/>
     </UserControl.DataContext>
     <StackPanel Orientation="Vertical" Background="White">
-        <TextBlock x:Name="timerBox" Text="{Binding RemainingTime, StringFormat={}{0:g}}" FontSize="21" Margin="15"></TextBlock>
+        <TextBlock x:Name="timerBox" Text="{Binding RemainingTime, StringFormat={}{0:g}}" Style="{StaticResource HeaderStyle}" Margin="5"></TextBlock>
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{Binding Text}" Margin="10" FontSize="17"></TextBlock>
+            <TextBlock Text="{Binding Text, StringFormat=Question:  {0}}" Margin="10 10" FontSize="17"></TextBlock>
             <Image Source="{Binding ImagePath}" MaxHeight="200" MaxWidth="200" Margin="10"></Image>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
