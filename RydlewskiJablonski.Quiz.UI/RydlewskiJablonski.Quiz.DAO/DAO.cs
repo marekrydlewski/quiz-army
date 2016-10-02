@@ -146,6 +146,23 @@ namespace RydlewskiJablonski.Quiz.DAO
             }
         }
 
+        public void UpdateUser(IUser updatedUser)
+        {
+            using (var context = new TestsContext())
+            {
+                var original = context.Users.Find(updatedUser.Id);
+                if (original != null)
+                {
+                    original.FirstName = updatedUser.FirstName;
+                    original.LastName = updatedUser.LastName;
+                    original.Login = updatedUser.Login;
+                    original.Password = updatedUser.Password;
+                    original.UserType = updatedUser.UserType;
+                    context.SaveChanges();
+                }
+            }
+        }
+
         public IUser CreateNewUser()
         {
             return new User();
