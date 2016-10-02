@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="RydlewskiJablonski.Quiz.UI.Menu.TestStatistics"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:RydlewskiJablonski.Quiz.UI.ViewModels"
+             xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.DataContext>
+        <viewModels:StatiscticsViewModel/>
+    </UserControl.DataContext>
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Test: "></TextBlock>
+            <TextBlock Text="{Binding TestName}"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Times taken: "></TextBlock>
+            <TextBlock Text="{Binding TimesTaken}"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Average test time: "></TextBlock>
+            <TextBlock Text="{Binding AverageTestTime}"></TextBlock>
+        </StackPanel>
+        <TextBlock Text="Take times (minutes):"></TextBlock>
+        <ListBox ItemsSource="{Binding TestTimes}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding TakeId, StringFormat=Take {0}: }"></TextBlock>
+                        <TextBlock Text="{Binding Time}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock Text="Select question:"></TextBlock>
+        <ComboBox ItemsSource="{Binding Questions}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding SelectedQuestionId}"></ComboBox>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Average time (minutes): "></TextBlock>
+            <TextBlock Text="{Binding QuestionAverageTime}"></TextBlock>
+        </StackPanel>
+        <TextBlock Text="Take times (minutes):"></TextBlock>
+        <ListBox ItemsSource="{Binding QuestionTimes}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding TakeId, StringFormat=Take {0}: }"></TextBlock>
+                        <TextBlock Text="{Binding Time}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <wpf:CartesianChart Series="{Binding HistogramData, Mode=TwoWay}" MinHeight="150">
+            <wpf:CartesianChart.AxisX>
+                <wpf:Axis Title="Answer" Labels="{Binding HistogramLabels, Mode=TwoWay}"></wpf:Axis>
+            </wpf:CartesianChart.AxisX>
+            <wpf:CartesianChart.AxisY>
+                <wpf:Axis Title="Times taken"></wpf:Axis>
+            </wpf:CartesianChart.AxisY>
+        </wpf:CartesianChart>
+        <Button Content="&lt; Back" Command="{Binding ReturnCommand}"></Button>
+    </StackPanel>
+</UserControl>
