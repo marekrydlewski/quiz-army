@@ -4,12 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:RydlewskiJablonski.Quiz.UI.ViewModels"
+             xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.DataContext>
         <viewModels:StatiscticsViewModel/>
     </UserControl.DataContext>
     <StackPanel Orientation="Vertical">
-        
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Test: "></TextBlock>
+            <TextBlock Text="{Binding TestName}"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Times taken: "></TextBlock>
+            <TextBlock Text="{Binding TimesTaken}"></TextBlock>
+        </StackPanel>
+        <ComboBox ItemsSource="{Binding Questions}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding SelectedQuestionId}"></ComboBox>
+        <wpf:CartesianChart Series="{Binding HistogramData, Mode=TwoWay}">
+            <wpf:CartesianChart.AxisX>
+                <wpf:Axis Title="Answer" Labels="{Binding HistogramLabels, Mode=TwoWay}"></wpf:Axis>
+            </wpf:CartesianChart.AxisX>
+            <wpf:CartesianChart.AxisY>
+                <wpf:Axis Title="Times taken"></wpf:Axis>
+            </wpf:CartesianChart.AxisY>
+        </wpf:CartesianChart>
     </StackPanel>
 </UserControl>
