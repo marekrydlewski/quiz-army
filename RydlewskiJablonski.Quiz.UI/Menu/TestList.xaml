@@ -25,8 +25,8 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Orientation="Horizontal">
-            <Button HorizontalAlignment="Left" Content="&lt; Back" Name="BackButton" Command="{Binding ReturnToMenuCommand}"></Button>
-            <Button HorizontalAlignment="Right" Content="Take test &gt;" Name="TakeTestButton" Command="{Binding TakeTestCommand}">
+            <Button HorizontalAlignment="Left" Content="&lt; Back" Name="BackButton" Command="{Binding ReturnToMenuCommand}" MaxWidth="250"></Button>
+            <Button HorizontalAlignment="Right" Content="Take test &gt;" Name="TakeTestButton" Command="{Binding TakeTestCommand}" MaxWidth="250">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="IsEnabled" Value="True"/>

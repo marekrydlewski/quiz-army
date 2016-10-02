@@ -53,6 +53,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Content="Return to menu" Command="{Binding ReturnToMenuCommand}"></Button>
+        <Button Content="Return to menu" Command="{Binding ReturnToMenuCommand}" MaxWidth="250"></Button>
     </StackPanel>
 </UserControl>

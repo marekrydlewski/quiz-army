@@ -40,8 +40,8 @@
             <ComboBox SelectedIndex="0" ItemsSource="{Binding Source={StaticResource contentTypes},Path=DisplayNames}" SelectedValue="{Binding Path=TestViewModel.ScoringSchema, Mode=TwoWay, Converter={StaticResource contentTypes}}"/>
         </StackPanel>
         <StackPanel Style="{StaticResource PanelStyle}" Orientation="Horizontal">
-            <Button Content="&lt; Back" Command="{Binding ReturnToMenuCommand}" HorizontalAlignment="Left"/>
-            <Button Content="Add questions" Command="{Binding AddQuestionsCommand}" HorizontalAlignment="Right"/>
+            <Button Content="&lt; Back" Command="{Binding ReturnToMenuCommand}" HorizontalAlignment="Left" MaxWidth="250"/>
+            <Button Content="Add questions" Command="{Binding AddQuestionsCommand}" HorizontalAlignment="Right" MaxWidth="250"/>
         </StackPanel>
     </StackPanel>
 </UserControl>
