@@ -7,6 +7,7 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.Helpers;
+using RydlewskiJablonski.Quiz.UI.Menu;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -23,6 +24,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _testStatistics = new List<TestResultViewModel>();
             _questionTimes = new List<TakeTimes>();
             _testTimes = new List<TakeTimes>();
+            _returnCommand = new RelayCommand<object>(param => Return());
         }
 
         public StatiscticsViewModel(int testId, UserViewModel userViewModel)
@@ -41,6 +43,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 }).ToList();
             _histogramData = new SeriesCollection();
             _questionTimes = new List<TakeTimes>();
+            _returnCommand = new RelayCommand<object>(param => Return());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -224,5 +227,21 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 Values = new ChartValues<int>(answersTaken.Values)
             });
         }
+
+    #region commands & nav
+
+        private RelayCommand<object> _returnCommand;
+
+        public RelayCommand<object> ReturnCommand
+        {
+            get { return _returnCommand; }
+        }
+
+        private void Return()
+        {
+            Switcher.Switch(new Statistics(), _userViewModel);
+        }
+
+        #endregion
     }
 }

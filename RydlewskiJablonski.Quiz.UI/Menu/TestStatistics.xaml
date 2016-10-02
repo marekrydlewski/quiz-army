@@ -59,5 +59,6 @@
                 <wpf:Axis Title="Times taken"></wpf:Axis>
             </wpf:CartesianChart.AxisY>
         </wpf:CartesianChart>
+        <Button Content="&lt; Back" Command="{Binding ReturnCommand}"></Button>
     </StackPanel>
 </UserControl>
