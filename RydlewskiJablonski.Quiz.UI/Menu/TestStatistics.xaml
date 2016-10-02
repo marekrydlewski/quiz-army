@@ -19,8 +19,24 @@
             <TextBlock Text="Times taken: "></TextBlock>
             <TextBlock Text="{Binding TimesTaken}"></TextBlock>
         </StackPanel>
+        <TextBlock Text="Select question:"></TextBlock>
         <ComboBox ItemsSource="{Binding Questions}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding SelectedQuestionId}"></ComboBox>
-        <wpf:CartesianChart Series="{Binding HistogramData, Mode=TwoWay}">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Average time (minutes): "></TextBlock>
+            <TextBlock Text="{Binding QuestionAverageTime}"></TextBlock>
+        </StackPanel>
+        <TextBlock Text="Take times:"></TextBlock>
+        <ListBox ItemsSource="{Binding QuestionTimes}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding TakeId, StringFormat=Take {0}: }"></TextBlock>
+                        <TextBlock Text="{Binding Time}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <wpf:CartesianChart Series="{Binding HistogramData, Mode=TwoWay}" MinHeight="150">
             <wpf:CartesianChart.AxisX>
                 <wpf:Axis Title="Answer" Labels="{Binding HistogramLabels, Mode=TwoWay}"></wpf:Axis>
             </wpf:CartesianChart.AxisX>

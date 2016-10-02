@@ -21,6 +21,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _dao = new DAO.DAO();
             _userViewModel = new UserViewModel();
             _testStatistics = new List<TestResultViewModel>();
+            _questionTimes = new List<TakeTimes>();
         }
 
         public StatiscticsViewModel(int testId, UserViewModel userViewModel)
@@ -36,6 +37,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                     Text = x.Text
                 }).ToList();
             _histogramData = new SeriesCollection();
+            _questionTimes = new List<TakeTimes>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -88,7 +90,20 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             set
             {
                 _selectedQuestionId = value;
+                CalculateQuestionTimes();
                 CalculateChartData();
+                OnPropertyChanged();
+            }
+        }
+
+        private List<TakeTimes> _questionTimes;
+
+        public List<TakeTimes> QuestionTimes
+        {
+            get { return _questionTimes; }
+            set
+            {
+                _questionTimes = value;
                 OnPropertyChanged();
             }
         }
@@ -115,6 +130,36 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
                 _histogramData = value;
                 OnPropertyChanged();
             }
+        }
+
+        private double _questionAverageTime;
+
+        public double QuestionAverageTime
+        {
+            get { return _questionAverageTime; }
+            set
+            {
+                _questionAverageTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void CalculateQuestionTimes()
+        {
+            var newTimes = new List<TakeTimes>();
+            var times = TestStatistics.Select(
+                x =>
+                    x.QuestionResults.Find(y => y.QuestionResult.QuestionId == SelectedQuestionId)
+                        .QuestionResult.Time.TotalMinutes).ToList();
+
+            for (int i = 1; i <= times.Count; i++)
+            {
+                newTimes.Add(new TakeTimes {TakeId = i, Time = times[i - 1]});
+            }
+
+            QuestionTimes = newTimes;
+
+            QuestionAverageTime = QuestionTimes.Select(x => x.Time).Average();
         }
 
         private void CalculateChartData()

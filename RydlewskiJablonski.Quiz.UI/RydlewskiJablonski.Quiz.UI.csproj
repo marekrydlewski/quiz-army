@@ -80,6 +80,7 @@
     <Compile Include="Helpers\ObservableCollectionExtensions.cs" />
     <Compile Include="Helpers\MultiBindingConverter.cs" />
     <Compile Include="Helpers\QuestionComboBoxItem.cs" />
+    <Compile Include="Helpers\TakeTimes.cs" />
     <Compile Include="Menu\AddQuestion.xaml.cs">
       <DependentUpon>AddQuestion.xaml</DependentUpon>
     </Compile>
