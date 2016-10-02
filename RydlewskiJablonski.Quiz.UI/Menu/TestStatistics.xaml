@@ -12,6 +12,10 @@
     </UserControl.DataContext>
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
+            <TextBlock Text="User: "></TextBlock>
+            <ComboBox ItemsSource="{Binding Users}" DisplayMemberPath="Login" SelectedValuePath="Id" SelectedValue="{Binding SelectedUserId}" IsSynchronizedWithCurrentItem="True"></ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
             <TextBlock Text="Test: "></TextBlock>
             <TextBlock Text="{Binding TestName}"></TextBlock>
         </StackPanel>
