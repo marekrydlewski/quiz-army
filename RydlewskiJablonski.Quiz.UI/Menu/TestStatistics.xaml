@@ -9,4 +9,7 @@
     <UserControl.DataContext>
         <viewModels:StatiscticsViewModel/>
     </UserControl.DataContext>
+    <StackPanel Orientation="Vertical">
+        
+    </StackPanel>
 </UserControl>
