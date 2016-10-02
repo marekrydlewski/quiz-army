@@ -25,13 +25,20 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _questionTimes = new List<TakeTimes>();
             _testTimes = new List<TakeTimes>();
             _returnCommand = new RelayCommand<object>(param => Return());
+            _users = _dao.GetUsers();
+            IUser allUsers = _dao.CreateNewUser();
+            allUsers.Id = 0;
+            allUsers.Login = "All";
+            _users.Add(allUsers);
         }
 
         public StatiscticsViewModel(int testId, UserViewModel userViewModel)
         {
+            _testId = testId;
             _dao = new DAO.DAO();
             _userViewModel = userViewModel;
             _testStatistics = _dao.GetTestStatistics(testId).Select(x => new TestResultViewModel(x)).ToList();
+            _timesTaken = _testStatistics.Count;
             _testName = _dao.GetTests().Find(x => x.Id == testId).Name;
             AverageTestTime = _testStatistics.Select(x => x.TestResult.Time.TotalMinutes).Average();
             CalculateTestTimes();
@@ -44,7 +51,14 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _histogramData = new SeriesCollection();
             _questionTimes = new List<TakeTimes>();
             _returnCommand = new RelayCommand<object>(param => Return());
+            _users = _dao.GetUsers();
+            IUser allUsers = _dao.CreateNewUser();
+            allUsers.Id = 0;
+            allUsers.Login = "All";
+            _users.Add(allUsers);
         }
+
+        private int _testId;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -64,9 +78,16 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
+        private int _timesTaken;
+
         public int TimesTaken
         {
-            get { return TestStatistics.Count; }
+            get { return _timesTaken; }
+            set
+            {
+                _timesTaken = value;
+                OnPropertyChanged();
+            }
         }
 
         private readonly string _testName;
@@ -171,6 +192,61 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             {
                 _averageTestTime = value;
                 OnPropertyChanged();
+            }
+        }
+
+        private List<IUser> _users;
+
+        public List<IUser> Users
+        {
+            get { return _users; }
+            set
+            {
+                _users = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _selectedUserId;
+
+        public int SelectedUserId
+        {
+            get { return _selectedUserId; }
+            set
+            {
+                _selectedUserId = value;
+
+                if (_selectedUserId != 0)
+                {
+                    TestStatistics =
+                    _dao.GetTestStatistics(_testId)
+                        .Where(x => x.UserId == _selectedUserId)
+                        .Select(x => new TestResultViewModel(x))
+                        .ToList();
+                    RecalculateStatistics();
+                }
+                else
+                {
+                    TestStatistics =
+                    _dao.GetTestStatistics(_testId)
+                        .Select(x => new TestResultViewModel(x))
+                        .ToList();
+                    RecalculateStatistics();
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void RecalculateStatistics()
+        {
+            TimesTaken = TestStatistics.Count;
+            AverageTestTime = _testStatistics.Select(x => x.TestResult.Time.TotalMinutes).Average();
+            CalculateTestTimes();
+            if (_selectedQuestionId != 0)
+            {
+                CalculateQuestionTimes();
+                CalculateChartData();
             }
         }
 
