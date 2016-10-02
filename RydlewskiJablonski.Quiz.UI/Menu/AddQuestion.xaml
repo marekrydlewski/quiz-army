@@ -10,166 +10,168 @@
     <UserControl.DataContext>
         <viewModels:AddTestViewModel/>
     </UserControl.DataContext>
-    <StackPanel Orientation="Vertical">
-        <TextBlock Name="TestNameTextBlock" Text="{Binding TestViewModel.Name}"/>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Question:" />
-            <TextBox Name="QuestionTextBox" Text="{Binding QuestionViewModel.Text}" MinWidth="200" />
-            <TextBlock Text="Points: " />
-            <TextBox Name="PointsTextBox" Text="{Binding QuestionViewModel.Points}" MinWidth="100" />
-            <TextBlock Text="Image: "></TextBlock>
-            <TextBox Name="ImagePathTextBox" Text="{Binding QuestionViewModel.ImagePath}" MinWidth="200"></TextBox>
+    <StackPanel Orientation="Vertical" Background="White">
+        <TextBlock Style="{StaticResource HeaderStyle}" Name="TestNameTextBlock" Text="{Binding TestViewModel.Name, StringFormat=Test:  {0}}"/>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Question:" Margin="5 20"/>
+            <TextBox Name="QuestionTextBox" Text="{Binding QuestionViewModel.Text}" MinWidth="200" Margin="5"/>
+            <TextBlock Text="Points: " Margin="5 20"/>
+            <TextBox Name="PointsTextBox" Text="{Binding QuestionViewModel.Points}" MinWidth="100" Margin="5"/>
+            <TextBlock Text="Image: " Margin="5 20"></TextBlock>
+            <TextBox Name="ImagePathTextBox" Text="{Binding QuestionViewModel.ImagePath}" MinWidth="200" Margin="5"></TextBox>
             <Button Name="SelectImageButton" Content="Select image" Command="{Binding SelectImageCommand}"></Button>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Answer: "></TextBlock>
-            <TextBox Name="AnswerTextBox" Text="{Binding AnswerViewModel.Text, UpdateSourceTrigger=PropertyChanged}"  MinWidth="200"/>
-            <TextBlock Text="Is correct: "></TextBlock>
-            <CheckBox Name="IsCorrectCheckbox" IsChecked="{Binding AnswerViewModel.IsCorrect, UpdateSourceTrigger=PropertyChanged}" />
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Answer: " Margin="5"></TextBlock>
+            <TextBox Name="AnswerTextBox" Text="{Binding AnswerViewModel.Text, UpdateSourceTrigger=PropertyChanged}"  MinWidth="200" Margin="5"/>
+            <TextBlock Text="Is correct: " Margin="5"></TextBlock>
+            <CheckBox Name="IsCorrectCheckbox" IsChecked="{Binding AnswerViewModel.IsCorrect, UpdateSourceTrigger=PropertyChanged}" Margin="0 5"/>
         </StackPanel>
         <ListBox Name="AnswersListBox" ItemsSource="{Binding QuestionViewModel.AnswerViewModels}" MinHeight="200">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Text}"></TextBlock>
-                        <TextBlock Text="{Binding IsCorrect}"></TextBlock>
+                        <TextBlock Text="{Binding Text, StringFormat=Answer:   {0}}" Margin="0 0 25 0"></TextBlock>
+                        <TextBlock Text="{Binding IsCorrect, StringFormat=Correct:   {0}}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Name="AddAnswerButton" Content="Add answer" Command="{Binding AddCurrentAsnwerCommand}"></Button>
-        <Button Name="ConfirmQuestionButton" Content="Add question" Command="{Binding AddCurrentQuestionCommand}"></Button>
-        <Button Name="CompleteTestButton" Content="Finalize test" Command="{Binding AddCurrentTestCommand}">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="IsEnabled" Value="True"/>
-                    <Setter Property="Foreground" Value="#FFFFFFFF"/>
-                    <Setter Property="SnapsToDevicePixels" Value="true" />
-                    <Setter Property="OverridesDefaultStyle" Value="true" />
-                    <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
-                    <Setter Property="MinHeight" Value="29px" />
-                    <Setter Property="MinWidth"  Value="103px" />
-                    <Setter Property="Margin" Value="10"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border TextBlock.Foreground="{TemplateBinding Foreground}" x:Name="Border">
-                                    <Border.Background>
-                                        <SolidColorBrush  Color="{DynamicResource ControlNormalColor}" />
-                                    </Border.Background>
-                                    <VisualStateManager.VisualStateGroups>
-                                        <VisualStateGroup x:Name="CommonStates">
-                                            <VisualStateGroup.Transitions>
-                                                <VisualTransition GeneratedDuration="0:0:0.5" />
-                                                <VisualTransition GeneratedDuration="0" To="Pressed" />
-                                            </VisualStateGroup.Transitions>
-                                            <VisualState x:Name="Normal" />
-                                            <VisualState x:Name="MouseOver">
-                                                <Storyboard>
-                                                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+        <StackPanel Orientation="Horizontal">
+            <Button Name="AddAnswerButton" Content="Add answer" Command="{Binding AddCurrentAsnwerCommand}"></Button>
+            <Button Name="ConfirmQuestionButton" Content="Add question" Command="{Binding AddCurrentQuestionCommand}"></Button>
+            <Button Name="CompleteTestButton" Content="Finalize test" Command="{Binding AddCurrentTestCommand}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Setter Property="Foreground" Value="#FFFFFFFF"/>
+                        <Setter Property="SnapsToDevicePixels" Value="true" />
+                        <Setter Property="OverridesDefaultStyle" Value="true" />
+                        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
+                        <Setter Property="MinHeight" Value="29px" />
+                        <Setter Property="MinWidth"  Value="103px" />
+                        <Setter Property="Margin" Value="10"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border TextBlock.Foreground="{TemplateBinding Foreground}" x:Name="Border">
+                                        <Border.Background>
+                                            <SolidColorBrush  Color="{DynamicResource ControlNormalColor}" />
+                                        </Border.Background>
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualStateGroup.Transitions>
+                                                    <VisualTransition GeneratedDuration="0:0:0.5" />
+                                                    <VisualTransition GeneratedDuration="0" To="Pressed" />
+                                                </VisualStateGroup.Transitions>
+                                                <VisualState x:Name="Normal" />
+                                                <VisualState x:Name="MouseOver">
+                                                    <Storyboard>
+                                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
                                                 Storyboard.TargetName="Border">
-                                                        <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ControlMouseOverColor}" />
-                                                    </ColorAnimationUsingKeyFrames>
-                                                </Storyboard>
-                                            </VisualState>
-                                            <VisualState x:Name="Pressed">
-                                                <Storyboard>
-                                                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ControlMouseOverColor}" />
+                                                        </ColorAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="Pressed">
+                                                    <Storyboard>
+                                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
                                                                         Storyboard.TargetName="Border">
-                                                        <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ControlPressedColor}" />
-                                                    </ColorAnimationUsingKeyFrames>
-                                                </Storyboard>
-                                            </VisualState>
-                                            <VisualState x:Name="Disabled">
-                                                <Storyboard>
-                                                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ControlPressedColor}" />
+                                                        </ColorAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="Disabled">
+                                                    <Storyboard>
+                                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
                                                                         Storyboard.TargetName="Border">
-                                                        <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledControlColor}" />
-                                                    </ColorAnimationUsingKeyFrames>
-                                                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledControlColor}" />
+                                                        </ColorAnimationUsingKeyFrames>
+                                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
                                                                         Storyboard.TargetName="Border">
-                                                        <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledForegroundColor}" />
-                                                    </ColorAnimationUsingKeyFrames>
-                                                </Storyboard>
-                                            </VisualState>
-                                        </VisualStateGroup>
-                                    </VisualStateManager.VisualStateGroups>
-                                    <ContentPresenter Margin="2"
+                                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledForegroundColor}" />
+                                                        </ColorAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <ContentPresenter Margin="2"
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"
                                                     RecognizesAccessKey="True" 
                                                 />
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding TestViewModel.QuestionViewModels.Count}" Value="0">
-                            <Setter Property="IsEnabled" Value="False"/>
-                            <Setter Property="Foreground" Value="#FFADADAD"/>
-                            <Setter Property="SnapsToDevicePixels" Value="true" />
-                            <Setter Property="OverridesDefaultStyle" Value="true" />
-                            <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
-                            <Setter Property="MinHeight" Value="29px" />
-                            <Setter Property="MinWidth"  Value="103px" />
-                            <Setter Property="Margin" Value="10"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border TextBlock.Foreground="{TemplateBinding Foreground}" x:Name="Border">
-                                            <Border.Background>
-                                                <SolidColorBrush  Color="{DynamicResource ControlNormalColor}" />
-                                            </Border.Background>
-                                            <VisualStateManager.VisualStateGroups>
-                                                <VisualStateGroup x:Name="CommonStates">
-                                                    <VisualStateGroup.Transitions>
-                                                        <VisualTransition GeneratedDuration="0:0:0.5" />
-                                                        <VisualTransition GeneratedDuration="0" To="Pressed" />
-                                                    </VisualStateGroup.Transitions>
-                                                    <VisualState x:Name="Normal" />
-                                                    <VisualState x:Name="MouseOver">
-                                                        <Storyboard>
-                                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding TestViewModel.QuestionViewModels.Count}" Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="Foreground" Value="#FFADADAD"/>
+                                <Setter Property="SnapsToDevicePixels" Value="true" />
+                                <Setter Property="OverridesDefaultStyle" Value="true" />
+                                <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
+                                <Setter Property="MinHeight" Value="29px" />
+                                <Setter Property="MinWidth"  Value="103px" />
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border TextBlock.Foreground="{TemplateBinding Foreground}" x:Name="Border">
+                                                <Border.Background>
+                                                    <SolidColorBrush  Color="{DynamicResource ControlNormalColor}" />
+                                                </Border.Background>
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualStateGroup.Transitions>
+                                                            <VisualTransition GeneratedDuration="0:0:0.5" />
+                                                            <VisualTransition GeneratedDuration="0" To="Pressed" />
+                                                        </VisualStateGroup.Transitions>
+                                                        <VisualState x:Name="Normal" />
+                                                        <VisualState x:Name="MouseOver">
+                                                            <Storyboard>
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
                                                 Storyboard.TargetName="Border">
-                                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ControlMouseOverColor}" />
-                                                            </ColorAnimationUsingKeyFrames>
-                                                        </Storyboard>
-                                                    </VisualState>
-                                                    <VisualState x:Name="Pressed">
-                                                        <Storyboard>
-                                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                                                                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ControlMouseOverColor}" />
+                                                                </ColorAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Pressed">
+                                                            <Storyboard>
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
                                                                         Storyboard.TargetName="Border">
-                                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ControlPressedColor}" />
-                                                            </ColorAnimationUsingKeyFrames>
-                                                        </Storyboard>
-                                                    </VisualState>
-                                                    <VisualState x:Name="Disabled">
-                                                        <Storyboard>
-                                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                                                                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ControlPressedColor}" />
+                                                                </ColorAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Disabled">
+                                                            <Storyboard>
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
                                                                         Storyboard.TargetName="Border">
-                                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledControlColor}" />
-                                                            </ColorAnimationUsingKeyFrames>
-                                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                                                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledControlColor}" />
+                                                                </ColorAnimationUsingKeyFrames>
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
                                                                         Storyboard.TargetName="Border">
-                                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledForegroundColor}" />
-                                                            </ColorAnimationUsingKeyFrames>
-                                                        </Storyboard>
-                                                    </VisualState>
-                                                </VisualStateGroup>
-                                            </VisualStateManager.VisualStateGroups>
-                                            <ContentPresenter Margin="2"
+                                                                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledForegroundColor}" />
+                                                                </ColorAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                                <ContentPresenter Margin="2"
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"
                                                     RecognizesAccessKey="True" 
                                                 />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
     </StackPanel>
 </UserControl>

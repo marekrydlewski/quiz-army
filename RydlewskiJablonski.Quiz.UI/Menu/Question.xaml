@@ -9,27 +9,29 @@
     <UserControl.DataContext>
         <viewModels:QuestionViewModel/>
     </UserControl.DataContext>
-    <StackPanel Orientation="Vertical">
-        <TextBlock x:Name="timerBox" Text="{Binding RemainingTime, StringFormat={}{0:g}}" FontSize="21" Margin="10"></TextBlock>
+    <StackPanel Orientation="Vertical" Background="White">
+        <TextBlock x:Name="timerBox" Text="{Binding RemainingTime, StringFormat={}{0:g}}" Style="{StaticResource HeaderStyle}" Margin="5"></TextBlock>
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{Binding Text}"></TextBlock>
-            <Image Source="{Binding ImagePath}" MaxHeight="200" MaxWidth="200"></Image>
+            <TextBlock Text="{Binding Text, StringFormat=Question:  {0}}" Margin="10 10" FontSize="17"></TextBlock>
+            <Image Source="{Binding ImagePath}" MaxHeight="200" MaxWidth="200" Margin="10"></Image>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Points: "></TextBlock>
-            <TextBlock Text="{Binding Points}"></TextBlock>
+            <TextBlock Text="Points: " Margin="10"></TextBlock>
+            <TextBlock Text="{Binding Points}" Margin="5 10"></TextBlock>
         </StackPanel>
-        <ListBox ItemsSource="{Binding AnswerViewModels}">
+        <ListBox x:Name="AnswerListBox" ItemsSource="{Binding AnswerViewModels}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Text}"></TextBlock>
-                        <CheckBox IsChecked="{Binding IsSelectedAnswer}"></CheckBox>
+                    <StackPanel Orientation="Horizontal" Margin="10 5">
+                        <TextBlock Text="{Binding Text}" Margin="0 0 5 0"></TextBlock>
+                        <CheckBox IsChecked="{Binding IsSelectedAnswer}" Checked="CheckBox_Checked"></CheckBox>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Content="Next question" IsEnabled="{Binding IsNotFinalQuestion}" Command="{Binding NextQuestionCommand}"></Button>
-        <Button Content="Finish!" IsEnabled="{Binding IsFinalQuestion}" Command="{Binding FinalizeTestCommand}"></Button>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Next question" IsEnabled="{Binding IsNotFinalQuestion}" Command="{Binding NextQuestionCommand}"></Button>
+            <Button Content="Finish!" IsEnabled="{Binding IsFinalQuestion}" Command="{Binding FinalizeTestCommand}"></Button>
+        </StackPanel>
     </StackPanel>
 </UserControl>

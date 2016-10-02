@@ -11,38 +11,41 @@
         <viewmodels:TestViewModel/>
     </UserControl.DataContext>
     <StackPanel Orientation="Vertical" Background="White">
-        <Label>Test Name</Label>
-        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
-        <Label>Given Time</Label>
-        <TextBox Text="{Binding GivenTime, UpdateSourceTrigger=PropertyChanged}"/>
-        <ListView x:Name="ListViewForEdit" ItemsSource="{Binding Questions}">
-        <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Label>Question</Label>
-                        <TextBox Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
-                        <Label>Points</Label>
-                        <TextBox Text="{Binding Points, UpdateSourceTrigger=PropertyChanged}"/>
-                        <ListView x:Name="answersList"
+        <StackPanel Margin="5" HorizontalAlignment="Left">
+            <TextBlock Style="{StaticResource HeaderStyle}" Text="Edit test"></TextBlock>
+            <Label>Test Name</Label>
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" MaxWidth="400"/>
+            <Label>Given Time</Label>
+            <TextBox Text="{Binding GivenTime, UpdateSourceTrigger=PropertyChanged}" MaxWidth="400"/>
+            <ListView x:Name="ListViewForEdit" ItemsSource="{Binding Questions}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label>Question</Label>
+                            <TextBox Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Label>Points</Label>
+                            <TextBox Text="{Binding Points, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ListView x:Name="answersList"
                             ItemsSource="{Binding Answers, UpdateSourceTrigger=PropertyChanged}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label>Answer: </Label>
-                                        <TextBox Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <Label>Is correct?:</Label>
-                                        <CheckBox IsChecked="{Binding IsCorrect, UpdateSourceTrigger=PropertyChanged}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <StackPanel Orientation="Horizontal">
-            <Button HorizontalAlignment="Left" Content="&lt; Back" Name="BackButton" Command="{Binding ReturnToEditListCommand}"></Button>
-            <Button HorizontalAlignment="Right" Content="Edit test" Name="EditButton" Command="{Binding EditTestCommand}"></Button>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label>Answer:</Label>
+                                            <TextBox Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
+                                            <Label>Is correct?:</Label>
+                                            <CheckBox IsChecked="{Binding IsCorrect, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel Orientation="Horizontal">
+                <Button HorizontalAlignment="Left" Content="&lt; Back" Name="BackButton" Command="{Binding ReturnToEditListCommand}"></Button>
+                <Button HorizontalAlignment="Right" Content="Edit test" Name="EditButton" Command="{Binding EditTestCommand}"></Button>
+            </StackPanel>
         </StackPanel>
     </StackPanel>
 </UserControl>

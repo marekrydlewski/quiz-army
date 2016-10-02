@@ -138,7 +138,9 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
                 user.Password = password;
                 _dao.UpdateUser(user);
+                Switcher.Switch(new MainMenu());
             }
+
         }
 
         private RelayCommand<object> _returnToLoginCommand;

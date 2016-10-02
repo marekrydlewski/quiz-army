@@ -9,50 +9,47 @@
     <UserControl.DataContext>
         <viewModels:TestViewModel/>
     </UserControl.DataContext>
-    <StackPanel Orientation="Vertical">
-        <TextBlock>Congratulations! You finished test!</TextBlock>
-        <StackPanel Orientation="Horizontal">
+    <StackPanel Orientation="Vertical" Background="White">
+        <TextBlock Style="{StaticResource HeaderStyle}" >Congratulations! You finished test!</TextBlock>
+        <StackPanel Orientation="Horizontal" Margin="5">
             <TextBlock Text="Acquired points: "></TextBlock>
             <TextBlock Text="{Binding TestResults.TestResult.Points}"></TextBlock>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="5">
             <TextBlock Text="Time taken: "></TextBlock>
             <TextBlock Text="{Binding TestResults.TestResult.Time}"></TextBlock>
         </StackPanel>
-        <ListBox ItemsSource="{Binding TestResults.QuestionResults}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding Text}"></TextBlock>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Points: "></TextBlock>
-                            <TextBlock Text="{Binding QuestionResult.Points}"></TextBlock>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Time taken: "></TextBlock>
-                            <TextBlock Text="{Binding QuestionResult.Time}"></TextBlock>
-                        </StackPanel>
-                        <ListBox ItemsSource="{Binding AnswerResults}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="{Binding Text}"></TextBlock>
+        <ScrollViewer>
+            <ListBox ItemsSource="{Binding TestResults.QuestionResults}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical" Margin="5">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5" MinWidth="250">
+                                <TextBlock Text="{Binding Text, StringFormat=Question:  {0}}" Margin="5"></TextBlock>
+                                <TextBlock Text="{Binding QuestionResult.Points, StringFormat=Points:  {0}}" Margin="5"></TextBlock>
+                                <TextBlock Text="Time taken:  " Margin="5"/>
+                                <TextBlock Text="{Binding QuestionResult.Time, StringFormat={}{0:g}}" Margin="5"></TextBlock>
+                            </StackPanel>
+                            <ListBox ItemsSource="{Binding AnswerResults}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="Is correct: "></TextBlock>
-                                            <TextBlock Text="{Binding AnswerResult.IsCorrect}"></TextBlock>
+                                            <TextBlock Text="{Binding Text}" Margin="5"></TextBlock>
+                                            <StackPanel Orientation="Horizontal" Margin="5">
+                                                <TextBlock Text="{Binding AnswerResult.IsCorrect, StringFormat=Is correct  {0}}"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="5">
+                                                <TextBlock Text="{Binding AnswerResult.WasSelected, StringFormat=Was selected answer:  {0}}"></TextBlock>
+                                            </StackPanel>
                                         </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="Was selected answer: "></TextBlock>
-                                            <TextBlock Text="{Binding AnswerResult.WasSelected}"></TextBlock>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Button Content="Return to menu" Command="{Binding ReturnToMenuCommand}"></Button>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+        <Button Content="Return to menu" Command="{Binding ReturnToMenuCommand}" MaxWidth="250"></Button>
     </StackPanel>
 </UserControl>

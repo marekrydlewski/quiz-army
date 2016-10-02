@@ -9,20 +9,23 @@
     <UserControl.DataContext>
         <viewModels:TestViewModel/>
     </UserControl.DataContext>
-    <StackPanel Orientation="Vertical">
-        <StackPanel Orientation="Horizontal">
+    <StackPanel Orientation="Vertical" Background="White">
+        <TextBlock Style="{StaticResource HeaderStyle}">Taking test</TextBlock>
+        <StackPanel Orientation="Horizontal" Margin="5">
             <TextBlock>Test: </TextBlock>
             <TextBlock Text="{Binding Name}"></TextBlock>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock>Time: </TextBlock>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBlock>Time:  </TextBlock>
             <TextBlock Text="{Binding GivenTime}"></TextBlock>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="5">
             <TextBlock>Multiple choices: </TextBlock>
             <TextBlock Text="{Binding IsMultipleChoice}"></TextBlock>
         </StackPanel>
-        <Button Content="&lt; Back" Command="{Binding ReturnToTestsCommand}"></Button>
-        <Button Content="Start test!" Command="{Binding StartTestCommand}"></Button>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="&lt; Back" Command="{Binding ReturnToTestsCommand}" MaxWidth="250"></Button>
+            <Button Content="Start test!" Command="{Binding StartTestCommand}" MaxWidth="250"></Button>
+        </StackPanel>
     </StackPanel>
 </UserControl>
