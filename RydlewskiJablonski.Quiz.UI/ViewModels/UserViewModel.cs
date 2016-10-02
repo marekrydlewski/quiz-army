@@ -3,6 +3,9 @@ using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.Menu;
+using System;
+using RydlewskiJablonski.Quiz.DAO.BO;
+using System.Windows.Controls;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -17,13 +20,14 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             IsEditor = user.UserType == UserTypes.Editor;
             _dao = new DAO.DAO();
             _returnToLoginCommand = new RelayCommand<object>(param => ReturnToLogin());
+            _editAccountCommand = new RelayCommand<object>(param => EditAccount(param));
         }
 
         public UserViewModel()
         {
             _dao = new DAO.DAO();
             _user = _dao.CreateNewUser();
-            _returnToLoginCommand = new RelayCommand<object>(param => ReturnToLogin());
+            _editAccountCommand = new RelayCommand<object>(param => EditAccount(param));
         }
 
         public int Id
@@ -107,6 +111,36 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         }
 
         #region navigation
+
+        private RelayCommand<object> _editAccountCommand;
+
+        public RelayCommand<object> EditAccountCommand
+        {
+            get { return _editAccountCommand; }
+        }
+
+        private void EditAccount(object passwords)
+        {
+            var passswordBoxes = passwords as object[];
+            var passwordBox = passswordBoxes[0] as PasswordBox;
+            var repeatPasswordBox = passswordBoxes[1] as PasswordBox;
+            var password = passwordBox.Password;
+            var repeatPassword = repeatPasswordBox.Password;
+
+            if (password.Equals(repeatPassword))
+            {
+                IUser user = new User();
+                user.FirstName = FirstName;
+                user.LastName = LastName;
+                user.Login = Login;
+                user.UserType = UserType;
+                user.Id = Id;
+
+                user.Password = password;
+                _dao.UpdateUser(user);
+            }
+        }
+
         private RelayCommand<object> _returnToLoginCommand;
 
         public RelayCommand<object> ReturnToLoginCommand
@@ -118,6 +152,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         {
             Switcher.Switch(new MainMenu(), this);
         }
+
         #endregion
     }
 }

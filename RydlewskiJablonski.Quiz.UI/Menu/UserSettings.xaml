@@ -23,7 +23,7 @@
             <TextBlock x:Name="UsernameTextBlock" HorizontalAlignment="Left" Margin="263,37,0,0" VerticalAlignment="Top" Width="200" Height="30" Text="Username" TextWrapping="Wrap" FontSize="18.667"/>
             <TextBlock x:Name="Password1TextBlock" HorizontalAlignment="Left" Margin="263,102,0,0" VerticalAlignment="Top" Width="200" Height="30" FontSize="18.667" Text="Password" TextWrapping="Wrap"/>
             <TextBox Text="{Binding Login}" x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="447,37,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="200" Height="30" FontSize="18.667"/>
-            <Button x:Name="EditButton" Margin="376,0,374,98" VerticalAlignment="Bottom" Content="Edit user's data" Width="150" Height="30" FontSize="16" Command="{Binding EditCommand}">
+        <Button x:Name="EditButton" Margin="376,0,374,98" VerticalAlignment="Bottom" Content="Edit user's data" Width="150" Height="30" FontSize="16" Command="{Binding EditAccountCommand}">
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource MultiBindingConverter}">
                         <Binding ElementName="PasswordBox1"/>
