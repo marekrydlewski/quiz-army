@@ -124,9 +124,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         private void ViewStatistics()
         {
-            var stats = new StatiscticsViewModel();
-            //TODO
-            Switcher.Switch(new TestStatistics(), stats);
+            Switcher.Switch(new TestStatistics(), new StatiscticsViewModel(SelectedTest.Id, UserViewModel));
         }
 
         #endregion

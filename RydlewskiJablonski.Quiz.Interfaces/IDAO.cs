@@ -17,5 +17,6 @@ namespace RydlewskiJablonski.Quiz.Interfaces
         ITestStatistic CreateNewTestStatistic();
         IQuestionStatistic CreateNewQuestionStatistic();
         IAnswerStatistic CreateNewAnswerStatistic();
+        List<ITestStatistic> GetTestStatistics(int testId);
     }
 }
