@@ -19,13 +19,28 @@
             <TextBlock Text="Times taken: "></TextBlock>
             <TextBlock Text="{Binding TimesTaken}"></TextBlock>
         </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Average test time: "></TextBlock>
+            <TextBlock Text="{Binding AverageTestTime}"></TextBlock>
+        </StackPanel>
+        <TextBlock Text="Take times (minutes):"></TextBlock>
+        <ListBox ItemsSource="{Binding TestTimes}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding TakeId, StringFormat=Take {0}: }"></TextBlock>
+                        <TextBlock Text="{Binding Time}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <TextBlock Text="Select question:"></TextBlock>
         <ComboBox ItemsSource="{Binding Questions}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding SelectedQuestionId}"></ComboBox>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Average time (minutes): "></TextBlock>
             <TextBlock Text="{Binding QuestionAverageTime}"></TextBlock>
         </StackPanel>
-        <TextBlock Text="Take times:"></TextBlock>
+        <TextBlock Text="Take times (minutes):"></TextBlock>
         <ListBox ItemsSource="{Binding QuestionTimes}">
             <ListBox.ItemTemplate>
                 <DataTemplate>

@@ -22,6 +22,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _userViewModel = new UserViewModel();
             _testStatistics = new List<TestResultViewModel>();
             _questionTimes = new List<TakeTimes>();
+            _testTimes = new List<TakeTimes>();
         }
 
         public StatiscticsViewModel(int testId, UserViewModel userViewModel)
@@ -30,6 +31,8 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _userViewModel = userViewModel;
             _testStatistics = _dao.GetTestStatistics(testId).Select(x => new TestResultViewModel(x)).ToList();
             _testName = _dao.GetTests().Find(x => x.Id == testId).Name;
+            AverageTestTime = _testStatistics.Select(x => x.TestResult.Time.TotalMinutes).Average();
+            CalculateTestTimes();
             _questions = _testStatistics.First()
                 .QuestionResults.Select(x => new QuestionComboBoxItem
                 {
@@ -108,6 +111,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
+        private List<TakeTimes> _testTimes;
+
+        public List<TakeTimes> TestTimes
+        {
+            get { return _testTimes; }
+            set
+            {
+                _testTimes = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string[] _histogramLabels;
 
         public string[] HistogramLabels
@@ -144,6 +159,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
+        private double _averageTestTime;
+
+        public double AverageTestTime
+        {
+            get { return _averageTestTime; }
+            set
+            {
+                _averageTestTime = value;
+                OnPropertyChanged();
+            }
+        }
+
         private void CalculateQuestionTimes()
         {
             var newTimes = new List<TakeTimes>();
@@ -160,6 +187,14 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             QuestionTimes = newTimes;
 
             QuestionAverageTime = QuestionTimes.Select(x => x.Time).Average();
+        }
+
+        private void CalculateTestTimes()
+        {
+            var times =
+                _testStatistics.Select((t, i) => new TakeTimes {TakeId = i + 1, Time = t.TestResult.Time.TotalMinutes})
+                    .ToList();
+            TestTimes = times;
         }
 
         private void CalculateChartData()
