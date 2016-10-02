@@ -9,8 +9,8 @@
     <UserControl.DataContext>
         <viewModels:TestViewModel/>
     </UserControl.DataContext>
-    <StackPanel Orientation="Vertical">
-        <TextBlock>Congratulations! You finished test!</TextBlock>
+    <StackPanel Orientation="Vertical" Background="White">
+        <TextBlock Style="{StaticResource HeaderStyle}" >Congratulations! You finished test!</TextBlock>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Acquired points: "></TextBlock>
             <TextBlock Text="{Binding TestResults.TestResult.Points}"></TextBlock>

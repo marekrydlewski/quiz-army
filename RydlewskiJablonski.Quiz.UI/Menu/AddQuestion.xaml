@@ -11,7 +11,7 @@
         <viewModels:AddTestViewModel/>
     </UserControl.DataContext>
     <StackPanel Orientation="Vertical" Background="White">
-        <TextBlock Name="TestNameTextBlock" Text="{Binding TestViewModel.Name}"/>
+        <TextBlock Style="{StaticResource HeaderStyle}" Name="TestNameTextBlock" Text="{Binding TestViewModel.Name, StringFormat=Test:  {0}}"/>
         <StackPanel Orientation="Horizontal" Margin="10">
             <TextBlock Text="Question:" Margin="5 20"/>
             <TextBox Name="QuestionTextBox" Text="{Binding QuestionViewModel.Text}" MinWidth="200" Margin="5"/>
