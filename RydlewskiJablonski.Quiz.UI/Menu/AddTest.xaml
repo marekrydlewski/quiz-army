@@ -33,7 +33,7 @@
         </StackPanel>
         <StackPanel Style="{StaticResource PanelStyle}" Orientation="Horizontal">
             <TextBlock Style="{StaticResource LabelStyle}" Text="Test time: "/>
-            <TextBox Text="{Binding TestViewModel.GivenTime, Mode=TwoWay}" MinWidth="50"/>
+            <TextBox Text="{Binding TestViewModel.GivenTime, Mode=TwoWay}" PreviewTextInput="NumberValidationTextBox" MinWidth="50"/>
         </StackPanel>
         <StackPanel Style="{StaticResource PanelStyle}" Orientation="Horizontal">
             <TextBlock Style="{StaticResource LabelStyle}" Text="Scoring schema: "/>
