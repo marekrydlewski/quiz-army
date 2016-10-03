@@ -25,7 +25,7 @@
             <TextBlock Text="Answer: " Margin="5"></TextBlock>
             <TextBox Name="AnswerTextBox" Text="{Binding AnswerViewModel.Text, UpdateSourceTrigger=PropertyChanged}"  MinWidth="200" Margin="5"/>
             <TextBlock Text="Is correct: " Margin="5"></TextBlock>
-            <CheckBox Name="IsCorrectCheckbox" IsChecked="{Binding AnswerViewModel.IsCorrect, UpdateSourceTrigger=PropertyChanged}" Margin="0 5"/>
+            <CheckBox Name="IsCorrectCheckbox" IsChecked="{Binding AnswerViewModel.IsCorrect, UpdateSourceTrigger=PropertyChanged}" Margin="0 5" Checked="IsCorrectCheckbox_Checked"/>
         </StackPanel>
         <ListBox Name="AnswersListBox" ItemsSource="{Binding QuestionViewModel.AnswerViewModels}" MinHeight="200">
             <ListBox.ItemTemplate>

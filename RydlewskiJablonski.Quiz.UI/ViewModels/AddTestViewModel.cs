@@ -23,6 +23,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _addCurrentQuestionCommand = new RelayCommand<object>(param => AddCurrentQuestion());
             _addCurrentAnswerCommand = new RelayCommand<object>(param => AddCurrentAnswer());
             _selectImageCommand = new RelayCommand<object>(param => SelectImage());
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
