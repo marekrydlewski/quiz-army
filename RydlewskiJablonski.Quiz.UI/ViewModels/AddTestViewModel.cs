@@ -23,7 +23,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             _addCurrentQuestionCommand = new RelayCommand<object>(param => AddCurrentQuestion());
             _addCurrentAnswerCommand = new RelayCommand<object>(param => AddCurrentAnswer());
             _selectImageCommand = new RelayCommand<object>(param => SelectImage());
-            
+            _canAddMoreCorrectAnswers = true;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -82,6 +82,18 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             }
         }
 
+        private bool _canAddMoreCorrectAnswers;
+
+        public bool CanAddMoreCorrectAnswers
+        {
+            get { return _canAddMoreCorrectAnswers; }
+            set
+            {
+                _canAddMoreCorrectAnswers = value;
+                OnPropertyChanged();
+            }
+        }
+
         public void AddCurrentQuestion()
         {
             _testViewModel.AddQuestion(_questionViewModel);
@@ -91,6 +103,10 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         public void AddCurrentAnswer()
         {
             _questionViewModel.AddAnswer(_answerViewModel);
+            if (!TestViewModel.IsMultipleChoice && CanAddMoreCorrectAnswers)
+            {
+                CanAddMoreCorrectAnswers = !_answerViewModel.IsCorrect;
+            }
             AnswerViewModel = new AnswerViewModel();
         }
 
