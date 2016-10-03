@@ -9,9 +9,9 @@
     <UserControl.DataContext>
         <viewModels:StatisticsTestListViewModel/>
     </UserControl.DataContext>
-    <StackPanel Orientation="Vertical">
-        <TextBlock HorizontalAlignment="Left">Tests available:</TextBlock>
-        <ListBox Name="TestListBox" ItemsSource="{Binding Tests}" SelectedItem="{Binding SelectedTest, Mode=TwoWay}">
+    <StackPanel Orientation="Vertical" Background="White">
+        <TextBlock HorizontalAlignment="Left"  Style="{StaticResource HeaderStyle}">Tests available:</TextBlock>
+        <ListBox Name="TestListBox" ItemsSource="{Binding Tests}" SelectedItem="{Binding SelectedTest, Mode=TwoWay}" Margin="5">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -20,7 +20,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="5">
             <Button Content="&lt; Back" Command="{Binding ReturnToMenuCommand}"></Button>
             <Button Content="View statistics &gt;" Command="{Binding ViewStatisticsCommand}"></Button>
         </StackPanel>
