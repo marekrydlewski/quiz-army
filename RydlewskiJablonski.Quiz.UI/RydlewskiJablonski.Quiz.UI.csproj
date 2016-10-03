@@ -140,6 +140,7 @@
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="ViewModels\StatiscticsViewModel.cs" />
+    <Compile Include="ViewModels\StatisticsTestListViewModel.cs" />
     <Compile Include="ViewModels\TestListViewModel.cs" />
     <Compile Include="ViewModels\TestResultViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />

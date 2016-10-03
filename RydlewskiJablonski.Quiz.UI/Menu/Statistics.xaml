@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.DataContext>
-        <viewModels:TestListViewModel/>
+        <viewModels:StatisticsTestListViewModel/>
     </UserControl.DataContext>
     <StackPanel Orientation="Vertical">
         <TextBlock HorizontalAlignment="Left">Tests available:</TextBlock>

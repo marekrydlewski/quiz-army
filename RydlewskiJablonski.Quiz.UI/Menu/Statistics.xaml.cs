@@ -19,7 +19,7 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         public void UtilizeState(object state)
         {
             UserViewModel user = state as UserViewModel;
-            TestListViewModel context = DataContext as TestListViewModel;
+            StatisticsTestListViewModel context = DataContext as StatisticsTestListViewModel;
             if (user != null)
             {
                 context.UserViewModel = user;

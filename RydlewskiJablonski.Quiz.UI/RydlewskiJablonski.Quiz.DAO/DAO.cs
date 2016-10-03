@@ -224,5 +224,13 @@ namespace RydlewskiJablonski.Quiz.DAO
 
             return stats;
         }
+
+        public List<int> GetAlreadyTakenTestsIds()
+        {
+            using (var context = new TestsContext())
+            {
+                return context.TestStatistics.Select(x => x.TestId).Distinct().ToList();
+            }
+        }
     }
 }
