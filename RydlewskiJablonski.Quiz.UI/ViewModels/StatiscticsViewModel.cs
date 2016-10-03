@@ -241,7 +241,9 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         private void RecalculateStatistics()
         {
             TimesTaken = TestStatistics.Count;
-            AverageTestTime = _testStatistics.Select(x => x.TestResult.Time.TotalMinutes).Average();
+            AverageTestTime = _testStatistics.Count == 0
+                ? 0
+                : _testStatistics.Select(x => x.TestResult.Time.TotalMinutes).Average();
             CalculateTestTimes();
             if (_selectedQuestionId != 0)
             {
@@ -265,7 +267,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
             QuestionTimes = newTimes;
 
-            QuestionAverageTime = QuestionTimes.Select(x => x.Time).Average();
+            QuestionAverageTime = QuestionTimes.Count == 0 ? 0 : QuestionTimes.Select(x => x.Time).Average();
         }
 
         private void CalculateTestTimes()
