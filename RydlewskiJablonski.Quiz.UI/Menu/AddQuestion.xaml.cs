@@ -10,10 +10,14 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
     /// </summary>
     public partial class AddQuestion : UserControl, ISwitchable
     {
+        public bool IsActiveCheckbox;
+        public bool IsMultipleChoice;
         public AddQuestion()
         {
             InitializeComponent();
-        }
+            IsActiveCheckbox = true;
+            IsMultipleChoice = true;
+    }
 
         #region ISwitchable Members
         public void UtilizeState(object state)
@@ -22,6 +26,8 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
             if (context != null)
             {
                 DataContext = context;
+                if (!context.TestViewModel.IsMultipleChoice)
+                    IsMultipleChoice = false;
             }
             else
             {
@@ -29,5 +35,15 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
             }
         }
         #endregion
+
+        private void IsCorrectCheckbox_Checked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (!IsActiveCheckbox)
+            {
+            var chk = sender as CheckBox;
+            chk.IsChecked = false;
+            }
+            if (!IsMultipleChoice) IsActiveCheckbox = false;
+        }
     }
 }
