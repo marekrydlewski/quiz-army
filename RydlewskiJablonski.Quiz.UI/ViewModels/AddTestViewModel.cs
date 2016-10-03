@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Interfaces;
+using RydlewskiJablonski.Quiz.UI.Helpers;
 using RydlewskiJablonski.Quiz.UI.Menu;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
@@ -12,7 +13,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         public AddTestViewModel()
         {
-            _dao = new DAO.DAO();
+            _dao = (IDAO)AssemblyLoader.GetDAOConstructor().Invoke(new object[] { });
             _userViewModel = new UserViewModel();
             _testViewModel = new TestViewModel();
             _questionViewModel = new QuestionViewModel();

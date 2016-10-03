@@ -8,6 +8,7 @@ using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.Menu;
 using System.Windows.Threading;
+using RydlewskiJablonski.Quiz.UI.Helpers;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -18,7 +19,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         public QuestionViewModel(IQuestion question)
         {
-            _dao = new DAO.DAO();
+            _dao = (IDAO)AssemblyLoader.GetDAOConstructor().Invoke(new object[] { });
             _question = question;
             PopulateAnswers();
             _nextQuestionCommand = new RelayCommand<object>(param => NextQuestion());
@@ -29,7 +30,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         public QuestionViewModel()
         {
-            _dao = new DAO.DAO();
+            _dao = (IDAO)AssemblyLoader.GetDAOConstructor().Invoke(new object[] { });
             _question = _dao.CreateNewQuestion();
             _question.Answers = new List<IAnswer>();
 

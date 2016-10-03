@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Interfaces;
+using RydlewskiJablonski.Quiz.UI.Helpers;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -11,14 +12,14 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         public AnswerViewModel(IAnswer answer)
         {
-            _dao = new DAO.DAO();
+            _dao = (IDAO)AssemblyLoader.GetDAOConstructor().Invoke(new object[] { });
             _answer = answer;
             _isSelectedAnswer = false;
         }
 
         public AnswerViewModel()
         {
-            _dao = new DAO.DAO();
+            _dao = (IDAO)AssemblyLoader.GetDAOConstructor().Invoke(new object[] { });
             _answer = _dao.CreateNewAnswer();
             _isSelectedAnswer = false;
         }

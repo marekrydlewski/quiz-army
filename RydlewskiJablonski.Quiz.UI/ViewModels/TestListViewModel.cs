@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Interfaces;
+using RydlewskiJablonski.Quiz.UI.Helpers;
 using RydlewskiJablonski.Quiz.UI.Menu;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
@@ -13,7 +14,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         public TestListViewModel()
         {
-            _dao = new DAO.DAO();
+            _dao = (IDAO)AssemblyLoader.GetDAOConstructor().Invoke(new object[] { });
             PopulateTestList(_dao.GetTests());
             _returnToMenuCommand = new RelayCommand<object>(param => ReturnToMenu());
             _takeTestCommand = new RelayCommand<object>(param => TakeTest());

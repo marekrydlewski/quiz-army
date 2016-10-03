@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -19,7 +18,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         public StatiscticsViewModel()
         {
-            _dao = new DAO.DAO();
+            _dao = (IDAO)AssemblyLoader.GetDAOConstructor().Invoke(new object[] { });
             _userViewModel = new UserViewModel();
             _testStatistics = new List<TestResultViewModel>();
             _questionTimes = new List<TakeTimes>();
@@ -35,7 +34,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         public StatiscticsViewModel(int testId, UserViewModel userViewModel)
         {
             _testId = testId;
-            _dao = new DAO.DAO();
+            _dao = (IDAO)AssemblyLoader.GetDAOConstructor().Invoke(new object[] { });
             _userViewModel = userViewModel;
             _testStatistics = _dao.GetTestStatistics(testId).Select(x => new TestResultViewModel(x)).ToList();
             _timesTaken = _testStatistics.Count;
