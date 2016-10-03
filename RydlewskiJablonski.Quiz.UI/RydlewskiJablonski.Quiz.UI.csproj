@@ -74,6 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\AssemblyLoader.cs" />
     <Compile Include="Helpers\CurrentTestTime.cs" />
     <Compile Include="Helpers\EnumDisplayEntry.cs" />
     <Compile Include="Helpers\EnumDisplayer.cs" />
@@ -243,10 +244,6 @@
     <ProjectReference Include="RydlewskiJablonski.Quiz.Core\RydlewskiJablonski.Quiz.Core.csproj">
       <Project>{60125f7e-2859-41cd-ada5-5fbf0618bbdb}</Project>
       <Name>RydlewskiJablonski.Quiz.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="RydlewskiJablonski.Quiz.DAO\RydlewskiJablonski.Quiz.DAO.csproj">
-      <Project>{321cf6ea-395d-4784-ab0a-17d2acb76f16}</Project>
-      <Name>RydlewskiJablonski.Quiz.DAO</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

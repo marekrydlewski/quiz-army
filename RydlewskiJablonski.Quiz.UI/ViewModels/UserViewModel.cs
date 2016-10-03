@@ -3,9 +3,8 @@ using System.Runtime.CompilerServices;
 using RydlewskiJablonski.Quiz.Core;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.Menu;
-using System;
-using RydlewskiJablonski.Quiz.DAO.BO;
 using System.Windows.Controls;
+using RydlewskiJablonski.Quiz.UI.Helpers;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -18,14 +17,14 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
         {
             _user = user;
             IsEditor = user.UserType == UserTypes.Editor;
-            _dao = new DAO.DAO();
+            _dao = (IDAO) AssemblyLoader.GetDAOConstructor().Invoke(new object[] {});
             _returnToLoginCommand = new RelayCommand<object>(param => ReturnToLogin());
             _editAccountCommand = new RelayCommand<object>(param => EditAccount(param));
         }
 
         public UserViewModel()
         {
-            _dao = new DAO.DAO();
+            _dao = (IDAO)AssemblyLoader.GetDAOConstructor().Invoke(new object[] { });
             _user = _dao.CreateNewUser();
             _editAccountCommand = new RelayCommand<object>(param => EditAccount(param));
         }
@@ -129,7 +128,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
             if (password.Equals(repeatPassword))
             {
-                IUser user = new User();
+                IUser user = _dao.CreateNewUser();
                 user.FirstName = FirstName;
                 user.LastName = LastName;
                 user.Login = Login;

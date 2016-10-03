@@ -18,7 +18,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         public TestViewModel(ITest test)
         {
-            _dao = new DAO.DAO();
+            _dao = (IDAO)AssemblyLoader.GetDAOConstructor().Invoke(new object[] { });
             _test = test;
             PopulateQuestions();
             _startTestCommand = new RelayCommand<object>(param => StartTest());
@@ -30,7 +30,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
 
         public TestViewModel()
         {
-            _dao = new DAO.DAO();
+            _dao = (IDAO)AssemblyLoader.GetDAOConstructor().Invoke(new object[] { });
             _test = _dao.CreateNewTest();
             _test.Questions = new List<IQuestion>();
             PopulateQuestions();
