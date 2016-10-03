@@ -10,59 +10,66 @@
     <UserControl.DataContext>
         <viewModels:StatiscticsViewModel/>
     </UserControl.DataContext>
-    <StackPanel Orientation="Vertical">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="User: "></TextBlock>
-            <ComboBox ItemsSource="{Binding Users}" DisplayMemberPath="Login" SelectedValuePath="Id" SelectedValue="{Binding SelectedUserId}" IsSynchronizedWithCurrentItem="True"></ComboBox>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Test: "></TextBlock>
-            <TextBlock Text="{Binding TestName}"></TextBlock>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Times taken: "></TextBlock>
-            <TextBlock Text="{Binding TimesTaken}"></TextBlock>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Average test time: "></TextBlock>
-            <TextBlock Text="{Binding AverageTestTime}"></TextBlock>
-        </StackPanel>
-        <TextBlock Text="Take times (minutes):"></TextBlock>
-        <ListBox ItemsSource="{Binding TestTimes}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding TakeId, StringFormat=Take {0}: }"></TextBlock>
-                        <TextBlock Text="{Binding Time}"></TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <TextBlock Text="Select question:"></TextBlock>
-        <ComboBox ItemsSource="{Binding Questions}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding SelectedQuestionId}"></ComboBox>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Average time (minutes): "></TextBlock>
-            <TextBlock Text="{Binding QuestionAverageTime}"></TextBlock>
-        </StackPanel>
-        <TextBlock Text="Take times (minutes):"></TextBlock>
-        <ListBox ItemsSource="{Binding QuestionTimes}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding TakeId, StringFormat=Take {0}: }"></TextBlock>
-                        <TextBlock Text="{Binding Time}"></TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <wpf:CartesianChart Series="{Binding HistogramData, Mode=TwoWay}" MinHeight="150">
-            <wpf:CartesianChart.AxisX>
-                <wpf:Axis Title="Answer" Labels="{Binding HistogramLabels, Mode=TwoWay}"></wpf:Axis>
-            </wpf:CartesianChart.AxisX>
-            <wpf:CartesianChart.AxisY>
-                <wpf:Axis Title="Times taken"></wpf:Axis>
-            </wpf:CartesianChart.AxisY>
-        </wpf:CartesianChart>
-        <Button Content="&lt; Back" Command="{Binding ReturnCommand}"></Button>
+    <StackPanel Orientation="Vertical" Background="White" Name="StackPanelLayout">
+        <ScrollViewer Height="{Binding ElementName=StackPanelLayout, Path=ActualHeight}" Grid.Row="1" VerticalScrollBarVisibility="Visible" CanContentScroll="True">
+            <StackPanel>
+                <TextBlock  Style="{StaticResource HeaderStyle}">Detailed statistics</TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="User: "></TextBlock>
+                    <ComboBox ItemsSource="{Binding Users}" DisplayMemberPath="Login" SelectedValuePath="Id" SelectedValue="{Binding SelectedUserId}" IsSynchronizedWithCurrentItem="True"></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Test: "></TextBlock>
+                    <TextBlock Text="{Binding TestName}"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Times taken: "></TextBlock>
+                    <TextBlock Text="{Binding TimesTaken, StringFormat={}{0:g}}"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
+                    <TextBlock Text="Average test time: "></TextBlock>
+                    <TextBlock Text="{Binding AverageTestTime, StringFormat={}{0:g}}"></TextBlock>
+                </StackPanel>
+                <TextBlock Text="Take times (minutes):" Margin="5"></TextBlock>
+                <ListBox ItemsSource="{Binding TestTimes}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="5 3">
+                                <TextBlock Text="{Binding TakeId, StringFormat=Take {0}: }"></TextBlock>
+                                <TextBlock Text="{Binding Time, StringFormat={}{0:g}}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <TextBlock Text="Select question:" Margin="5" HorizontalAlignment="Left"></TextBlock>
+                <ComboBox Margin="5" HorizontalAlignment="Left" ItemsSource="{Binding Questions}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding SelectedQuestionId}"></ComboBox>
+                <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
+                    <TextBlock Text="Average time (minutes): "></TextBlock>
+                    <TextBlock Text="{Binding QuestionAverageTime, StringFormat={}{0:g}}"></TextBlock>
+                </StackPanel>
+                <TextBlock Text="Take times (minutes):" Margin="5"></TextBlock>
+                <ListBox ItemsSource="{Binding QuestionTimes}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="5 3">
+                                <TextBlock Text="{Binding TakeId, StringFormat=Take {0}: }"></TextBlock>
+                                <TextBlock Text="{Binding Time, StringFormat={}{0:g}}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <wpf:CartesianChart Series="{Binding HistogramData, Mode=TwoWay}" MinHeight="150">
+                    <wpf:CartesianChart.AxisX>
+                        <wpf:Axis Title="Answer" Labels="{Binding HistogramLabels, Mode=TwoWay}"></wpf:Axis>
+                    </wpf:CartesianChart.AxisX>
+                    <wpf:CartesianChart.AxisY>
+                        <wpf:Axis Title="Times taken"></wpf:Axis>
+                    </wpf:CartesianChart.AxisY>
+                </wpf:CartesianChart>
+                <StackPanel HorizontalAlignment="Left">
+                    <Button Content="&lt; Back" Command="{Binding ReturnCommand}"></Button>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </StackPanel>
 </UserControl>

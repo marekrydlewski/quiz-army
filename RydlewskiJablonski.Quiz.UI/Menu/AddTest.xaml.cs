@@ -2,6 +2,8 @@
 using System.Windows.Controls;
 using RydlewskiJablonski.Quiz.Interfaces;
 using RydlewskiJablonski.Quiz.UI.ViewModels;
+using System.Windows.Input;
+using System.Text.RegularExpressions;
 
 namespace RydlewskiJablonski.Quiz.UI.Menu
 {
@@ -13,6 +15,12 @@ namespace RydlewskiJablonski.Quiz.UI.Menu
         public AddTest()
         {
             InitializeComponent();
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         #region ISwitchable Members
