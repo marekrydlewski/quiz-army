@@ -24,11 +24,11 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Times taken: "></TextBlock>
-                    <TextBlock Text="{Binding TimesTaken, StringFormat={}{0:g}}"></TextBlock>
+                    <TextBlock Text="{Binding TimesTaken, StringFormat={}{0}}"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
                     <TextBlock Text="Average test time: "></TextBlock>
-                    <TextBlock Text="{Binding AverageTestTime, StringFormat={}{0:g}}"></TextBlock>
+                    <TextBlock Text="{Binding AverageTestTime, StringFormat={}{0:F2}}"></TextBlock>
                 </StackPanel>
                 <TextBlock Text="Take times (minutes):" Margin="5"></TextBlock>
                 <ListBox ItemsSource="{Binding TestTimes}">
@@ -36,7 +36,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="5 3">
                                 <TextBlock Text="{Binding TakeId, StringFormat=Take {0}: }"></TextBlock>
-                                <TextBlock Text="{Binding Time, StringFormat={}{0:g}}"></TextBlock>
+                                <TextBlock Text="{Binding Time, StringFormat={}{0:F2}}"></TextBlock>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -45,7 +45,7 @@
                 <ComboBox Margin="5" HorizontalAlignment="Left" ItemsSource="{Binding Questions}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding SelectedQuestionId}"></ComboBox>
                 <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
                     <TextBlock Text="Average time (minutes): "></TextBlock>
-                    <TextBlock Text="{Binding QuestionAverageTime, StringFormat={}{0:g}}"></TextBlock>
+                    <TextBlock Text="{Binding QuestionAverageTime, StringFormat={}{0:F2}}"></TextBlock>
                 </StackPanel>
                 <TextBlock Text="Take times (minutes):" Margin="5"></TextBlock>
                 <ListBox ItemsSource="{Binding QuestionTimes}">
@@ -53,7 +53,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="5 3">
                                 <TextBlock Text="{Binding TakeId, StringFormat=Take {0}: }"></TextBlock>
-                                <TextBlock Text="{Binding Time, StringFormat={}{0:g}}"></TextBlock>
+                                <TextBlock Text="{Binding Time, StringFormat={}{0:F2}}"></TextBlock>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
