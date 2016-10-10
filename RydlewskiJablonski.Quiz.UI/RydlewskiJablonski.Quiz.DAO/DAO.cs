@@ -26,7 +26,7 @@ namespace RydlewskiJablonski.Quiz.DAO
             using (var context = new TestsContext())
             {
                 var usersID = context.Users.Select(x => x.Id);
-                int newUserId = usersID == null ? usersID.Max() + 1 : 1;
+                int newUserId = usersID != null ? usersID.Max() + 1 : 1;
                 user.Id = newUserId;
                 context.Users.Add(user as User);
                 context.SaveChanges();
