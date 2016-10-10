@@ -3,6 +3,7 @@ using System.Data;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using RydlewskiJablonski.Quiz.UI.Menu;
+using RydlewskiJablonski.Quiz.Core;
 
 namespace RydlewskiJablonski.Quiz.UI.ViewModels
 {
@@ -72,6 +73,7 @@ namespace RydlewskiJablonski.Quiz.UI.ViewModels
             if (password.Equals(repeatPassword))
             {
                 _userViewModel.Password = password;
+                if (_userViewModel.UserType == UserTypes.Editor) _userViewModel.IsEditor = true;
                 try
                 {
                     _userListViewModel.AddUser(_userViewModel);
