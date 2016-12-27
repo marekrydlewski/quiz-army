@@ -238,15 +238,14 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RydlewskiJablonski.Quiz.Interfaces\RydlewskiJablonski.Quiz.Interfaces.csproj">
-      <Project>{154F35DB-3130-4926-9C6E-188D0644C8AF}</Project>
+      <Project>{154f35db-3130-4926-9c6e-188d0644c8af}</Project>
       <Name>RydlewskiJablonski.Quiz.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="RydlewskiJablonski.Quiz.Core\RydlewskiJablonski.Quiz.Core.csproj">
+    <ProjectReference Include="..\RydlewskiJablonski.Quiz.Core\RydlewskiJablonski.Quiz.Core.csproj">
       <Project>{60125f7e-2859-41cd-ada5-5fbf0618bbdb}</Project>
       <Name>RydlewskiJablonski.Quiz.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

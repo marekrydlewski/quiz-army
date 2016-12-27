@@ -31,11 +31,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\RydlewskiJablonski.Quiz.UI\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\RydlewskiJablonski.Quiz.UI\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -61,7 +61,7 @@
     <Compile Include="TestsContext.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\RydlewskiJablonski.Quiz.Interfaces\RydlewskiJablonski.Quiz.Interfaces.csproj">
+    <ProjectReference Include="..\RydlewskiJablonski.Quiz.Interfaces\RydlewskiJablonski.Quiz.Interfaces.csproj">
       <Project>{154f35db-3130-4926-9c6e-188d0644c8af}</Project>
       <Name>RydlewskiJablonski.Quiz.Interfaces</Name>
     </ProjectReference>

@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RydlewskiJablonski.Quiz.UI"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RydlewskiJablonski.Quiz.Interfaces", "..\RydlewskiJablonski.Quiz.Interfaces\RydlewskiJablonski.Quiz.Interfaces.csproj", "{154F35DB-3130-4926-9C6E-188D0644C8AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RydlewskiJablonski.Quiz.Core", "RydlewskiJablonski.Quiz.Core\RydlewskiJablonski.Quiz.Core.csproj", "{60125F7E-2859-41CD-ADA5-5FBF0618BBDB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RydlewskiJablonski.Quiz.Core", "..\RydlewskiJablonski.Quiz.Core\RydlewskiJablonski.Quiz.Core.csproj", "{60125F7E-2859-41CD-ADA5-5FBF0618BBDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RydlewskiJablonski.Quiz.DAO", "RydlewskiJablonski.Quiz.DAO\RydlewskiJablonski.Quiz.DAO.csproj", "{321CF6EA-395D-4784-AB0A-17D2ACB76F16}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RydlewskiJablonski.Quiz.DAO", "..\RydlewskiJablonski.Quiz.DAO\RydlewskiJablonski.Quiz.DAO.csproj", "{321CF6EA-395D-4784-AB0A-17D2ACB76F16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
